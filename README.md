@@ -269,7 +269,7 @@ See below for how this was managed:
 
 ## **Deployment**
 
-The project was developed using [GitPod](https://gitpod.io/) and pushed to [GitHub](https://github.com/) the deploed on Heroku using these instructions:
+The project was developed using [GitPod](https://gitpod.io/) and pushed to [GitHub](https://github.com/) the deployed on Heroku using these instructions:
 
 1. Create a requirements.txt file using command *pip3 freeze --local > requirements.txt*
 2. Create a Procfile with the terminal command *echo web: python app.py > Procfile* and at this point checking the Procfile to make sure there is no stray line as this can cause issues when deploying to Heroku.
