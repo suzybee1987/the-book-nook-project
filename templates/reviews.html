@@ -1,17 +1,22 @@
 {% extends "base.html" %}
-    {% block content %}
+{% block content %}
 
-<div class="hero h-100">
-
+<div class="hero">
+    <div class="row">
+        <div class="col s12 m8 offset-m2">
+            <div class="card-panel">
+                <h1 class="review-header center-align">Book Reviews</h1>
+                <span class="brown-text">
+                    {% for review in reviews %}
+                    {{ review.book_name }} <br>
+                    {{ review.author_name }} <br>
+                    {{ review.genre }} <br>
+                    {{ review.rating }}<br>
+                    {{ review.favourite }} <br>
+                    {% endfor %}
+                </span>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
 </div>
-<h1 class="review-header">Book Reviews</h1>
-
-    {% for review in reviews %}
-    {{ review.book_name }} <br>
-    {{ review.author_name }} <br>
-    {{ review.genre }} <br>
-    {{ review.rating }}<br>
-    {{ review.favourite }} <br>
-{% endfor %}
-
-{% endblock %}
