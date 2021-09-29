@@ -35,3 +35,20 @@ p {
 .review-header {
     color: #eceff1;
 }
+
+.flashes h4 {
+    list-style: 2;
+}
+
+/* sass from materialize for input fields  */
+   /* valid color */
+   .input-field input[type=text].valid {
+       border-bottom: 1px solid #4e342e;
+       box-shadow: 0 1px 0 0 #000;
+   }
+
+   /* invalid color */
+   .input-field input[type=text].invalid {
+       border-bottom: 1px solid #ff1744;
+       box-shadow: 0 1px 0 0 #000;
+   }
