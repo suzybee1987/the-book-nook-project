@@ -28,6 +28,34 @@ def get_reviews():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+        # check if username already exists
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            # change the flash to toast?
+            flash("Username already exists, change this to toast")
+            return redirect(url_for("register"))
+
+# in Mini Project | Putting It All Together  User Authentication
+# Adding Registration Functionality video
+# Tim says if you want a confirm password you should do it
+# before this dictionary
+
+        register = {
+            "name": request.form.get("name").capitalize(),
+            "email": request.form.get("email").lower(),
+            "username": request.form.get("username").lower(),
+            # as a challenge can change the hash and salt method for project
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        mongo.db.users.insert_one(register)
+
+        # put new user in to session using session cookie
+        # add user's name to flash method
+        session["user"] = request.form.get("username").lower()
+        flash("Registration successful!")
     return render_template("register.html")
 
 

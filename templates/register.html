@@ -8,29 +8,30 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-envelope prefix"></i>
-                    <input id="email" name="email" type="text" class="validate">
+                    <input id="email" name="email" type="text" class="validate" required>
                     <label for="email">Email</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-circle-user prefix"></i>
-                    <input id="name" name="name" type="text" class="validate">
+                    <input id="name" name="name" type="text" class="validate" required>
                     <label for="name">Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-user prefix"></i>
-                    <input id="username" name ="username" type="text" class="validate">
+                    <input id="username" name ="username" type="text" pattern="^[a-zA-Z0-9]{8,20}$" class="validate" minlength="5" maxlength="20" required>
                     <label for="username">Username</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-user-lock prefix"></i>
-                    <input id="password" name="password" type="password" class="validate">
+                    <input id="password" name="password" type="password" minlength="8" maxlength="20" pattern="^[a-zA-Z0-9]{8,20}$" class="validate" required>
                     <label for="password">Password</label>
+                    <span>Please enter a password minimum of 8 characters using letters and numbers.</span>
                 </div>
             </div>
             <div class="row">
