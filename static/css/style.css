@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Pacifico&family=Poppins&display=swap');
+/* font-family: 'Pacifico', cursive;
+font-family: 'Libre Baskerville', serif;
+font-family: 'Poppins', sans-serif; */
+
+.title {
+    font-family: 'Libre Baskerville', serif;
+}
+
+
+h2 {
+    font-family: 'Libre Baskerville',
+        serif;
+}
+
+
+p {
+    font-family: 'Poppins', sans-serif;
+
+}
+
+
+.textshadow {
+    text-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.6);
+}
+
+.hero {
+    background: url("../images/pexels-janko.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.review-header {
+    color: #eceff1;
+}
