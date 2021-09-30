@@ -5,13 +5,40 @@
     <div class="col s12 m8 offset-m2">
         <div class="card-panel">
             <h3 class="center-align brown darken-3 white-text"></h3>
-
             <!-- Would like to change this to the name registered instead of username  -->
             {{ username }}'s profile
         </div>
-
         <!-- Try to add all reviews and favourite reviews here   -->
     </div>
 </div>
-
+<div class="profile-hero">
+    <div class="row">
+        <div class="col s12 m8 offset-m2">
+            <div class="card-panel">
+                <h1 class="review-header center-align">Book Reviews</h1>
+                <span class="brown-text">
+                    <ul class="collapsible">
+                        {% for review in reviews %}
+                        <li>
+                            <div class="collapsible-header white-text brown darken-3">
+                                <i class="fa-solid fa-caret-down"></i>
+                                <strong>"{{ review.book_name }}" by {{ review.author_name }} </strong>
+                            </div>
+                            <div class="collapsible-body">
+                                <p>Genre: {{ review.genre }}</p>
+                                <p>Review: {{ review.review }}</p>
+                                <!-- below line should be changed to user - make a new user called Sunday Times for the Mort review  -->
+                                <p>Reviewer: {{ review.reviewer }}</p>
+                                <p>Rating: {{ review.rating }}</p>
+                                {% if review.favourite == "on" %} 
+                                    <i class="fa-solid fa-exclamation-circle brown darken-3"></i>
+                                {% endif %}
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}

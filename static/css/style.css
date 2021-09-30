@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Pacifico&family=Poppins&display=swap');
+
 /* font-family: 'Pacifico', cursive;
 font-family: 'Libre Baskerville', serif;
 font-family: 'Poppins', sans-serif; */
-body, html {
-    padding:0;
+body,
+html {
+    padding: 0;
 }
+
 .title {
     font-family: 'Libre Baskerville', serif;
 }
@@ -34,7 +37,7 @@ p {
     background-size: cover;
     /* filter: blur(5px);
     filter: blur(1rem); */
-    height:100vh;
+    height: 100vh;
 }
 
 .review-header {
@@ -86,5 +89,34 @@ p {
 }
 
 .link-here:hover {
-    border-bottom:2px solid #F78764;
+    border-bottom: 2px solid #F78764;
+}
+
+
+.profile-hero {
+    background: url("../images/pexels-skitterphoto-book.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+}
+
+
+/* Review page  */
+
+.switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #4e342e;
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #8d6e63;
+}
+
+.btn {
+    background-color: #8d6e63;
+}
+
+.btn:hover {
+    background-color: #4e342e;
 }
