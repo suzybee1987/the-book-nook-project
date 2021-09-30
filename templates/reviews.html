@@ -7,13 +7,23 @@
             <div class="card-panel">
                 <h1 class="review-header center-align">Book Reviews</h1>
                 <span class="brown-text">
-                    {% for review in reviews %}
-                    {{ review.book_name }} <br>
-                    {{ review.author_name }} <br>
-                    {{ review.genre }} <br>
-                    {{ review.rating }}<br>
-                    {{ review.favourite }} <br>
-                    {% endfor %}
+                    <ul class="collapsible">
+                        {% for review in reviews %}
+                        <li>
+                            <div class="collapsible-header white-text brown darken-3">
+                                <i class="fa-solid fa-caret-down"></i>
+                                <strong>"{{ review.book_name }}" by {{ review.author_name }} </strong>
+                            </div>
+                            <div class="collapsible-body">
+                                <p>Genre: {{ review.genre }}</p>
+                                <p>Review: {{ review.review }}</p>
+                                <!-- below line should be changed to user - make a new user called Sunday Times for the Mort review  -->
+                                <p>Reviewer: {{ review.reviewer }}</p>
+                                <p>Rating: {{ review.rating }}</p>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </span>
             </div>
         </div>

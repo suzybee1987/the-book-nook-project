@@ -22,7 +22,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_reviews")
 def get_reviews():
-    reviews = mongo.db.reviews.find()
+    reviews = list(mongo.db.reviews.find())
     return render_template("reviews.html", reviews=reviews)
 
 
@@ -111,6 +111,11 @@ def logout():
     flash("You have been logged out")
     session.pop('user')
     return redirect(url_for('login'))
+
+
+@app.route("/add_review")
+def add_review():
+    return render_template("add_review.html")
 
 
 if __name__ == "__main__":
