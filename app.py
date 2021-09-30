@@ -126,6 +126,7 @@ def add_review():
             "book_name": request.form.get("book_name"),
             "author_name": request.form.get("author_name"),
             "review": request.form.get("review"),
+            "rating": request.form.get("rating"),
             "favourite": favourite,
             "reviewed_by": session["user"]
         }
@@ -134,7 +135,8 @@ def add_review():
         return redirect(url_for('get_reviews'))
 
     genres = mongo.db.genres.find().sort("genre_name", 1)
-    return render_template("add_review.html", genres=genres)
+    ratings = mongo.db.ratings.find().sort("rating", 1)
+    return render_template("add_review.html", genres=genres, ratings=ratings)
 
 
 if __name__ == "__main__":

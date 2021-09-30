@@ -2,8 +2,8 @@
 {% block content %}
 <div class="hero-add-review">
     <div class="row">
-        <div class=" card-panel col m8 offset-m2">
-            <form class="col s8 offset-m2" method="POST" action="{{ url_for('add_review') }}">
+        <div class="card-panel col m8 offset-m2">
+            <form method="POST" action="{{ url_for('add_review') }}">
                 <h3 class="brown-text center-align">Add Review</h3>
                 <!-- This could be used with ISBN api  -->
                 <!-- <div class="row">
@@ -52,21 +52,31 @@
                         <label for="review">Review</label>
                     </div>
                 </div>
-                <!-- Favourite toggle  -->
-                <div class="row center-align">
-                    <div class="switch col s4 offset-m1">
-                        <label for="favourite" class="brown-text text-darken-3">
-                            Favourite
-                            <input type="checkbox" id="favourite" name="favourite">
-                            <span class="lever"></span>
-                        </label>
+                <div class="row">
+                    <div class="input-field col s8 offset-m2">
+                        <select id="rating" name="rating" class="validate" required>
+                            <option value="" disabled selected>Rating</option>
+                            {% for rating in ratings %}
+                            <option value="{{ rating.rating }}">{{ rating.rating }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="rating">Rating</label>
                     </div>
-                    <!-- Submit  -->
-                    <div class="col s4 offset-m1">
-                        <button class="btn waves-effect waves-light" type="submit">Submit Review
-                        </button>
+                    <!-- Favourite toggle  -->
+                    <div class="row center-align">
+                        <div class="switch col s4 offset-m1">
+                            <label for="favourite" class="brown-text text-darken-3">
+                                Favourite
+                                <input type="checkbox" id="favourite" name="favourite">
+                                <span class="lever"></span>
+                            </label>
+                        </div>
+                        <!-- Submit  -->
+                        <div class="col s4 offset-m1">
+                            <button class="btn waves-effect waves-light" type="submit">Submit Review
+                            </button>
+                        </div>
                     </div>
-                </div>
             </form>
         </div>
     </div>
