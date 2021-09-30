@@ -1,3 +1,8 @@
+"""
+    Code adapted from Code Institute Course Material
+    Task Manager Flask App mini Project
+"""
+
 import os
 from flask import (
     Flask, flash, render_template,
@@ -97,7 +102,6 @@ def profile(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    return render_template("profile.html", username=username)
 
     if session['user']:
         return render_template("profile.html", username=username)
@@ -113,8 +117,22 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.route("/add_review")
+@app.route("/add_review", methods=["GET", "POST"])
 def add_review():
+    if request.method == "POST":
+        favourite = "on" if request.form.get('favourite') else "off"
+        review = {
+            "genre_name": request.form.get("genre_name"),
+            "book_name": request.form.get("book_name"),
+            "author_name": request.form.get("author_name"),
+            "review": request.form.get("review"),
+            "favourite": favourite,
+            "reviewed_by": session["user"]
+        }
+        mongo.db.reviews.insert_one(review)
+        flash("Review successfully added")
+        return redirect(url_for('get_reviews'))
+
     genres = mongo.db.genres.find().sort("genre_name", 1)
     return render_template("add_review.html", genres=genres)
 

@@ -1,21 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-
-<div class="row">
-    <div class="col s12 m8 offset-m2">
-        <div class="card-panel">
-            <h3 class="center-align brown darken-3 white-text"></h3>
-            <!-- Would like to change this to the name registered instead of username  -->
-            {{ username }}'s profile
-        </div>
-        <!-- Try to add all reviews and favourite reviews here   -->
-    </div>
-</div>
 <div class="profile-hero">
+    <div class="row">
+        <div class="col s12 m6 offset-m3">
+            <div class="card-panel center-align">
+                <h3 class="brown-text">
+                <!-- Would like to change this to the name registered instead of username  -->
+                {{ username }}'s profile</h3>
+            </div>
+            <!-- Try to add all reviews and favourite reviews here   -->
+        </div>
+    </div>
     <div class="row">
         <div class="col s12 m8 offset-m2">
             <div class="card-panel">
-                <h1 class="review-header center-align">Book Reviews</h1>
+                <h1 class="review-header center-align brown-text">Book Reviews</h1>
                 <span class="brown-text">
                     <ul class="collapsible">
                         {% for review in reviews %}
@@ -30,8 +29,8 @@
                                 <!-- below line should be changed to user - make a new user called Sunday Times for the Mort review  -->
                                 <p>Reviewer: {{ review.reviewer }}</p>
                                 <p>Rating: {{ review.rating }}</p>
-                                {% if review.favourite == "on" %} 
-                                    <i class="fa-solid fa-exclamation-circle brown darken-3"></i>
+                                {% if review.favourite == "on" %}
+                                <i class="fa-solid fa-exclamation-circle brown darken-3"></i>
                                 {% endif %}
                             </div>
                         </li>
@@ -41,4 +40,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
+    {% endblock %}
