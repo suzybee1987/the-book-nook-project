@@ -26,7 +26,7 @@
                         class="fa-solid fa-ellipsis"></i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('get_reviews') }}">Home</a></li>
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                     <li><a href="#">Add Review</a></li>
                     <li><a href="#">All Reviews</a></li>
                     <li><a href="#">Log Out</a></li>
@@ -41,7 +41,7 @@
                 <h4 class="center-align title">The Book Nook</h4>
             </li>
             <li><a href="{{ url_for('get_reviews') }}">Home</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
             <li><a href="#">Add Review</a></li>
             <li><a href="#">All Reviews</a></li>
             <li><a href="#">Log Out</a></li>
@@ -56,7 +56,7 @@
         {% if messages %}
         {% for message in messages %}
         <div class="row flashes">
-            <h4 class="brown darken-3 center-align">{{ message }}</h4>
+            <h4 class="brown darken-3 center-align white-text">{{ message }}</h4>
         </div>
         {% endfor %}
         {% endif %}
