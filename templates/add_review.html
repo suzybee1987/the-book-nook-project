@@ -21,11 +21,11 @@
             <!-- Come back to this when Tim goes over how to create the task categories  -->
             <div class="row">
                 <div class="input-field col s8 offset-m2">
-                    <select>
+                    <select id="genre_name" name="genre_name" class="validate" required>
                         <option value="" disabled selected>Choose Genre</option>
-                        <option value="1">Fantasy</option>
-                        <option value="2">Crime</option>
-                        <option value="3">Horror</option>
+                        {% for genre in genres %}
+                            <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
+                        {% endfor %}
                     </select>
                 </div>
             </div>
