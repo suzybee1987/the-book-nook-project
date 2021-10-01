@@ -6,8 +6,8 @@
         <div class="col s12 m8 offset-m2">
             <div class="card-panel z-depth-4">
                 <h2 class="review-header center-align">Book Reviews</h2>
+                {% for review in reviews %}
                 <div class="row">
-                    {% for review in reviews %}
                     <div class="col s12 m4 card-review">
                         <div class="card">
                             <ul>
@@ -15,21 +15,22 @@
                                     <div class="card-image">
                                         <img src="static/images/pexels-book.jpg">
                                     </div>
-                                    <div class="card-title center-align">{{ review.book_name }}
+                                    <div class="card-title">
+                                        {{ review.book_name }}
                                         by {{ review.author_name }}
                                     </div>
-                                    <div>
-                                        <p>Rating: {{ review.rating }}</p>
-                                        <!-- <p>Review Title: {{ review.review_title }}</p> -->
-                                        <!-- <p>Review: {{ review.review }}</p> -->
+                                    <p>Rating: {{ review.rating }}</p>
+                                    <p>Review Title: {{ review.review_title }}</p>
+                                    <div class="card-content">
+                                        <p>Review: {{ review.review }}</p>
                                         <p>Genre: {{ review.genre_name }}</p>
                                         <p>Reviewer: '{{ review.reviewed_by }}'</p>
                                     </div>
                                     <div class="card-action">
-                                        <!-- Here i'd like to click the link to go to book_review.html for the selected book  -->
-                                        <a href="#">See Review</a>
+                                        <a href="#">Affiliate Link</a>
                                         <p>Please support your local bookshop!</p>
                                     </div>
+
                                 </li>
                             </ul>
                         </div>

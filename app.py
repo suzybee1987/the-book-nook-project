@@ -36,6 +36,13 @@ def get_reviews():
     return render_template("reviews.html", reviews=reviews)
 
 
+# @app.route("/see_review/<reviews>", methods=["GET", "POST"])
+# def see_review(reviews):
+#     reviews = mongo.db.reviews.find(
+#         {"reviews": })["review"]
+#     return render_template("book_review.html", reviews=reviews)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -83,9 +90,10 @@ def login():
 
         if existing_user:
             # ensure hashed password matches user input
-            if check_password_hash(existing_user["password"], request.form.get("password")):
-                session["user"] = request.form.get("username").lower()
-                return redirect(url_for("profile", username=session["user"]))
+            if check_password_hash(
+                existing_user["password"], request.form.get("password")):
+                    session["user"] = request.form.get("username").lower()
+                    return redirect(url_for("profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -125,8 +133,10 @@ def add_review():
         favourite = "on" if request.form.get('favourite') else "off"
         review = {
             "genre_name": request.form.get("genre_name"),
+            "review_image": request.form.get("review_image"),
             "book_name": request.form.get("book_name"),
             "author_name": request.form.get("author_name"),
+            "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
             "rating": request.form.get("rating"),
             "favourite": favourite,
