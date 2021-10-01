@@ -29,18 +29,18 @@ body {
 main {
     flex: 1 0 auto;
 }
-/* 
-footer ul li {
-    display: inline;
-} */
 
+.page-footer {
+    padding-top: 5px;
+    color: #fff;
+}
 
 /* end of footer  */
 
 /* Home page  */
 
 .homepage {
-    padding-top:30px;
+    padding-top: 30px;
 }
 
 .hero {
@@ -109,6 +109,12 @@ footer ul li {
     color: #3e2723;
 }
 
+.row {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+}
+
 h2,
 .title,
 .paragraph {
@@ -173,8 +179,13 @@ h2,
 .review-header {
     font-family: 'Libre Baskerville', serif;
     color: #3e2723;
-
 }
+
+.card {
+    height: 600px;
+    overflow: hidden;
+}
+
 
 .flashes h4 {
     list-style: 2;
@@ -246,4 +257,3 @@ h2,
 }
 
 /* end of sass from materialize  */
-
