@@ -1,44 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
-
+<div class="login-hero">
     <div class="row">
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
-        <div class="card-panel">
-            <h3 class="center-align">Log In</h3>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fa-solid fa-user-cog prefix"></i>
-                    <input id="username" name="username" type="text" pattern="^[a-zA-Z0-9]{8,20}$" class="validate"
-                        minlength="5" maxlength="20" required>
-                    <label for="username">Username</label>
+        <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('login') }}">
+            <div class="card-panel z-depth-4">
+                <h3 class="center-align">Log In</h3>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-solid fa-user-cog prefix"></i>
+                        <input id="username" name="username" type="text" pattern="^[a-zA-Z0-9]{8,20}$" class="validate"
+                            minlength="5" maxlength="20" required>
+                        <label for="username">Username</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fa-solid fa-user-lock prefix"></i>
-                    <input id="password" name="password" type="password" minlength="8" maxlength="20"
-                        pattern="^[a-zA-Z0-9]{8,20}$" class="validate" required>
-                    <label for="password">Password</label>
-                    <span>Please enter a password minimum of 8 characters using letters and numbers.</span>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-solid fa-user-lock prefix"></i>
+                        <input id="password" name="password" type="password" minlength="8" maxlength="20"
+                            pattern="^[a-zA-Z0-9]{8,20}$" class="validate" required>
+                        <label for="password">Password</label>
+                        <span>Please enter a password minimum of 8 characters using letters and numbers.</span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <button type="submit" class="col s12 btn-large text-shadow brown darken-3">
-                    Log In
-                    <i class="fa-solid fa-sign-in-alt"></i>
-                </button>
-            </div>
-        </div>
-        </form>
-        <div class="row">
-            <div class="col s12">
-                <p class="center-align">
-                    Not registered yet? </p>
-                <p class="center-align">
-                    Click <a href="{{ url_for('register') }}" class="link-here">here</a> to register!
-                </p>
-            </div>
-        </div>
-    </div>
+                <div class="row">
+                    <button type="submit" class="col s12 btn-large text-shadow brown darken-3">
+                        Log In
+                        <i class="fa-solid fa-sign-in-alt"></i>
+                    </button>
+                </div>
 
+                <div class="row">
+                    <div class="col s12">
+                        <p class="center-align">
+                            Not registered yet? </p>
+                        <p class="center-align">
+                            Click <a href="{{ url_for('register') }}" class="link-here">here</a> to register!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
