@@ -101,6 +101,10 @@ footer ul li {
 
 /* General styling  */
 
+.curly {
+    font-family: 'Pacifico', cursive;
+}
+
 .brown-text {
     color: #3e2723;
 }
