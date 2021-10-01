@@ -4,8 +4,8 @@
     <div class="row">
         <div class="col s12 m6 offset-m3">
             <div class="card-panel center-align">
-                <h4 class="brown-text">
-                    Welcome, {{ username }}</h4>
+                <h3 class="brown-text">
+                    Welcome, {{ username }}</h3>
             </div>
             <!-- Try to add all reviews and favourite reviews here   -->
         </div>
@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col s12 m8 offset-m2">
             <div class="card-panel">
-                <h1 class="review-header center-align brown-text">Book Reviews</h1>
+                <h3 class="review-header center-align brown-text">Book Reviews</h3>
                 <span class="brown-text">
                     <ul class="collapsible">
                         {% for review in reviews %}
@@ -39,4 +39,6 @@
             </div>
         </div>
     </div>
-    {% endblock %}
+</div>
+
+{% endblock %}
