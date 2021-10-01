@@ -20,7 +20,7 @@
 
                 <!-- Come back to this when Tim goes over how to create the task categories  -->
                 <div class="row">
-                    <div class="input-field col s8 offset-m2">
+                    <div class="input-field col-12 s8 offset-m2">
                         <select id="genre_name" name="genre_name" class="validate" required>
                             <option value="" disabled selected>Choose Genre</option>
                             {% for genre in genres %}
@@ -31,14 +31,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s8 offset-m2">
+                    <div class="input-field col-12 s8 offset-m2">
                         <i class="fa-solid fa-book prefix"></i>
                         <input id="book_name" name="book_name" type="text" class="validate" required>
                         <label for="book_name">Book Name</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s8 offset-m2">
+                    <div class="input-field col-12 s8 offset-m2">
                         <i class="fa-solid fa-user-pen prefix"></i>
                         <input id="author_name" name="author_name" type="text" class="validate" required>
                         <label for="author_name">Author</label>
@@ -46,14 +46,14 @@
                 </div>
                 <!-- Review text area  -->
                 <div class="row">
-                    <div class="input-field col s8 offset-m2">
+                    <div class="input-field col-12 s8 offset-m2">
                         <i class="fa-solid fa-pen-fancy prefix"></i>
                         <textarea id="review" name="review" class="materialize-textarea" required></textarea>
                         <label for="review">Review</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s8 offset-m2"><i class="fa-solid fa-star prefix"></i>
+                    <div class="input-field col-12 s8 offset-m2"><i class="fa-solid fa-star prefix"></i>
                         <select id="rating" name="rating" class="validate" required>
                             
                             <option value="" disabled selected>Rating</option>
