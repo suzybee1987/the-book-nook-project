@@ -36,11 +36,10 @@ def get_reviews():
     return render_template("reviews.html", reviews=reviews)
 
 
-# @app.route("/see_review/<reviews>", methods=["GET", "POST"])
-# def see_review(reviews):
-#     reviews = mongo.db.reviews.find(
-#         {"reviews": })["review"]
-#     return render_template("book_review.html", reviews=reviews)
+@app.route("/see_review/<reviews>", methods=["GET", "POST"])
+def see_review(reviews):
+    reviews = mongo.db.reviews.find({"_id": ObjectId(reviews)})
+    return render_template("book_review.html", reviews=reviews)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -147,7 +146,7 @@ def add_review():
         return redirect(url_for('get_reviews'))
 
     genres = mongo.db.genres.find().sort("genre_name", 1)
-    ratings = mongo.db.ratings.find().sort("rating", 1)
+    ratings = list(mongo.db.ratings.find().sort("rating", 1))
     return render_template("add_review.html", genres=genres, ratings=ratings)
 
 

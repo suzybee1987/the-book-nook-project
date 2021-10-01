@@ -5,37 +5,98 @@
     <div class="row">
         <div class="col s12 m8 offset-m2">
             <div class="card-panel z-depth-4">
+                <div class="row">
+                    <div class="col s12 m12">
+                        <a class="btn" href="{{ url_for('get_reviews') }}"><i class="fa-solid fa-circle-chevron-left"></i> Back to Reviews</a>
+                    </div>
+                </div>
                 <h2 class="review-header center-align">Book Reviews</h2>
                 {% for review in reviews %}
                 <div class="row">
-                    <div class="col s12 m4 card-review">
+                    <div class="col s12 m12">
                         <div class="card">
                             <ul>
                                 <li>
                                     <div class="card-image">
                                         <img src="static/images/pexels-book.jpg">
                                     </div>
-                                    <div class="card-title">
-                                        {{ review.book_name }}
+                                    <div class="card-title center-align">{{ review.book_name }}
                                         by {{ review.author_name }}
                                     </div>
-                                    <p>Rating: {{ review.rating }}</p>
-                                    <p>Review Title: {{ review.review_title }}</p>
-                                    <div class="card-content">
-                                        <p>Review: {{ review.review }}</p>
+                                    <div>
                                         <p>Genre: {{ review.genre_name }}</p>
+                                        <p>Rating: {{ review.rating }}</p>
+                                        <p>Review Title: {{ review.review_title }}</p>
+                                        <p>Review: {{ review.review }}</p>
                                         <p>Reviewer: '{{ review.reviewed_by }}'</p>
                                     </div>
                                     <div class="card-action">
+                                        <!-- Here i'd like to click the link to go to book_review.html for the selected book  -->
                                         <a href="#">Affiliate Link</a>
                                         <p>Please support your local bookshop!</p>
                                     </div>
-
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    {% endfor %}
+                </div>
+                {% endfor %}
+                <div class="row">
+                    <div class="col s12 m8 offset-m2 ">
+                        <div class="card">
+                            <h4 class="card-header center-align">
+                                Add review
+                            </h4>
+                            <div class="card-body">
+                                <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('add_review') }}">
+                                </form>
+                                <div class="row">
+                                    <div class="col s12 m10 offset-m1 input-field">
+                                        <i class="fa-solid fa-user-pen prefix"></i>
+                                        <input id="review_title" name="review_title" type="text" class="validate"
+                                            minlength="5" maxlength="50" pattern="^[a-zA-Z0-9]{5,50}$" required>
+                                        <label for="review_title">Review Title</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12 m10 offset-m1 input-field">
+                                        <i class="fa-solid fa-keyboard prefix"></i>
+                                        <textarea id="review" name="review" class="materialize-textarea"
+                                            required></textarea>
+                                        <label for="review">Review</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12 m10 offset-m1 input-field">
+                                        <i class="fa-solid fa-star prefix"></i>
+                                        <select id="rating" name="rating" class="validate" required>
+                                            <option value="" disabled selected>Rating</option>
+                                            {% for rating in ratings %}
+                                            <option value="{{ rating.rating }}">{{ rating.rating }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <label for="rating"></label>
+                                    </div>
+                                </div>
+                                <!-- Favourite toggle  -->
+                                <div class="row center-align">
+                                    <div class="switch col s4">
+                                        <label for="favourite" class="brown-text text-darken-3">
+                                            Favourite
+                                            <input type="checkbox" id="favourite" name="favourite">
+                                            <span class="lever"></span>
+                                        </label>
+                                    </div>
+                                    <!-- Submit  -->
+                                    <div class="col s4">
+                                        <button class="btn waves-effect waves-light" type="submit">Submit Review
+                                        </button>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
