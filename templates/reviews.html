@@ -8,8 +8,8 @@
                 <h2 class="review-header center-align">Book Reviews</h2>
                 <div class="row">
                     {% for review in reviews %}
-                    <div class="col s12 m4 card-review">
-                        <div class="card">
+                    <div class="col s12 m4">
+                        <div class="card  card-review">
                             <ul>
                                 <li>
                                     <div class="card-image">
@@ -20,15 +20,12 @@
                                     </div>
                                     <div>
                                         <p>Rating: {{ review.rating }}</p>
-                                        <!-- <p>Review Title: {{ review.review_title }}</p> -->
-                                        <!-- <p>Review: {{ review.review }}</p> -->
+
                                         <p>Genre: {{ review.genre_name }}</p>
                                         <p>Reviewer: '{{ review.reviewed_by }}'</p>
                                     </div>
                                     <div class="card-action">
-                                        <!-- Here i'd like to click the link to go to book_review.html for the selected book  -->
-                                        <a href="#">See Review</a>
-                                        <p>Please support your local bookshop!</p>
+                                        <a href="{{ url_for('see_review', reviews=review._id) }}">See Review</a>
                                     </div>
                                 </li>
                             </ul>
