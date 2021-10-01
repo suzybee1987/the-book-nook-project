@@ -53,14 +53,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s8 offset-m2">
+                    <div class="input-field col s8 offset-m2"><i class="fa-solid fa-star prefix"></i>
                         <select id="rating" name="rating" class="validate" required>
+                            
                             <option value="" disabled selected>Rating</option>
                             {% for rating in ratings %}
                             <option value="{{ rating.rating }}">{{ rating.rating }}</option>
                             {% endfor %}
                         </select>
-                        <label for="rating">Rating</label>
+                        <label for="rating"></label>
                     </div>
                     <!-- Favourite toggle  -->
                     <div class="row center-align">

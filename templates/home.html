@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="profile-hero">
+    <div class="row homepage">
+        <div class="col s12 m8 offset-m2">
+            <div class="card-panel center-align">
+                <div class="row">
+                    <h1 class="title">The Book Nook</h1>
+                </div>
+                <div class="row">
+                    <p class="paragraph">The book nook is a book review forum for readers to review books they have read
+                        and find new ones.</p>
+                </div>
+                <div class="carousel-here">
+                    <h3>Carousel of book images here </h3>
+                </div>
+
+                <div class="row">
+                    <h5 class="typewriter">
+                        Log in to discover your next favorite book...
+                    </h5>
+                </div>
+                <div class="row">
+                    <a href="{{ url_for('login') }}" class="waves-effect brown darken-3 btn-large">Log In</a>
+                    <a href="{{ url_for('register') }}" class="waves-effect brown darken-3 btn-large">Register</a>
+                </div>
+            </div>
+            <!-- Try to add all reviews and favourite reviews here   -->
+        </div>
+    </div>
+
+    {% endblock %}

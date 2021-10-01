@@ -1,41 +1,162 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Pacifico&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Pacifico&family=Poppins&family=Special+Elite&display=swap');
+/* font-family: 'Libre Baskerville', serif;
+font-family: 'Pacifico', cursive;
+font-family: 'Poppins', sans-serif;
+font-family: 'Special Elite', cursive; */
 
-/* font-family: 'Pacifico', cursive;
-font-family: 'Libre Baskerville', serif;
-font-family: 'Poppins', sans-serif; */
 body,
 html {
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
 
+/* Navbar  */
+
+.fa-solid.fa-book-open-reader {
+    padding-left: 15px;
+}
+
+/* end of Navbar  */
+
+/* footer  */
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+/* 
+footer ul li {
+    display: inline;
+} */
+
+
+/* end of footer  */
+
+/* Home page  */
+
+.homepage {
+    padding-top:30px;
+}
+
+.hero {
+    background: url("../images/pexels-janko.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+}
+
+/* Code from CSS tricks to produce typewriter effect on home page heading  */
+/* https: //css-tricks.com/snippets/css/typewriter-effect/  */
+
+.typewriter {
+    font-family: 'Special Elite', cursive;
+    padding-top: 15px;
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange;
+    /* The typwriter cursor */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em;
+    /* Adjust as needed */
+    animation:
+        typing 3.5s steps(40, end),
+        blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: orange;
+    }
+}
+
+/* end home page  */
+
+/* General styling  */
+
 .brown-text {
     color: #3e2723;
 }
 
-.title {
+h2,
+.title,
+.paragraph {
     font-family: 'Libre Baskerville', serif;
 }
-
-
-h2 {
-    font-family: 'Libre Baskerville', serif;
-}
-
-
-p {
-    font-family: 'Poppins', sans-serif;
-
-}
-
 
 .textshadow {
     text-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.6);
 }
 
-/* home page  */
-.hero {
-    background: url("../images/pexels-janko.jpg") no-repeat center center fixed;
+/* end of general styling  */
+
+/* login page  */
+
+
+.login-hero {
+    background: url("../images/pexels-skitterphoto.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+}
+
+.link-here {
+    color: #F78764;
+}
+
+.link-here:hover {
+    border-bottom: 2px solid #F78764;
+}
+
+/* end of login page  */
+
+
+/* profile page  */
+.profile-hero {
+    background: url("../images/pexels-skitterphoto-book.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+}
+
+/* end of profile page  */
+
+/* Review page  */
+
+.review-hero {
+
+    background: url("../images/pexels-books-long.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -55,11 +176,41 @@ p {
     list-style: 2;
 }
 
+/* End of review page  */
+
+
+/* Add review  */
+
+.hero-add-review {
+    background: url("../images/pexels-negative-space.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+}
+
+.switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #3e2723;
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #8d6e63;
+}
+
+.btn {
+    background-color: #8d6e63;
+}
+
+.btn:hover {
+    background-color: #3e2723;
+}
+
 /* sass from materialize for input fields  */
 
 /* label color */
 .input-field label {
-    color: #000;
+    color: rgb(43, 42, 42);
 }
 
 /* label focus color */
@@ -91,48 +242,4 @@ p {
 }
 
 /* end of sass from materialize  */
-.link-here {
-    color: #F78764;
-}
 
-.link-here:hover {
-    border-bottom: 2px solid #F78764;
-}
-
-/* profile page  */
-.profile-hero {
-    background: url("../images/pexels-skitterphoto-book.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 100vh;
-}
-
-.hero-add-review {
-    background: url("../images/pexels-negative-space.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 100vh;
-}
-
-
-/* Review page  */
-
-.switch label input[type=checkbox]:checked+.lever:after {
-    background-color: #3e2723;
-}
-
-.switch label input[type=checkbox]:checked+.lever {
-    background-color: #8d6e63;
-}
-
-.btn {
-    background-color: #8d6e63;
-}
-
-.btn:hover {
-    background-color: #3e2723;
-}
