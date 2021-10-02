@@ -42,6 +42,30 @@ def see_review(reviews):
     return render_template("book_review.html", reviews=reviews)
 
 
+@app.route("/book_review", methods=["GET", "POST"])
+def book_review():
+    if request.method == "POST":
+        favourite = "on" if request.form.get('favourite') else "off"
+        review = {
+            "genre_name": request.form.get("genre_name"),
+            "review_image": request.form.get("review_image"),
+            "book_name": request.form.get("book_name"),
+            "author_name": request.form.get("author_name"),
+            "review_title": request.form.get("review_title"),
+            "review": request.form.get("review"),
+            "rating": request.form.get("rating"),
+            "favourite": favourite,
+            "reviewed_by": session["user"]
+        }
+        mongo.db.reviews.insert_one(review)
+        flash("Review successfully added")
+        return redirect(url_for('book_review'))
+
+    genres = mongo.db.genres.find().sort("genre_name", 1)
+    ratings = list(mongo.db.ratings.find().sort("rating", 1))
+    return render_template("book_review.html", genres=genres, ratings=ratings)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -91,8 +115,9 @@ def login():
             # ensure hashed password matches user input
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    return redirect(url_for("profile", username=session["user"]))
+                session["user"] = request.form.get("username").lower()
+                return redirect(url_for(
+                    "profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
