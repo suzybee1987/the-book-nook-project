@@ -10,7 +10,7 @@
                         <select id="genre_name" name="genre_name" class="validate" required>
                             <option value="" disabled selected>Choose Genre</option>
                             {% for genre in genres %}
-                            <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
+                                <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
                             {% endfor %}
                         </select>
                         <label for="genre_name"></label>
@@ -53,7 +53,7 @@
                         <select id="rating" name="rating" class="validate" required>
                             <option value="" disabled selected>Rating</option>
                             {% for rating in ratings %}
-                            <option value="{{ rating.rating }}">{{ rating.rating }}</option>
+                                <option value="{{ rating.rating }}">{{ rating.rating }}</option>
                             {% endfor %}
                         </select>
                         <label for="rating"></label>
