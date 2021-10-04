@@ -61,10 +61,10 @@
                         <select id="rating" name="rating" class="validate" required>
                             <option value="" disabled selected>Rating</option>
                             {% for rating in ratings %}
-                                {% if rating.rating == review.rating %}
-                                    <option value="{{ rating.rating }}" selected>{{ rating.rating }}</option>
+                                {% if rating.rating_no == review.rating %}
+                                    <option value="{{ rating.rating_no }}" selected>{{ rating.rating_no }}</option>
                                 {% else %}
-                                    <option value="{{ rating.rating }}">{{ rating.rating }}</option>
+                                    <option value="{{ rating.rating_no }}">{{ rating.rating_no }}</option>
                                 {% endif %}
                             {% endfor %}
                         </select>
