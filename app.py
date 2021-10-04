@@ -234,10 +234,10 @@ def edit_genre(genre_id):
             "genre_name": request.form.get("genre_name")
         }
         mongo.db.genres.update({"_id": ObjectId(genre_id)}, submit)
-        flash("Genre Successfully Updated")
+        flash("genre Successfully Updated")
         return redirect(url_for("get_genres"))
 
-    genre = mongo.db.categories.find_one({"_id": ObjectId(genre_id)})
+    genre = mongo.db.genres.find_one({"_id": ObjectId(genre_id)})
     return render_template("edit_genre.html", genre=genre)
 
 
