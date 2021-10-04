@@ -178,10 +178,34 @@ def add_review():
 
 @app.route("/edit_review/<review_id>", methods=["GET", "POST"])
 def edit_review(review_id):
+    if request.method == "POST":
+        favourite = "on" if request.form.get('favourite') else "off"
+        submit = {
+            "genre_name": request.form.get("genre_name"),
+            "review_image": request.form.get("review_image"),
+            "book_name": request.form.get("book_name"),
+            "author_name": request.form.get("author_name"),
+            "review_title": request.form.get("review_title"),
+            "review": request.form.get("review"),
+            "rating": request.form.get("rating"),
+            "favourite": favourite,
+            "reviewed_by": session["user"]
+        }
+        mongo.db.reviews.update({"_id": ObjectId(review_id)}, submit)
+        flash("Review successfully updated")
+
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     genres = mongo.db.genres.find().sort("genre_name", 1)
     ratings = list(mongo.db.ratings.find().sort("rating", 1))
-    return render_template("edit_review.html", genres=genres, ratings=ratings, review=review)
+    return render_template(
+        "edit_review.html", genres=genres, ratings=ratings, review=review)
+
+
+@app.route("/delete_review/<review_id>")
+def delete_review(review_id):
+    mongo.db.reviews.remove({"_id": ObjectId(review_id)})
+    flash("Review deleted")
+    return redirect(url_for('get_reviews'))
 
 
 if __name__ == "__main__":
