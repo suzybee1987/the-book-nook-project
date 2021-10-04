@@ -49,6 +49,7 @@ main {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    min-height: 100vh;
 }
 
 /* Code from CSS tricks to produce typewriter effect on home page heading  */
@@ -111,7 +112,7 @@ main {
 .row {
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 5px;
+    /* margin-bottom: 0; */
 }
 
 h2,
@@ -128,13 +129,13 @@ h2,
 
 /* login page  */
 
-
 .login-hero {
     background: url("../images/pexels-skitterphoto.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    min-height: 90vh;
 }
 
 .link-here {
@@ -149,12 +150,14 @@ h2,
 
 
 /* profile page  */
-.profile-hero {
+.profile-hero,
+.welcome-hero {
     background: url("../images/pexels-skitterphoto-book.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    min-height: 80vh;
 }
 
 /* end of profile page  */
@@ -170,7 +173,8 @@ h2,
     background-size: cover;
 }
 
-.review-header {
+.review-header,
+.genre-header {
     font-family: 'Libre Baskerville', serif;
     color: #3e2723;
 }
@@ -196,6 +200,7 @@ h2,
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    min-height:90vh;
 }
 
 .switch label input[type=checkbox]:checked+.lever:after {
@@ -254,10 +259,6 @@ h2,
 
 /* Manage genres  */
 
-.card-panel-manage {
-    width: 70%;
-}
-.manage-cards {
-    margin: 50px;
-    max-width: 300px;;
+.card-title-genre {
+    font-size: 16px;
 }
