@@ -62,7 +62,7 @@ def book_review():
         flash("Review successfully added")
         return redirect(url_for('book_review'))
 
-    genres = mongo.db.genres.find().sort("genre_name", 1)
+    genres = list(mongo.db.genres.find().sort("genre_name", 1))
     ratings = list(mongo.db.ratings.find().sort("rating", 1))
     return render_template("book_review.html", genres=genres, ratings=ratings)
 
@@ -116,9 +116,9 @@ def login():
             # ensure hashed password matches user input
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
-                session["user"] = request.form.get("username").lower()
-                return redirect(url_for(
-                    "profile", username=session["user"]))
+                    session["user"] = request.form.get("username").lower()
+                    return redirect(url_for(
+                        "profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -239,6 +239,15 @@ def edit_genre(genre_id):
 
     genre = mongo.db.genres.find_one({"_id": ObjectId(genre_id)})
     return render_template("edit_genre.html", genre=genre)
+
+# prompt if want to delete using toast/modal
+
+
+@app.route("/delete_genre/<genre_id>")
+def delete_genre(genre_id):
+    mongo.db.genres.remove({"_id": ObjectId(genre_id)})
+    flash("Genre Successfully Deleted")
+    return redirect(url_for("get_genres"))
 
 
 if __name__ == "__main__":
