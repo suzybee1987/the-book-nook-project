@@ -55,6 +55,7 @@ def book_review():
             "review": request.form.get("review"),
             "rating": request.form.get("rating"),
             "favourite": favourite,
+            # takes the username of the person logged in
             "reviewed_by": session["user"]
         }
         mongo.db.reviews.insert_one(review)
@@ -173,6 +174,14 @@ def add_review():
     genres = mongo.db.genres.find().sort("genre_name", 1)
     ratings = list(mongo.db.ratings.find().sort("rating", 1))
     return render_template("add_review.html", genres=genres, ratings=ratings)
+
+
+@app.route("/edit_review/<review_id>", methods=["GET", "POST"])
+def edit_review(review_id):
+    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+    genres = mongo.db.genres.find().sort("genre_name", 1)
+    ratings = list(mongo.db.ratings.find().sort("rating", 1))
+    return render_template("edit_review.html", genres=genres, ratings=ratings, review=review)
 
 
 if __name__ == "__main__":
