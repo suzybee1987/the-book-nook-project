@@ -49,7 +49,6 @@ main {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 100vh;
 }
 
 /* Code from CSS tricks to produce typewriter effect on home page heading  */
@@ -136,7 +135,6 @@ h2,
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 100vh;
 }
 
 .link-here {
@@ -157,7 +155,6 @@ h2,
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 100vh;
 }
 
 /* end of profile page  */
@@ -171,9 +168,6 @@ h2,
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    /* filter: blur(5px);
-    filter: blur(1rem); */
-    /* height: 100vh; */
 }
 
 .review-header {
@@ -202,7 +196,6 @@ h2,
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 100vh;
 }
 
 .switch label input[type=checkbox]:checked+.lever:after {
@@ -257,3 +250,14 @@ h2,
 }
 
 /* end of sass from materialize  */
+
+
+/* Manage genres  */
+
+.card-panel-manage {
+    width: 70%;
+}
+.manage-cards {
+    margin: 50px;
+    max-width: 300px;;
+}
