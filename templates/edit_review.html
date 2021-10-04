@@ -5,6 +5,10 @@
         <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('edit_review', review_id=review._id) }}">
             <div class="card-panel">
                 <h3 class="brown-text center-align">Edit Review</h3>
+                <div class="col s4">
+                    <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light"><i class="fa-solid fa-chevron-left"></i> Back to reviews
+                    </a>
+                </div>
                 <div class="row">
                     <div class="col s12 m10 offset-m1 input-field"><i class="fa-solid fa-dragon prefix"></i>
                         <select id="genre_name" name="genre_name" class="validate" required>
@@ -39,7 +43,7 @@
                     <div class="col s12 m10 offset-m1 input-field">
                         <i class="fa-solid fa-user-pen prefix"></i>
                         <input id="review_title" name="review_title" type="text" class="validate" minlength="1"
-                            maxlength="50" value="{{ review.review_title }}" required>
+                            maxlength="100" value="{{ review.review_title }}" required>
                         <label for="review_title">Review Title</label>
                     </div>
                 </div>
