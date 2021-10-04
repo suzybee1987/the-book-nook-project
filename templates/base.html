@@ -60,10 +60,7 @@
         </ul>
     </header>
 
-
-    {% block content %}
-    <main class="container-fluid">
-    <div>
+    <main>
         <!-- Flash messages -->
         {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -74,9 +71,13 @@
         {% endfor %}
         {% endif %}
         {% endwith %}
-    </div>
-
     </main>
+    
+    {% block content %}
+    <div class="container-fluid">
+
+
+    </div>
     {% endblock %}
 
     <footer class="page-footer brown darken-3">
