@@ -25,18 +25,21 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
+# When first landing on the page welcome page is loaded
 @app.route("/welcome")
 def welcome():
     return render_template("welcome.html")
 
 
 @app.route("/get_reviews")
+# display reviews on review page
 def get_reviews():
     reviews = list(mongo.db.reviews.find())
     return render_template("reviews.html", reviews=reviews)
 
 
 @app.route("/search", methods=["GET", "POST"])
+# Search for reviews by book name, author, reviewed_by
 def search():
     query = request.form.get("query")
     reviews = list(mongo.db.reviews.find({"$text": {"$search": query}}))
@@ -44,12 +47,14 @@ def search():
 
 
 @app.route("/see_review/<reviews>", methods=["GET", "POST"])
+# view the full review of individual book
 def see_review(reviews):
-    reviews = mongo.db.reviews.find({"_id": ObjectId(reviews)})
+    reviews = list(mongo.db.reviews.find({"_id": ObjectId(reviews)}))
     return render_template("book_review.html", reviews=reviews)
 
 
 @app.route("/book_review", methods=["GET", "POST"])
+# gets the information for the see_review function
 def book_review():
     if request.method == "POST":
         favourite = "on" if request.form.get('favourite') else "off"
@@ -60,7 +65,7 @@ def book_review():
             "author_name": request.form.get("author_name"),
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
-            "rating": request.form.get("rating"),
+            "rating": request.form.get("rating_no"),
             "favourite": favourite,
             # takes the username of the person logged in
             "reviewed_by": session["user"]
@@ -75,6 +80,7 @@ def book_review():
 
 
 @app.route("/register", methods=["GET", "POST"])
+# allows the user to register
 def register():
     if request.method == "POST":
         # check if username already exists
@@ -113,6 +119,7 @@ def register():
 
 
 @app.route("/login", methods=["GET", "POST"])
+# allows user to log in
 def login():
     if request.method == "POST":
         # check if username exists in db
@@ -140,26 +147,32 @@ def login():
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
+# profile page for user
 def profile(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
+    my_reviews = list(mongo.db.book_review.find(
+            {"created_by": session["user"]}))
+
     if session["user"]:
-        return render_template("profile.html", username=username)
+        return render_template(
+            "profile.html", username=username, my_reviews=my_reviews)
 
     return redirect(url_for("login"))
 
 
 @app.route("/logout")
+# log user out using session cookie
 def logout():
-    # remove user from session
     flash("You have been logged out")
     session.pop('user')
     return redirect(url_for('login'))
 
 
 @app.route("/add_review", methods=["GET", "POST"])
+# allows user to add review
 def add_review():
     if request.method == "POST":
         favourite = "on" if request.form.get('favourite') else "off"
@@ -170,7 +183,7 @@ def add_review():
             "author_name": request.form.get("author_name"),
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
-            "rating": request.form.get("rating"),
+            "rating": request.form.get("rating_no"),
             "favourite": favourite,
             "reviewed_by": session["user"]
         }
@@ -184,6 +197,7 @@ def add_review():
 
 
 @app.route("/edit_review/<review_id>", methods=["GET", "POST"])
+# allows users to edit their own reviews
 def edit_review(review_id):
     if request.method == "POST":
         favourite = "on" if request.form.get('favourite') else "off"
@@ -194,7 +208,7 @@ def edit_review(review_id):
             "author_name": request.form.get("author_name"),
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
-            "rating": request.form.get("rating"),
+            "rating": request.form.get("rating_no"),
             "favourite": favourite,
             "reviewed_by": session["user"]
         }
@@ -209,6 +223,7 @@ def edit_review(review_id):
 
 
 @app.route("/delete_review/<review_id>")
+# allows user to delete review
 def delete_review(review_id):
     mongo.db.reviews.remove({"_id": ObjectId(review_id)})
     flash("Review deleted")
@@ -216,12 +231,14 @@ def delete_review(review_id):
 
 
 @app.route("/get_genres")
+# allows superuser to manage the genres
 def get_genres():
     genres = list(mongo.db.genres.find().sort("genre_name", 1))
     return render_template("genres.html", genres=genres)
 
 
 @app.route("/add_genre", methods=["GET", "POST"])
+# allows superuser to add new genre
 def add_genre():
     if request.method == "POST":
         genre = {
@@ -235,6 +252,7 @@ def add_genre():
 
 
 @app.route("/edit_genre/<genre_id>", methods=["GET", "POST"])
+# allows superuser to edit the genres
 def edit_genre(genre_id):
     if request.method == "POST":
         submit = {
@@ -244,17 +262,45 @@ def edit_genre(genre_id):
         flash("genre Successfully Updated")
         return redirect(url_for("get_genres"))
 
-    genre = mongo.db.genres.find_one({"_id": ObjectId(genre_id)})
+    genre = list(mongo.db.genres.find_one({"_id": ObjectId(genre_id)}))
     return render_template("edit_genre.html", genre=genre)
 
-# prompt if want to delete using toast/modal
+# prompt if want to delete using toast/modal - defensive programming
 
 
 @app.route("/delete_genre/<genre_id>")
+# allows superuser to delete the genres
 def delete_genre(genre_id):
     mongo.db.genres.remove({"_id": ObjectId(genre_id)})
     flash("Genre Successfully Deleted")
     return redirect(url_for("get_genres"))
+
+
+@app.route("/review/add_favourite/<review_id>", methods=["GET", "POST"])
+# add a favourite book review to profile with help from
+# https://github.com/manni8436/MS3-Project/
+def add_favourite(review_id):
+    if session["user"]:
+        data = {
+            "book_name": review_id,
+            "username": session["user"]
+        }
+
+    mongo.db.favourites.insert_one(data)
+    return redirect(url_for("reviews"))
+
+
+@app.route("/favourites")
+# add a favourite book review to profile with help from
+# https://github.com/manni8436/MS3-Project/
+def favourites():
+    user = list(mongo.db.favourites.find(
+        {"$and": [{"username": {'$eq': session["user"]}}]}))
+    favourite_list = []
+    for i in user:
+        favourite_list.append(
+            mongo.db.reviews.find_one({"_id": ObjectId(i["review_name"])}))
+    return render_template("profile.html", favourite_list=favourite_list)
 
 
 if __name__ == "__main__":
