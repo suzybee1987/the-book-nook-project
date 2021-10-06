@@ -16,21 +16,42 @@
                 <h4 class="review-header center-align brown-text">My Reviews</h4>
                 <span class="brown-text">
                     <ul class="collapsible">
-                        {% for review in reviews %}
+                        {% for my_review in my_reviews %}
                         <li>
-                            <div class="collapsible-header white-text brown darken-3">
-                                <i class="fa-solid fa-caret-down"></i>
-                                <strong>"{{ review.book_name }}" by {{ review.author_name }} </strong>
+                            <div class="brown-text text-darken-3">
+                                <strong>{{ my_review.book_name }} by {{ my_review.author_name }} </strong>
                             </div>
-                            <div class="collapsible-body">
-                                <p>Genre: {{ review.genre }}</p>
+                            <div class="o">
+                                <p>Genre: {{ my_review.genre_name }}</p>
+                                <p>Review: {{ my_review.review_title }}</p>
+                                <p>Review: {{ my_review.review }}</p>
+                                <p>Rating: {{ my_review.rating_no }}</p>
+                                <p>Reviewer: {{ my_review.reviewed_by }}</p>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m8 offset-m2">
+            <div class="card-panel">
+                <h4 class="review-header center-align brown-text">My Favourites</h4>
+                <span class="brown-text">
+                    <ul class="collapsible">
+                        {% for review in favourite_list %}
+                        <li>
+                            <div class="brown-text text-darken-3">
+                                <strong>{{ review.book_name }} by {{ review.author_name }} </strong>
+                            </div>
+                            <div class="o">
+                                <p>Genre: {{ review.genre_name }}</p>
+                                <p>Review: {{ review.review_title }}</p>
                                 <p>Review: {{ review.review }}</p>
-                                <!-- below line should be changed to user - make a new user called Sunday Times for the Mort review  -->
-                                <p>Reviewer: {{ review.reviewer }}</p>
-                                <p>Rating: {{ review.rating }}</p>
-                                {% if review.favourite == "on" %}
-                                <i class="fa-solid fa-exclamation-circle brown darken-3"></i>
-                                {% endif %}
+                                <p>Rating: {{ review.rating_no }}</p>
+                                <p>Reviewer: {{ review.reviewed_by }}</p>
                             </div>
                         </li>
                         {% endfor %}
@@ -40,5 +61,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}

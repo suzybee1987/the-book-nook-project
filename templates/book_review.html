@@ -26,7 +26,7 @@
                                     </div>
                                     <div>
                                         <p>Genre: {{ review.genre_name }}</p>
-                                        <p>Rating: {{ review.rating }}</p>
+                                        <p>Rating: {{ review.rating_no }}</p>
                                         <p>Review Title: {{ review.review_title }}</p>
                                         <p>Review: {{ review.review }}</p>
                                         <p>Reviewer: '{{ review.reviewed_by }}'</p>
@@ -73,7 +73,7 @@
                                         <select id="rating" name="rating" class="validate" required>
                                             <option value="" disabled selected>Rating</option>
                                             {% for rating in ratings %}
-                                                <option value="{{ rating.rating }}">{{ rating.rating }}</option>
+                                                <option value="{{ rating.rating_no }}">{{ rating.rating_no }}</option>
                                             {% endfor %}
                                         </select>
                                         <label for="rating"></label>
