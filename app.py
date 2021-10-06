@@ -36,6 +36,13 @@ def get_reviews():
     return render_template("reviews.html", reviews=reviews)
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    reviews = list(mongo.db.reviews.find({"$text": {"$search": query}}))
+    return render_template("reviews.html", reviews=reviews)
+
+
 @app.route("/see_review/<reviews>", methods=["GET", "POST"])
 def see_review(reviews):
     reviews = mongo.db.reviews.find({"_id": ObjectId(reviews)})
@@ -116,8 +123,8 @@ def login():
             # ensure hashed password matches user input
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    return redirect(url_for(
+                session["user"] = request.form.get("username").lower()
+                return redirect(url_for(
                         "profile", username=session["user"]))
             else:
                 # invalid password match
