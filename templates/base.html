@@ -19,7 +19,7 @@
         <nav class="nav-extended text-shadow brown darken-3">
             <!-- top navbar  -->
             <div class="nav-wrapper">
-                <a href="{{ url_for('get_reviews') }}" class="title"><i class="fa-solid fa-book-open-reader"></i></a>
+                <a href="{{ url_for('welcome') }}" class="title"><i class="fa-solid fa-book-open-reader"></i></a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
                         class="fa-solid fa-ellipsis"></i></a>
                 <ul class="right hide-on-med-and-down">
@@ -35,7 +35,6 @@
                     <li><a href="{{ url_for('add_review') }}">Add Review</a></li>
                     <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                     {% else %}
-                    <li><a href="{{ url_for('welcome') }}">Welcome</a></li>
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
                     <li><a href="{{ url_for('register') }}">Register</a></li>
                     {% endif %}
@@ -53,7 +52,6 @@
             <li><a href="{{ url_for('add_review') }}">Add Review</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
-            <li><a href="{{ url_for('welcome') }}">Welcome</a></li>
             <li><a href="{{ url_for('login') }}">Log In</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
             {% endif %}

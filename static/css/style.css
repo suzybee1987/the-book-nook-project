@@ -97,6 +97,25 @@ main {
     }
 }
 
+/* Carousel  */
+
+.quotes-panel {
+    text-align: center;
+    font-family: 'Libre Baskerville',
+    serif;
+    color: #3e2723;
+}
+
+/*  this isn't working? */
+.card-panel.welcome-quote-panel {
+    padding: 10px important!;
+}
+
+.row.carousel-row, .carousel-item-active, .carousel-item {
+    max-height: 250px;
+}
+
+
 /* end home page  */
 
 /* General styling  */
@@ -116,9 +135,13 @@ main {
 }
 
 h2,
-.title,
 .paragraph {
     font-family: 'Libre Baskerville', serif;
+}
+
+.title {
+    font-family: 'Libre Baskerville',
+    serif;
 }
 
 .textshadow {

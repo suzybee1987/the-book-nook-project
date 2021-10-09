@@ -28,7 +28,8 @@ mongo = PyMongo(app)
 # When first landing on the page welcome page is loaded
 @app.route("/welcome")
 def welcome():
-    return render_template("welcome.html")
+    quotes = list(mongo.db.quotes.find())
+    return render_template("welcome.html", quotes=quotes)
 
 
 @app.route("/get_reviews")
@@ -276,7 +277,7 @@ def delete_genre(genre_id):
     return redirect(url_for("get_genres"))
 
 
-@app.route("/review/add_favourite/<review_id>", methods=["GET", "POST"])
+@app.route("/add_favourite/<review_id>", methods=["GET", "POST"])
 # add a favourite book review to profile with help from
 # https://github.com/manni8436/MS3-Project/
 def add_favourite(review_id):

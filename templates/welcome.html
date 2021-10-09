@@ -5,26 +5,33 @@
         <div class="col s12 m8 offset-m2">
             <div class="card-panel center-align">
                 <div class="row">
-                    <h2 class="title">The Book Nook</h2>
+                    <h3 class="title">Welcome to The Book Nook</h3>
                 </div>
                 <div class="row">
-                    <p class="paragraph">The book nook is a book review forum for readers to review books they have read
-                        and find new ones.</p>
+                    <h5 class="paragraph">A book review forum for readers to review books they have read and find new
+                        ones.</h5>
                 </div>
-                <div class="carousel-here">
-                    <h3>Carousel of book images here </h3>
-                </div>
-
-                <div class="row">
-                    <h5 class="typewriter">
-                        Log in to discover your next favorite book...
-                    </h5>
+                <div class="row hide-on-small-only show-on-medium-and-up">
+                    <h6 class="typewriter">
+                        Log in to discover your next favorite book...</h6>
                 </div>
                 <div class="row">
                     <a href="{{ url_for('get_reviews') }}" class="waves-effect brown darken-3 btn-large">Come on in</a>
                 </div>
             </div>
-            <!-- Try to add all reviews and favourite reviews here   -->
+        </div>
+    </div>
+    <div class="row carousel-row">
+        <div class="carousel carousel-slider">
+            {% for quote in quotes %}
+            <a class="carousel-item" href="{{ quote.href }}">
+                <div class="card-panel welcome-quote-panel">
+                    <div class="quotes-panel">
+                        <h5>"{{ quote.quote_text }}"</h5><span> by {{ quote.quote_author }}</span>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
         </div>
     </div>
 </div>

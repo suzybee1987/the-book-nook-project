@@ -6,7 +6,8 @@
             <div class="card-panel">
                 <h3 class="brown-text center-align">Edit Review</h3>
                 <div class="col s4">
-                    <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light"><i class="fa-solid fa-chevron-left"></i> Back to reviews
+                    <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light"><i
+                            class="fa-solid fa-chevron-left"></i> Back to reviews
                     </a>
                 </div>
                 <div class="row">
@@ -14,11 +15,11 @@
                         <select id="genre_name" name="genre_name" class="validate" required>
                             <option value="" disabled>Choose Genre</option>
                             {% for genre in genres %}
-                                {% if genre.genre_name == review.genre_name %}
-                                    <option value="{{ genre.genre_name }}" selected>{{ genre.genre_name }}</option>
-                                {% else %}
-                                    <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
-                                {% endif %}
+                            {% if genre.genre_name == review.genre_name %}
+                            <option value="{{ genre.genre_name }}" selected>{{ genre.genre_name }}</option>
+                            {% else %}
+                            <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
+                            {% endif %}
                             {% endfor %}
                         </select>
                         <label for="genre_name"></label>
@@ -27,14 +28,16 @@
                 <div class="row">
                     <div class="col s12 m10 offset-m1 input-field">
                         <i class="fa-solid fa-book prefix"></i>
-                        <input id="book_name" name="book_name" type="text" class="validate" value="{{ review.book_name }}" required>
+                        <input id="book_name" name="book_name" type="text" class="validate"
+                            value="{{ review.book_name }}" required>
                         <label for="book_name">Book Name</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12 m10 offset-m1 input-field">
                         <i class="fa-solid fa-user-pen prefix"></i>
-                        <input id="author_name" name="author_name" type="text" class="validate" value="{{ review.author_name }}" required>
+                        <input id="author_name" name="author_name" type="text" class="validate"
+                            value="{{ review.author_name }}" required>
                         <label for="author_name">Author</label>
                     </div>
                 </div>
@@ -61,11 +64,11 @@
                         <select id="rating" name="rating" class="validate" required>
                             <option value="" disabled selected>Rating</option>
                             {% for rating in ratings %}
-                                {% if rating.rating_no == review.rating_no %}
-                                    <option value="{{ rating.rating_no }}" selected>{{ rating.rating_no }}</option>
-                                {% else %}
-                                    <option value="{{ rating.rating_no }}">{{ rating.rating_no }}</option>
-                                {% endif %}
+                            {% if rating.rating_no == review.rating_no %}
+                            <option value="{{ rating.rating_no }}" selected>{{ rating.rating_no }}</option>
+                            {% else %}
+                            <option value="{{ rating.rating_no }}">{{ rating.rating_no }}</option>
+                            {% endif %}
                             {% endfor %}
                         </select>
                         <label for="rating"></label>
@@ -75,9 +78,9 @@
                         <div class="switch col s4">
                             <label for="favourite" class="brown-text text-darken-3">
                                 {% if review.favourite == "on" %}
-                                    <input type="checkbox" id="favourite" name="favourite" checked>
+                                <input type="checkbox" id="favourite" name="favourite" checked>
                                 {% else %}
-                                    <input type="checkbox" id="favourite" name="favourite">
+                                <input type="checkbox" id="favourite" name="favourite">
                                 {% endif %}
                                 <span class="lever"></span>
                                 Favourite
