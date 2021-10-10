@@ -5,8 +5,7 @@
 
 import os
 from flask import (
-    Flask, flash, render_template,
-    redirect, request, session, url_for)
+    Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -277,31 +276,41 @@ def delete_genre(genre_id):
     return redirect(url_for("get_genres"))
 
 
-@app.route("/add_favourite/<review_id>", methods=["GET", "POST"])
-# add a favourite book review to profile with help from
-# https://github.com/manni8436/MS3-Project/
-def add_favourite(review_id):
+@app.route("/add_favourite/<favourite_id>")
+def add_favourite(favourite_id):
+    """
+    Allows the user to add a book review to their personal
+    favourites list
+    """
     if session["user"]:
-        data = {
-            "book_name": review_id,
-            "username": session["user"]
+        # grab the session user's details from db
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})
+
+        # grab the book review details
+        review = mongo.db.reviews.find_one(
+            {"_id": ObjectId(favourite_id)})
+
+        # Collect the favourites object data
+        favourites = {
+            "book_id": review["_id"],
+            "book_name": review["book_name"],
+            "author_name": review["author_name"],
+            "genre_name": review["genre_name"]
         }
 
-    mongo.db.favourites.insert_one(data)
-    return redirect(url_for("reviews"))
+        # update the user document favourites array
+        mongo.db.users.update_one(
+            {"_id": ObjectId(username["_id"])},
+            {"$push": {"favourites": favourites}})
 
-
-@app.route("/favourites")
-# add a favourite book review to profile with help from
-# https://github.com/manni8436/MS3-Project/
-def favourites():
-    user = list(mongo.db.favourites.find(
-        {"$and": [{"username": {'$eq': session["user"]}}]}))
-    favourite_list = []
-    for i in user:
-        favourite_list.append(
-            mongo.db.reviews.find_one({"_id": ObjectId(i["review_name"])}))
-    return render_template("profile.html", favourite_list=favourite_list)
+        flash("Favourite added to your profile")
+        return redirect(url_for(
+            "profile", username=username, review_id=review["_id"]))
+    # If user isn't logged in display a message and redirect to login page
+    else:
+        flash("Sorry, you are not logged in")
+        return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
