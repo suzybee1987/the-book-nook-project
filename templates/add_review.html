@@ -62,21 +62,24 @@
                     <div class="row center-align">
                         <div class="switch col s4">
                             <label for="favourite" class="brown-text text-darken-3">
-                                Favourite
-                                <input type="checkbox" id="favourite" name="favourite">
-                                <span class="lever"></span>
+                                <i class="fa-regular fa-star tooltipped small pink-text" data-position="bottom"
+                                    data-tooltip="Add book to favourites"></i>
+                                <i class="fa-solid fa-star tooltipped small pink-text" data-position="bottom"
+                                    data-tooltip="Remove book from favourites"></i>
                             </label>
                         </div>
-                        <!-- Submit  -->
-                        <div class="col s4">
-                            <button class="btn waves-effect waves-light" type="submit">Submit Review
-                            </button>
-                        </div>
+
+                    </div>
+                    <!-- Submit  -->
+                    <div class="col s4">
+                        <button class="btn waves-effect waves-light" type="submit">Submit Review
+                        </button>
                     </div>
                 </div>
             </div>
-        </form>
     </div>
+    </form>
+</div>
 </div>
 
 {% endblock %}

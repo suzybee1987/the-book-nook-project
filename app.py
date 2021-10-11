@@ -5,8 +5,7 @@
 
 import os
 from flask import (
-    Flask, flash, render_template,
-    redirect, request, session, url_for)
+    Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -76,7 +75,7 @@ def book_review():
         return redirect(url_for('book_review'))
 
     genres = list(mongo.db.genres.find().sort("genre_name", 1))
-    ratings = list(mongo.db.ratings.find().sort("rating", 1))
+    ratings = list(mongo.db.ratings.find().sort("rating_no", 1))
     return render_template("book_review.html", genres=genres, ratings=ratings)
 
 
@@ -153,15 +152,12 @@ def profile(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
+    # get the reviws written by session user 
+    my_reviews = list(mongo.db.reviews.find(
+        {"reviewed_by": session["user"]}))
 
-    my_reviews = list(mongo.db.book_review.find(
-            {"created_by": session["user"]}))
-
-    if session["user"]:
-        return render_template(
-            "profile.html", username=username, my_reviews=my_reviews)
-
-    return redirect(url_for("login"))
+    return render_template(
+        "profile.html", username=username, my_reviews=my_reviews)
 
 
 @app.route("/logout")
@@ -193,7 +189,7 @@ def add_review():
         return redirect(url_for('get_reviews'))
 
     genres = mongo.db.genres.find().sort("genre_name", 1)
-    ratings = list(mongo.db.ratings.find().sort("rating", 1))
+    ratings = list(mongo.db.ratings.find().sort("rating_no", 1))
     return render_template("add_review.html", genres=genres, ratings=ratings)
 
 
@@ -218,7 +214,7 @@ def edit_review(review_id):
 
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     genres = mongo.db.genres.find().sort("genre_name", 1)
-    ratings = list(mongo.db.ratings.find().sort("rating", 1))
+    ratings = list(mongo.db.ratings.find().sort("rating_no", 1))
     return render_template(
         "edit_review.html", genres=genres, ratings=ratings, review=review)
 
@@ -277,31 +273,42 @@ def delete_genre(genre_id):
     return redirect(url_for("get_genres"))
 
 
-@app.route("/add_favourite/<review_id>", methods=["GET", "POST"])
-# add a favourite book review to profile with help from
-# https://github.com/manni8436/MS3-Project/
-def add_favourite(review_id):
+@app.route("/add_favourite/<favourite_id>")
+def add_favourite(favourite_id):
+    """
+    Allows the user to add a book review to their personal
+    favourites list
+    """
     if session["user"]:
-        data = {
-            "book_name": review_id,
-            "username": session["user"]
+        # grab the session user's details from db
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})
+
+        # grab the book review details
+        review = mongo.db.reviews.find_one(
+            {"_id": ObjectId(favourite_id)})
+
+        # Collect the favourites object data
+        favourites = {
+            "book_id": review["_id"],
+            "book_name": review["book_name"],
+            "author_name": review["author_name"],
+            "genre_name": review["genre_name"]
         }
 
-    mongo.db.favourites.insert_one(data)
-    return redirect(url_for("reviews"))
+        # update the user document favourites array
+        mongo.db.users.update_one(
+            {"_id": ObjectId(username["_id"])},
+            {"$push": {"favourites": favourites}})
 
-
-@app.route("/favourites")
-# add a favourite book review to profile with help from
-# https://github.com/manni8436/MS3-Project/
-def favourites():
-    user = list(mongo.db.favourites.find(
-        {"$and": [{"username": {'$eq': session["user"]}}]}))
-    favourite_list = []
-    for i in user:
-        favourite_list.append(
-            mongo.db.reviews.find_one({"_id": ObjectId(i["review_name"])}))
-    return render_template("profile.html", favourite_list=favourite_list)
+        flash("Favourite added to your profile")
+        return redirect(url_for(
+            "profile", username=username, review_id=review["_id"]))
+        
+    # If user isn't logged in display a message and redirect to login page
+    else:
+        flash("Sorry, you are not logged in")
+        return redirect(url_for("login"))
 
 
 if __name__ == "__main__":

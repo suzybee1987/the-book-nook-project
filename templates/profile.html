@@ -14,24 +14,29 @@
         <div class="col s12 m8 offset-m2">
             <div class="card-panel">
                 <h4 class="review-header center-align brown-text">My Reviews</h4>
-                <span class="brown-text">
-                    <ul class="collapsible">
-                        {% for my_review in my_reviews %}
-                        <li>
-                            <div class="brown-text text-darken-3">
-                                <strong>{{ my_review.book_name }} by {{ my_review.author_name }} </strong>
-                            </div>
-                            <div class="o">
-                                <p>Genre: {{ my_review.genre_name }}</p>
-                                <p>Review: {{ my_review.review_title }}</p>
-                                <p>Review: {{ my_review.review }}</p>
-                                <p>Rating: {{ my_review.rating_no }}</p>
-                                <p>Reviewer: {{ my_review.reviewed_by }}</p>
-                            </div>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </span>
+
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Book Name</th>
+                            <th>Author</th>
+                            <th>Review Title</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    {% for review in my_reviews %}
+                    <tbody>
+                        <tr>
+                            <td><a href="{{ url_for('see_review', reviews=review._id) }}">{{ review.book_name }}</a></td>
+                            <td>{{ review.author_name }}</td>
+                            <td>{{ review.review_title }}</td>
+                            <td>{{ review.rating_no }}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+
             </div>
         </div>
     </div>
@@ -39,24 +44,23 @@
         <div class="col s12 m8 offset-m2">
             <div class="card-panel">
                 <h4 class="review-header center-align brown-text">My Favourites</h4>
-                <span class="brown-text">
-                    <ul class="collapsible">
-                        {% for review in favourite_list %}
-                        <li>
-                            <div class="brown-text text-darken-3">
-                                <strong>{{ review.book_name }} by {{ review.author_name }} </strong>
-                            </div>
-                            <div class="o">
-                                <p>Genre: {{ review.genre_name }}</p>
-                                <p>Review: {{ review.review_title }}</p>
-                                <p>Review: {{ review.review }}</p>
-                                <p>Rating: {{ review.rating_no }}</p>
-                                <p>Reviewer: {{ review.reviewed_by }}</p>
-                            </div>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </span>
+
+                <ul>
+                    {% for fav in username.favourites %}
+                    <li>
+                        <div class="brown-text text-darken-3">
+                            Book Name: {{ fav.book_name }}
+                            Book Author: {{ fav.author_name }}
+                            Genre: {{ fav.genre_name }}
+                        </div>
+                        <p><i class="fa-solid fa-star tooltipped small pink-text" data-position="bottom"
+                                data-tooltip="Remove book from favourites"></i>
+                            <i class="fa-regular fa-star tooltipped small pink-text" data-position="bottom"
+                                data-tooltip="Add book to favourites"></i>
+                        </p>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>

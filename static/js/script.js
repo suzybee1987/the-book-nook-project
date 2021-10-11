@@ -15,6 +15,7 @@ $(document).ready(function () {
     }, {
         fullWidth: true
     });
+    $('.tooltipped').tooltip();
 });
 
 // I edited this function from stack overflow which plays the carousel automatically
