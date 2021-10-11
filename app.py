@@ -175,7 +175,6 @@ def logout():
 # allows user to add review
 def add_review():
     if request.method == "POST":
-        favourite = "on" if request.form.get('favourite') else "off"
         review = {
             "genre_name": request.form.get("genre_name"),
             "review_image": request.form.get("review_image"),
@@ -184,7 +183,6 @@ def add_review():
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
             "rating": request.form.get("rating_no"),
-            "favourite": favourite,
             "reviewed_by": session["user"]
         }
         mongo.db.reviews.insert_one(review)
@@ -200,7 +198,6 @@ def add_review():
 # allows users to edit their own reviews
 def edit_review(review_id):
     if request.method == "POST":
-        favourite = "on" if request.form.get('favourite') else "off"
         submit = {
             "genre_name": request.form.get("genre_name"),
             "review_image": request.form.get("review_image"),
@@ -209,7 +206,6 @@ def edit_review(review_id):
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
             "rating": request.form.get("rating_no"),
-            "favourite": favourite,
             "reviewed_by": session["user"]
         }
         mongo.db.reviews.update({"_id": ObjectId(review_id)}, submit)
@@ -291,7 +287,7 @@ def add_favourite(favourite_id):
         review = mongo.db.reviews.find_one(
             {"_id": ObjectId(favourite_id)})
 
-        # Collect the favourites object data
+        # Collect the faves data
         favourites = {
             "book_id": review["_id"],
             "book_name": review["book_name"],
@@ -304,7 +300,47 @@ def add_favourite(favourite_id):
             {"_id": ObjectId(username["_id"])},
             {"$push": {"favourites": favourites}})
 
+        # user_favourite = mongo.db.users.find_one("favourites")
         flash("Favourite added to your profile")
+        return redirect(url_for(
+            "profile", username=username,
+            review_id=review["_id"]))
+
+    # If user isn't logged in display a message and redirect to login page
+    else:
+        flash("Sorry, you are not logged in")
+        return redirect(url_for("login"))
+
+
+@app.route("/remove_favourite/<favourite_id>")
+def remove_favourite(favourite_id):
+    """
+    Allows the user to add a book review to their personal
+    favourites list
+    """
+    if session["user"]:
+        # grab the session user's details from db
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})
+
+        # grab the book review details
+        review = mongo.db.reviews.find_one(
+            {"_id": ObjectId(favourite_id)})
+
+        # Collect the favourites object data
+        favourites = {
+            "book_id": review["_id"],
+            "book_name": review["book_name"],
+            "author_name": review["author_name"],
+            "genre_name": review["genre_name"]
+        }
+
+        # update the user document favourites array
+        mongo.db.users.update_one(
+            {"_id": ObjectId(username["_id"])},
+            {"$pull": {"favourites": favourites}})
+
+        flash("Favourite removed from your profile")
         return redirect(url_for(
             "profile", username=username, review_id=review["_id"]))
 
