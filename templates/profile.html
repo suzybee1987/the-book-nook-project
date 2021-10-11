@@ -10,43 +10,48 @@
             <!-- Try to add all reviews and favourite reviews here   -->
         </div>
     </div>
-    <!-- <div class="row">
+    <div class="row">
         <div class="col s12 m8 offset-m2">
             <div class="card-panel">
                 <h4 class="review-header center-align brown-text">My Reviews</h4>
-                <span class="brown-text">
-                    <ul class="collapsible">
-                        {% for my_review in my_reviews %}
-                        <li>
-                            <div class="brown-text text-darken-3">
-                                <strong>{{ my_review.book_name }} by {{ my_review.author_name }} </strong>
-                            </div>
-                            <div class="o">
-                                <p>Genre: {{ my_review.genre_name }}</p>
-                                <p>Review: {{ my_review.review_title }}</p>
-                                <p>Review: {{ my_review.review }}</p>
-                                <p>Rating: {{ my_review.rating_no }}</p>
-                                <p>Reviewer: {{ my_review.reviewed_by }}</p>
-                            </div>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </span>
+
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Book Name</th>
+                            <th>Author</th>
+                            <th>Review Title</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    {% for review in my_reviews %}
+                    <tbody>
+                        <tr>
+                            <td><a href="{{ url_for('see_review', reviews=review._id) }}">{{ review.book_name }}</a></td>
+                            <td>{{ review.author_name }}</td>
+                            <td>{{ review.review_title }}</td>
+                            <td>{{ review.rating_no }}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+
             </div>
         </div>
-    </div> -->
+    </div>
     <div class="row">
         <div class="col s12 m8 offset-m2">
             <div class="card-panel">
                 <h4 class="review-header center-align brown-text">My Favourites</h4>
-                
+
                 <ul>
-                    {% for favourite in username.favourites %}
+                    {% for fav in username.favourites %}
                     <li>
                         <div class="brown-text text-darken-3">
-                            Book Name: {{ favourite.book_name }}
-                            Book Author: {{ favourite.author_name }}
-                            Genre: {{ favourite.genre_name }}
+                            Book Name: {{ fav.book_name }}
+                            Book Author: {{ fav.author_name }}
+                            Genre: {{ fav.genre_name }}
                         </div>
                         <p><i class="fa-solid fa-star tooltipped small pink-text" data-position="bottom"
                                 data-tooltip="Remove book from favourites"></i>

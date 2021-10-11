@@ -75,7 +75,7 @@ def book_review():
         return redirect(url_for('book_review'))
 
     genres = list(mongo.db.genres.find().sort("genre_name", 1))
-    ratings = list(mongo.db.ratings.find().sort("rating", 1))
+    ratings = list(mongo.db.ratings.find().sort("rating_no", 1))
     return render_template("book_review.html", genres=genres, ratings=ratings)
 
 
@@ -152,15 +152,12 @@ def profile(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
+    # get the reviws written by session user 
+    my_reviews = list(mongo.db.reviews.find(
+        {"reviewed_by": session["user"]}))
 
-    my_reviews = list(mongo.db.book_review.find(
-            {"created_by": session["user"]}))
-
-    if session["user"]:
-        return render_template(
-            "profile.html", username=username, my_reviews=my_reviews)
-
-    return redirect(url_for("login"))
+    return render_template(
+        "profile.html", username=username, my_reviews=my_reviews)
 
 
 @app.route("/logout")
@@ -192,7 +189,7 @@ def add_review():
         return redirect(url_for('get_reviews'))
 
     genres = mongo.db.genres.find().sort("genre_name", 1)
-    ratings = list(mongo.db.ratings.find().sort("rating", 1))
+    ratings = list(mongo.db.ratings.find().sort("rating_no", 1))
     return render_template("add_review.html", genres=genres, ratings=ratings)
 
 
@@ -217,7 +214,7 @@ def edit_review(review_id):
 
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     genres = mongo.db.genres.find().sort("genre_name", 1)
-    ratings = list(mongo.db.ratings.find().sort("rating", 1))
+    ratings = list(mongo.db.ratings.find().sort("rating_no", 1))
     return render_template(
         "edit_review.html", genres=genres, ratings=ratings, review=review)
 
@@ -307,6 +304,7 @@ def add_favourite(favourite_id):
         flash("Favourite added to your profile")
         return redirect(url_for(
             "profile", username=username, review_id=review["_id"]))
+        
     # If user isn't logged in display a message and redirect to login page
     else:
         flash("Sorry, you are not logged in")
