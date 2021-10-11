@@ -152,12 +152,15 @@ def profile(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    # get the reviws written by session user 
+    # get the users name to load in profile page
+    fname = mongo.db.users.find_one(
+        {"username": username})["fname"]
+    # get the reviws written by session user
     my_reviews = list(mongo.db.reviews.find(
         {"reviewed_by": session["user"]}))
 
     return render_template(
-        "profile.html", username=username, my_reviews=my_reviews)
+        "profile.html", username=username, my_reviews=my_reviews, fname=fname)
 
 
 @app.route("/logout")
@@ -304,7 +307,7 @@ def add_favourite(favourite_id):
         flash("Favourite added to your profile")
         return redirect(url_for(
             "profile", username=username, review_id=review["_id"]))
-        
+
     # If user isn't logged in display a message and redirect to login page
     else:
         flash("Sorry, you are not logged in")
