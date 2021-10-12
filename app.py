@@ -57,7 +57,6 @@ def see_review(reviews):
 # gets the information for the see_review function
 def book_review():
     if request.method == "POST":
-        favourite = "on" if request.form.get('favourite') else "off"
         review = {
             "genre_name": request.form.get("genre_name"),
             "review_image": request.form.get("review_image"),
@@ -66,7 +65,6 @@ def book_review():
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
             "rating": request.form.get("rating_no"),
-            "favourite": favourite,
             # takes the username of the person logged in
             "reviewed_by": session["user"]
         }
@@ -158,9 +156,12 @@ def profile(username):
     # get the reviws written by session user
     my_reviews = list(mongo.db.reviews.find(
         {"reviewed_by": session["user"]}))
+    favourites = mongo.db.users.find_one(
+        {"username": username})["favourites"]
 
     return render_template(
-        "profile.html", username=username, my_reviews=my_reviews, fname=fname)
+        "profile.html", username=session["user"],
+        my_reviews=my_reviews, fname=fname, favourites=favourites)
 
 
 @app.route("/logout")
@@ -175,7 +176,6 @@ def logout():
 # allows user to add review
 def add_review():
     if request.method == "POST":
-        favourite = "on" if request.form.get('favourite') else "off"
         review = {
             "genre_name": request.form.get("genre_name"),
             "review_image": request.form.get("review_image"),
@@ -184,7 +184,6 @@ def add_review():
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
             "rating": request.form.get("rating_no"),
-            "favourite": favourite,
             "reviewed_by": session["user"]
         }
         mongo.db.reviews.insert_one(review)
@@ -200,7 +199,6 @@ def add_review():
 # allows users to edit their own reviews
 def edit_review(review_id):
     if request.method == "POST":
-        favourite = "on" if request.form.get('favourite') else "off"
         submit = {
             "genre_name": request.form.get("genre_name"),
             "review_image": request.form.get("review_image"),
@@ -209,7 +207,6 @@ def edit_review(review_id):
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
             "rating": request.form.get("rating_no"),
-            "favourite": favourite,
             "reviewed_by": session["user"]
         }
         mongo.db.reviews.update({"_id": ObjectId(review_id)}, submit)
@@ -306,7 +303,8 @@ def add_favourite(favourite_id):
 
         flash("Favourite added to your profile")
         return redirect(url_for(
-            "profile", username=username, review_id=review["_id"]))
+            "profile", username=username, favourites=favourites,
+            review_id=review["_id"]))
 
     # If user isn't logged in display a message and redirect to login page
     else:
@@ -343,13 +341,8 @@ def remove_favourite(favourite_id):
             {"$pull": {"favourites": favourites}})
 
         flash("Favourite added to your profile")
-        return redirect(url_for(
-            "profile", username=username, review_id=review["_id"]))
-
-    # If user isn't logged in display a message and redirect to login page
-    else:
-        flash("Sorry, you are not logged in")
-        return redirect(url_for("login"))
+        return redirect(url_for("profile", username=username, favourites=favourites,
+            review_id=review["_id"]))
 
 
 if __name__ == "__main__":
