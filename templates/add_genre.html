@@ -21,9 +21,11 @@
                     <!-- Submit  -->
                     <div class="row center-align">
                         <div class="col s4">
-                            <button class="btn waves-effect waves-light" type="submit">Add Genre
+                            <button class="btn waves-effect waves-light" type="submit">Add Genre <i class="fa-solid fa-plus"></i>
                             </button>
                         </div>
+                        <a href="{{ url_for('get_genres') }}" class="btn waves-effect waves-light cancel">Cancel <i class="fa-solid fa-xmark"></i>
+                        </a>
                     </div>
                 </div>
             </form>

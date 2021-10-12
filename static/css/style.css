@@ -120,6 +120,10 @@ main {
 
 /* General styling  */
 
+.card-panel, .card {
+    border-radius: 12px;
+}
+
 .curly {
     font-family: 'Pacifico', cursive;
 }
@@ -134,6 +138,31 @@ main {
     /* margin-bottom: 0; */
 }
 
+/* buttons  */
+
+.cancel, .reset {
+    color: #3e2723;
+    background-color: #fff !important;
+}
+
+.cancel:hover, .reset:hover {
+    color: #fff;
+    background-color: #3e2723 !important;
+}
+
+i:hover {
+    animation: rotate 1.2s;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
 h2,
 .paragraph {
     font-family: 'Libre Baskerville', serif;
@@ -212,6 +241,24 @@ h2,
     list-style: 2;
 }
 
+#myBtn {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Fixed/sticky position */
+    bottom: 20px;
+    /* Place the button at the bottom of the page */
+    right: 30px;
+    /* Place the button 30px from the right */
+    z-index: 99;
+    /* Make sure it does not overlap */
+}
+
+#myBtn:hover {
+    background-color: #fff;
+    color: #3e2723;
+}
+
 /* End of review page  */
 
 
@@ -236,6 +283,7 @@ h2,
 
 .btn {
     background-color: #8d6e63;
+    margin-bottom: 20px;
 }
 
 .btn:hover {

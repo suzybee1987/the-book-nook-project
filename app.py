@@ -230,7 +230,7 @@ def edit_review(review_id):
             "author_name": request.form.get("author_name"),
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
-            "rating": request.form.get("rating_no"),
+            "rating_no": request.form.get("rating_no"),
             "reviewed_by": session["user"]
         }
         mongo.db.reviews.update({"_id": ObjectId(review_id)}, submit)
@@ -238,7 +238,7 @@ def edit_review(review_id):
 
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     genres = mongo.db.genres.find().sort("genre_name", 1)
-    ratings = list(mongo.db.ratings.find().sort("rating_no", 1))
+    ratings = list(mongo.db.ratings.find().sort("rating", 1))
     return render_template(
         "edit_review.html", genres=genres, ratings=ratings, review=review)
 

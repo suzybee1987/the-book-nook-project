@@ -5,64 +5,89 @@
     <div class="row">
         <div class="col s12 m8 offset-m2">
             <div class="card-panel z-depth-4">
+                <h3 class="review-header center-align">Book Reviews</h3>
                 <div class="row">
                     <div class="col s12 m12">
                         <a class="btn" href="{{ url_for('get_reviews') }}"><i
-                                class="fa-solid fa-circle-chevron-left"></i> Back to Reviews</a>
+                                class="fa-solid fa-circle-chevron-left"></i> Back to
+                            Reviews</a>
                     </div>
                 </div>
-                <h3 class="review-header center-align">Book Reviews</h3>
                 {% for review in reviews %}
-                <div class="row">
-                    <div class="col s12 m12">
-                        <div class="card">
-                            <ul>
-                                <li>
-                                    <div class="card-image">
-                                        <img src="static/images/pexels-book.jpg">
-                                    </div>
-                                    <div class="card-title center-align">{{ review.book_name }}
-                                        by {{ review.author_name }}
-                                    </div>
-                                    <div>
-                                        <p>Genre: {{ review.genre_name }}</p>
-                                        <p>Rating: {{ review.rating_no }}</p>
-                                        <p>Review Title: {{ review.review_title }}</p>
-                                        <p>Review: {{ review.review }}</p>
-                                        <p>Reviewer: '{{ review.reviewed_by }}'</p>
-                                    </div>
-                                    <div class="card-action">
-                                        <!-- Here i'd like to click the link to go to book_review.html for the selected book  -->
-                                        <a href="#">Affiliate Link</a>
-                                        <p>Please support your local bookshop!</p>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="row center-align">
-                                <div class="col s12">
-                                    <div class="col s12">
-                                        <a href="{{ url_for('add_favourite', favourite_id=review._id) }}">
-                                            <i class="fa-regular fa-star tooltipped small pink-text" data-position="bottom"
-                                                data-tooltip="Add book to favourites"></i>
-                                        </a>
-                                        <a href="{{ url_for('remove_favourite', favourite_id=review._id) }}">
-                                            <i class="fa-solid fa-star tooltipped small pink-text" data-position="bottom"
-                                                data-tooltip="Remove book from favourites"></i></a>
-                                </div>
+                <div class="card">
+                    <div class="row center-align">
+                        <div class="col s12 m12">
+                            <div class="card-image">
+                                <img class="materialboxed review-img responsive-img"
+                                    src="../static/images/pexels-book.jpg">
                             </div>
                         </div>
                     </div>
+                    <div class="row center-align">
+                        <div class="col s12">
+                            <div class="card-title center-align">{{ review.book_name }}
+                                by {{ review.author_name }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row center-align">
+                        <div class="col s12">
+                            <div class="card-body">
+                                <p>Genre: {{ review.genre_name }}</p>
+                                <p>Rating: {{ review.rating_no }}</p>
+                                <p>Review Title: {{ review.review_title }}</p>
+                                <p>Review: {{ review.review }}</p>
+                                <p>Reviewer: '{{ review.reviewed_by }}'</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row center-align">
+                        <div class="col s12">
+                            <a href="{{ url_for('add_favourite', favourite_id=review._id) }}">
+                                <i class="fa-regular fa-star tooltipped small pink-text" data-position="bottom"
+                                    data-tooltip="Add book to favourites"></i>
+                            </a>
+                            <a href="{{ url_for('remove_favourite', favourite_id=review._id) }}">
+                                <i class="fa-solid fa-star tooltipped small pink-text" data-position="bottom"
+                                    data-tooltip="Remove book from favourites"></i></a>
+                        </div>
+                    </div>
+                    <div class="row center-align">
+                        <div class="col s12">
+                            <div class="card-action">
+                                <!-- Here i'd like to click the link to go to book_review.html for the selected book  -->
+                                <a href="#">Affiliate Link</a>
+                                <p>Please support your local bookshop!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row center-align">
+                        <div class="col s12">
+                            {% if session.user|lower == review.reviewed_by|lower %}
+                            <a href="{{ url_for('edit_review', review_id=review._id) }}"
+                                class="btn waves-effect waves-light">Edit <i class="fa-solid fa-pen-fancy"></i>
+                            </a>
+                            <!-- # add defensive programming here to confirm (Are you sure you want to delete?)  -->
+                            <a href="{{ url_for('delete_review', review_id=review._id) }}"
+                                class="btn waves-effect waves-light cancel">Delete <i class="fa-solid fa-trash-can"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+
+                    </div>
                 </div>
                 {% endfor %}
-                <div class="row">
-                    <div class="col s12 m8 offset-m2 ">
-                        <div class="card">
-                            <h4 class="card-header center-align">
+                <div class="card">
+                    <div class="row">
+                        <div class="col s12 m8 offset-m2 card-header">
+                            <h4 class="center-align">
                                 Add review
                             </h4>
-                            <div class="card-body">
-                                <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('add_review') }}">
-                                </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('add_review') }}">
                                 <div class="row">
                                     <div class="col s12 m10 offset-m1 input-field">
                                         <i class="fa-solid fa-user-pen prefix"></i>
@@ -85,18 +110,25 @@
                                         <select id="rating" name="rating" class="validate" required>
                                             <option value="" disabled selected>Rating</option>
                                             {% for rating in ratings %}
-                                            <option value="{{ rating.rating_no }}">{{ rating.rating_no }}</option>
+                                            <option value="{{ rating.rating_no }}">{{ rating.rating_no }}
+                                            </option>
                                             {% endfor %}
                                         </select>
                                         <label for="rating"></label>
                                     </div>
                                 </div>
-                                <!-- Submit  -->
-                                <div class="col s4">
-                                    <button class="btn waves-effect waves-light" type="submit">Submit Review
-                                    </button>
+                                <!-- Buttons  -->
+                                <div class="row center-align">
+                                    <div class="col s12">
+                                        <button class="btn waves-effect waves-light" type="submit">Submit Review
+                                            <i class="fa-solid fa-check"></i>
+                                        </button>
+                                        <a href="{{ url_for('get_reviews') }}"
+                                            class="btn waves-effect waves-light cancel">Cancel <i
+                                                class="fa-solid fa-xmark"></i>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
                             </form>
                         </div>
                     </div>
@@ -105,5 +137,5 @@
         </div>
     </div>
 </div>
-</div>
+
 {% endblock %}

@@ -5,10 +5,12 @@
         <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('edit_review', review_id=review._id) }}">
             <div class="card-panel">
                 <h3 class="brown-text center-align">Edit Review</h3>
-                <div class="col s4">
-                    <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light"><i
-                            class="fa-solid fa-chevron-left"></i> Back to reviews
-                    </a>
+                <div class="row">
+                    <div class="col s4">
+                        <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light"><i
+                                class="fa-solid fa-chevron-left"></i> Back to reviews
+                        </a>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col s12 m10 offset-m1 input-field"><i class="fa-solid fa-dragon prefix"></i>
@@ -75,22 +77,12 @@
                     </div>
                     <!-- Favourite toggle  -->
                     <div class="row center-align">
-                        <div class="switch col s4">
-                            <label for="favourite" class="brown-text text-darken-3">
-                                {% if review.favourite == "on" %}
-                                <i class="fa-solid fa-star tooltipped small pink-text" data-position="bottom"
-                                    data-tooltip="Remove book from favourites"></i>
-                                {% else %}
-                                <i class="fa-regular fa-star tooltipped small pink-text" data-position="bottom"
-                                    data-tooltip="Add book to favourites"></i>
-                                {% endif %}
-                            </label>
-                        </div>
-                        <!-- Submit  -->
-                        <div class="col s4">
-                            <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light">Cancel
+                        <div class="col s12">
+                            <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light">Cancel <i
+                                    class="fa-solid fa-xmark"></i>
                             </a>
-                            <button class="btn waves-effect waves-light" type="submit">Edit Review
+                            <button class="btn waves-effect waves-light" type="submit">Edit Review <i
+                                    class="fa-solid fa-pen-fancy"></i>
                             </button>
                         </div>
                     </div>
