@@ -51,14 +51,16 @@
                             <th>Rating</th>
                         </tr>
                     </thead>
-                    {% for fave in username.favourites %}
+                    {% for fave in favourites %}
                     <tbody>
                         <tr>
-                            <td><a href="{{ url_for('see_review', reviews=review._id) }}">{{ fave.book_name }}</a>
-                            </td>
+                            <td>{{ fave.book_name }}</td>
                             <td>{{ fave.author_name }}</td>
                             <td>{{ fave.review_title }}</td>
                             <td>{{ fave.rating_no }}</td>
+                            <td><a href="{{ url_for('remove_favourite', favourite_id=fave._id) }}">
+                                <i class="fa-solid fa-star tooltipped small pink-text" data-position="bottom"
+                                    data-tooltip="Remove book from favourites"></i></a></td>
                         </tr>
                     </tbody>
                     {% endfor %}
