@@ -118,12 +118,9 @@ def register():
         mongo.db.users.insert_one(user_details)
 
         # put new user in to session using session cookie
-        # add user's name to flash method
         session["user"] = request.form.get("username").lower()
-        flash("Registration successful, {}".format(
-            request.form.get("username")))
-        return redirect(url_for(
-                "profile", username=session["user"]))
+
+        return redirect(url_for("get_reviews"))
 
     return render_template("register.html")
 
@@ -177,8 +174,8 @@ def profile(username):
     reviews = list(mongo.db.reviews.find())
 
     return render_template(
-        "profile.html", username=session["user"],
-        my_reviews=my_reviews, fname=fname, favourites=favourites,
+        "profile.html", username=session["user"], favourites=favourites,
+        my_reviews=my_reviews, fname=fname,
         reviews=reviews)
 
 
