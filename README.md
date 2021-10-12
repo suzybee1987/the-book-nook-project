@@ -324,6 +324,10 @@ To clone this project from GitHub follow the instructions taken from [GitHub Doc
 - [SitePoint](https://www.sitepoint.com/simple-javascript-quiz/#whatsnext) for help with the quiz layout including pagination
 - Wes Bos [JavaScript 30](https://javascript30.com/) for extra ideas on using JavaScript
 
+- Stack Overflow for some bug fixing:
+  - [Helpers](https://stackoverflow.com/questions/52113587/materializes-responsive-utilites-not-working) to explain how Materialize show/hide functions work
+  - [JavaScript Function Guidance](https://stackoverflow.com/questions/36581504/materialize-carousel-slider-autoplay) to help with the carousel on welcome page
+
 
 ### **Content**
 

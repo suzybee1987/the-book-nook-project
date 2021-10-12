@@ -8,6 +8,29 @@ $(document).ready(function () {
     $('select').formSelect();
     // code for datetime from code institute mini project Thorin&Co 
     $("#copyright").text(new Date().getFullYear());
+    $('.carousel.carousel-slider').carousel({
+        numVisible: 1
+    }, {
+        duration: 100
+    }, {
+        fullWidth: true
+    });
+    $('.tooltipped').tooltip();
+});
+
+// I edited this function from stack overflow which plays the carousel automatically
+// but when carousel is hovered over it stops to allow user to read the quote
+// https://stackoverflow.com/questions/36581504/materialize-carousel-slider-autoplay
+let autoplay = true;
+
+setInterval(function () {
+    if (autoplay) $('.carousel.carousel-slider').carousel('next');
+}, 4500);
+
+$('.quotes-panel').hover(function () {
+    autoplay = false;
+}, function () {
+    autoplay = true;
 });
 
 

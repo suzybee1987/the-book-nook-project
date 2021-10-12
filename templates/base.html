@@ -16,39 +16,45 @@
 
 <body>
     <header>
-        <nav class="nav-extended textshadow brown darken-3">
+        <nav class="nav-extended text-shadow brown darken-3">
             <!-- top navbar  -->
             <div class="nav-wrapper">
-                <a href="{{ url_for('get_reviews') }}" class="title"><i class="fa-solid fa-book-open-reader"></i></a>
+                <a href="{{ url_for('welcome') }}" class="title"><i class="fa-solid fa-book-open-reader"></i></a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
                         class="fa-solid fa-ellipsis"></i></a>
                 <ul class="right hide-on-med-and-down">
+                    <li><a href="{{ url_for('get_reviews') }}">All Reviews</a></li>
                     {% if session.user %}
-                    <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a>
-                    </li>
+                    <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+
+                    <!-- could have superuser as a toggle like with favourites? and then add to app.py  -->
+
+                    {% if session.user|lower == "superuser"|lower %}
+                    <li><a href="{{ url_for('get_genres') }}">Manage Genres</a></li>
+                    {% endif %}
                     <li><a href="{{ url_for('add_review') }}">Add Review</a></li>
                     <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                     {% else %}
-                    <li><a href="{{ url_for('welcome') }}">Welcome</a></li>
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
                     <li><a href="{{ url_for('register') }}">Register</a></li>
                     {% endif %}
-                    <li><a href="{{ url_for('get_reviews') }}">All Reviews</a></li>
                 </ul>
             </div>
         </nav>
         <!-- mobile navbar  -->
         <ul class="sidenav" id="mobile-demo">
+            <li><a href="{{ url_for('get_reviews') }}">All Reviews</a></li>
             {% if session.user %}
             <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+            {% if session.user|lower == "superuser"|lower %}
+            <li><a href="{{ url_for('get_genres') }}">Manage Genres</a></li>
+            {% endif %}
             <li><a href="{{ url_for('add_review') }}">Add Review</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
-            <li><a href="{{ url_for('welcome') }}">Welcome</a></li>
             <li><a href="{{ url_for('login') }}">Log In</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
             {% endif %}
-            <li><a href="{{ url_for('get_reviews') }}">All Reviews</a></li>
         </ul>
     </header>
 
@@ -64,13 +70,18 @@
         {% endif %}
         {% endwith %}
     </main>
+    
     {% block content %}
+    <div class="container-fluid">
 
+
+    </div>
     {% endblock %}
+
     <footer class="page-footer brown darken-3">
         <div class="container">
-            <div class="footer-links">
-                <div class="col-6 center-align">
+            <div class="row">
+                <div class="col-6 center-align footer-links">
                     <ul>
                         <li><a class="grey-text text-lighten-3" href="#">Privacy Policy</a></li>
                         <li><a class="grey-text text-lighten-3" href="#">Terms and Conditions</a></li>
@@ -85,6 +96,7 @@
             </div>
         </div>
     </footer>
+
     {% block scripts %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -92,7 +104,5 @@
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     {% endblock %}
 </body>
-
-
 
 </html>

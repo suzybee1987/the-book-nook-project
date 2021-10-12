@@ -1,11 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-
 <div class="review-hero">
     <div class="row">
         <div class="col s12 m8 offset-m2">
             <div class="card-panel z-depth-4">
                 <h3 class="review-header center-align">Book Reviews</h3>
+                {% if reviews|length > 0 %}
+                <div class="row card-panel brown-text text-darken-3">
+                    <form action="{{ url_for('search')  }}" method="post" class="col s12">
+                        <div class="row valign-wrapper center-align">
+                            <div class="input-field col s12 m8">
+                                <input type="text" name="query" id="query" minlength="3" class="validate" required>
+                                <label for="query">Search Reviews</label>
+                            </div>
+                            <div class="col s12 m4">
+                                <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light">Reset</a>
+                                <button type="submit" class="btn waves-effect waves-light">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                {% else %}
+                <h3 class="review-header center-align">No results found</h3>
+                {% endif %}
                 <div class="row">
                     {% for review in reviews %}
                     <div class="col s12 m4">
@@ -19,27 +36,37 @@
                                         by {{ review.author_name }}
                                     </div>
                                     <div>
-                                        <p>Rating: {{ review.rating }}</p>
-
-                                        <p>Genre: {{ review.genre_name }}</p>
+                                        <p>Rating: {{ review.rating_no }}</p>
+                                        <p>Title: {{ review.review_title }}</p>
                                         <p>Reviewer: '{{ review.reviewed_by }}'</p>
-                                    </div>
-                                    <div class="card-action">
-                                        <a href="{{ url_for('see_review', reviews=review._id) }}">See Review</a>
+                                        <p><a href="{{ url_for('see_review', reviews=review._id) }}">See Review</a></p>
                                     </div>
                                     <div class="row center-align">
                                         <div class="col s12">
                                             {% if session.user|lower == review.reviewed_by|lower %}
-                                            <a href="{{ url_for('edit_review', review_id=review._id) }}" class="btn waves-effect waves-light">Edit
+                                            <a href="{{ url_for('edit_review', review_id=review._id) }}"
+                                                class="btn waves-effect waves-light">Edit
                                             </a>
-
                                             <!-- # add defensive programming here to confirm (Are you sure you want to delete?)  -->
-                                            <a href="{{ url_for('delete_review', review_id=review._id) }}" class="btn waves-effect waves-light">Delete
+                                            <a href="{{ url_for('delete_review', review_id=review._id) }}"
+                                                class="btn waves-effect waves-light">Delete
                                             </a>
                                             {% endif %}
                                         </div>
+                                        <div class="row center-align">
+                                            <div class="col s12">
+                                                <a href="{{ url_for('add_favourite', favourite_id=review._id) }}">
+                                                    <i class="fa-regular fa-star tooltipped small pink-text"
+                                                        data-position="bottom"
+                                                        data-tooltip="Add book to favourites"></i>
+                                                </a>
+                                                <a href="{{ url_for('remove_favourite', favourite_id=review._id) }}">
+                                                    <i class="fa-solid fa-star tooltipped small pink-text"
+                                                        data-position="bottom"
+                                                        data-tooltip="Remove book from favourites"></i></a>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </li>
                             </ul>
                         </div>

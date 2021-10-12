@@ -26,7 +26,7 @@
                                     </div>
                                     <div>
                                         <p>Genre: {{ review.genre_name }}</p>
-                                        <p>Rating: {{ review.rating }}</p>
+                                        <p>Rating: {{ review.rating_no }}</p>
                                         <p>Review Title: {{ review.review_title }}</p>
                                         <p>Review: {{ review.review }}</p>
                                         <p>Reviewer: '{{ review.reviewed_by }}'</p>
@@ -38,6 +38,17 @@
                                     </div>
                                 </li>
                             </ul>
+                            <div class="row center-align">
+                                <div class="col s12">
+                                    <a href="{{ url_for('add_favourite', favourite_id=review._id) }}">
+                                        <i class="fa-regular fa-star tooltipped small pink-text" data-position="bottom"
+                                            data-tooltip="Add book to favourites"></i>
+                                    </a>
+                                    <a href="{{ url_for('remove_favourite', favourite_id=review._id) }}">
+                                    <i class="fa-solid fa-star tooltipped small pink-text" data-position="bottom"
+                                        data-tooltip="Remove book from favourites"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -55,7 +66,7 @@
                                     <div class="col s12 m10 offset-m1 input-field">
                                         <i class="fa-solid fa-user-pen prefix"></i>
                                         <input id="review_title" name="review_title" type="text" class="validate"
-                                            minlength="5" maxlength="50" pattern="^[a-zA-Z0-9]{5,50}$" required>
+                                            minlength="5" maxlength="100" pattern="^[a-zA-Z0-9]{5,50}$" required>
                                         <label for="review_title">Review Title</label>
                                     </div>
                                 </div>
@@ -73,34 +84,25 @@
                                         <select id="rating" name="rating" class="validate" required>
                                             <option value="" disabled selected>Rating</option>
                                             {% for rating in ratings %}
-                                                <option value="{{ rating.rating }}">{{ rating.rating_no }}</option>
+                                            <option value="{{ rating.rating_no }}">{{ rating.rating_no }}</option>
                                             {% endfor %}
                                         </select>
                                         <label for="rating"></label>
                                     </div>
                                 </div>
-                                <!-- Favourite toggle  -->
-                                <div class="row center-align">
-                                    <div class="switch col s4">
-                                        <label for="favourite" class="brown-text text-darken-3">
-                                            Favourite
-                                            <input type="checkbox" id="favourite" name="favourite">
-                                            <span class="lever"></span>
-                                        </label>
-                                    </div>
-                                    <!-- Submit  -->
-                                    <div class="col s4">
-                                        <button class="btn waves-effect waves-light" type="submit">Submit Review
-                                        </button>
-                                    </div>
+                                <!-- Submit  -->
+                                <div class="col s4">
+                                    <button class="btn waves-effect waves-light" type="submit">Submit Review
+                                    </button>
                                 </div>
-                                </form>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}

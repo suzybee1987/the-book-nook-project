@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+
 <div class="hero-add-review">
     <div class="row">
         <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('add_review') }}">
@@ -10,7 +11,7 @@
                         <select id="genre_name" name="genre_name" class="validate" required>
                             <option value="" disabled selected>Choose Genre</option>
                             {% for genre in genres %}
-                                <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
+                            <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
                             {% endfor %}
                         </select>
                         <label for="genre_name"></label>
@@ -35,8 +36,7 @@
                     <div class="col s12 m10 offset-m1 input-field">
                         <i class="fa-solid fa-user-pen prefix"></i>
                         <input id="review_title" name="review_title" type="text" class="validate" minlength="1"
-                            maxlength="50"
-                             required>
+                            maxlength="50" required>
                         <label for="review_title">Review Title</label>
                     </div>
                 </div>
@@ -53,30 +53,22 @@
                         <select id="rating" name="rating" class="validate" required>
                             <option value="" disabled selected>Rating</option>
                             {% for rating in ratings %}
-                                <option value="{{ rating.rating }}">{{ rating.rating }}</option>
+                            <option value="{{ rating.rating_no }}">{{ rating.rating_no }}</option>
                             {% endfor %}
                         </select>
                         <label for="rating"></label>
                     </div>
-                    <!-- Favourite toggle  -->
-                    <div class="row center-align">
-                        <div class="switch col s4">
-                            <label for="favourite" class="brown-text text-darken-3">
-                                Favourite
-                                <input type="checkbox" id="favourite" name="favourite">
-                                <span class="lever"></span>
-                            </label>
-                        </div>
-                        <!-- Submit  -->
-                        <div class="col s4">
-                            <button class="btn waves-effect waves-light" type="submit">Submit Review
-                            </button>
-                        </div>
-                    </div>
+                </div>
+                <!-- Submit  -->
+                <div class="col s4">
+                    <button class="btn waves-effect waves-light" type="submit">Submit Review
+                    </button>
                 </div>
             </div>
-        </form>
     </div>
+</div>
+</form>
+</div>
 </div>
 
 {% endblock %}
