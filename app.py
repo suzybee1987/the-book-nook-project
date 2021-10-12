@@ -275,15 +275,15 @@ def delete_genre(genre_id):
 @app.route("/add_favourite/<favourite_id>")
 def add_favourite(favourite_id):
     """
-    Allows the user to add a book review to their personal
-    favourites list
+    Allows the user to add a book review to their
+    favourites list on profile page
     """
     if session["user"]:
-        # grab the session user's details from db
+        # get the session user's details from db
         username = mongo.db.users.find_one(
             {"username": session["user"]})
 
-        # grab the book review details
+        # grab the book review data
         review = mongo.db.reviews.find_one(
             {"_id": ObjectId(favourite_id)})
 
@@ -302,9 +302,7 @@ def add_favourite(favourite_id):
 
         # user_favourite = mongo.db.users.find_one("favourites")
         flash("Favourite added to your profile")
-        return redirect(url_for(
-            "profile", username=username,
-            review_id=review["_id"]))
+        return redirect(url_for('book_review'))
 
     # If user isn't logged in display a message and redirect to login page
     else:

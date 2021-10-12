@@ -26,7 +26,8 @@
                     {% for review in my_reviews %}
                     <tbody>
                         <tr>
-                            <td><a href="{{ url_for('see_review', reviews=review._id) }}" target="_blank">{{ review.book_name }}</a></td>
+                            <td><a href="{{ url_for('see_review', reviews=review._id) }}" target="_blank">{{
+                                    review.book_name }}</a></td>
                             <td>{{ review.author_name }}</td>
                             <td>{{ review.review_title }}</td>
                             <td>{{ review.rating_no }}</td>
@@ -34,40 +35,28 @@
                     </tbody>
                     {% endfor %}
                 </table>
-
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col s12 m8 offset-m2">
             <div class="card-panel">
-                <h4 class="review-header center-align brown-text">My Favourites</h4>
-                {% if favourites|length > 0 %}
+                <h4 class="center-align brown-text">My Favourites</h4>
+                {% for fave in username.favourites %}
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Book Name</th>
-                            <th>Author</th>
-                            <th>Review Title</th>
-                            <th>Rating</th>
-                        </tr>
-                    </thead>
-                    {% for fave in username.favourites %}
-                    <tbody>
-                        <tr>
-                            <td><a href="{{ url_for('see_review', reviews=review._id) }}" target="_blank">{{ review.book_name }}</a>
-                            </td>
-                            <td>{{ review.author_name }}</td>
-                            <td>{{ review.review_title }}</td>
-                            <td>{{ review.rating_no }}</td>
-                        </tr>
-                    </tbody>
-                    {% endfor %}
+                    <tr>
+                        <td>
+                            <a href="{{ url_for('see_review', reviews=review._id) }}" target="_blank">{{ fave.book_name
+                                }}</a>
+                        </td>
+                        <td>{{ fave.author_name }}</td>
+                        <td>{{ fave.review_title }}</td>
+                        <td>{{ fave.rating_no }}</td>
+                    </tr>
                 </table>
-                </ul>
-                {% else %}
-                <h6 class="center-align">You don't have any favourites yet! Go <a href="{{ url_for('get_reviews') }}">here</a> to see some reviews!</h6>
-                {% endif %}
+                {% endfor %}
+                <h6 class="center-align">You don't have any favourites yet! Go <a
+                        href="{{ url_for('get_reviews') }}">here</a> to see some reviews!</h6>
             </div>
         </div>
     </div>

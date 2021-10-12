@@ -56,20 +56,17 @@
                                         <div class="row center-align">
                                             <div class="col s12">
                                                 <label for="favourite">
-                                                    {% if review.favourite == "on" %}
                                                     <a
                                                         href="{{ url_for('remove_favourite', favourite_id=review._id) }}">
                                                         <i class="fa-solid fa-star tooltipped small pink-text"
                                                             data-position="bottom"
                                                             data-tooltip="Remove book from favourites"></i>
                                                     </a>
-                                                    {% else %}
                                                     <a href="{{ url_for('add_favourite', favourite_id=review._id) }}">
                                                         <i class="fa-regular fa-star tooltipped small pink-text"
                                                             data-position="bottom"
                                                             data-tooltip="Add book to favourites"></i>
                                                     </a>
-                                                    {% endif %}
                                                 </label>
                                             </div>
                                         </div>

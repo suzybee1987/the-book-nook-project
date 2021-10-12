@@ -54,56 +54,11 @@
                     </div>
                 </div>
                 {% endfor %}
-                <div class="row">
-                    <div class="col s12 m8 offset-m2 ">
-                        <div class="card">
-                            <h4 class="card-header center-align">
-                                Add review
-                            </h4>
-                            <div class="card-body">
-                                <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('add_review') }}">
-                                </form>
-                                <div class="row">
-                                    <div class="col s12 m10 offset-m1 input-field">
-                                        <i class="fa-solid fa-user-pen prefix"></i>
-                                        <input id="review_title" name="review_title" type="text" class="validate"
-                                            minlength="5" maxlength="100" pattern="^[a-zA-Z0-9]{5,50}$" required>
-                                        <label for="review_title">Review Title</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col s12 m10 offset-m1 input-field">
-                                        <i class="fa-solid fa-keyboard prefix"></i>
-                                        <textarea id="review" name="review" class="materialize-textarea"
-                                            required></textarea>
-                                        <label for="review">Review</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col s12 m10 offset-m1 input-field">
-                                        <i class="fa-solid fa-star prefix"></i>
-                                        <select id="rating" name="rating" class="validate" required>
-                                            <option value="" disabled selected>Rating</option>
-                                            {% for rating in ratings %}
-                                            <option value="{{ rating.rating_no }}">{{ rating.rating_no }}</option>
-                                            {% endfor %}
-                                        </select>
-                                        <label for="rating"></label>
-                                    </div>
-                                </div>
-                                <!-- Submit  -->
-                                <div class="col s4">
-                                    <button class="btn waves-effect waves-light" type="submit">Submit Review
-                                    </button>
-                                </div>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+
+
             </div>
         </div>
     </div>
 </div>
-</div>
+
 {% endblock %}
