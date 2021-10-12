@@ -140,7 +140,8 @@ def login():
 
         if existing_user:
             # ensure hashed password matches user input
-            if check_password_hash(existing_user["password"], request.form.get("password")):
+            if check_password_hash(
+                existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 return redirect(url_for(
                         "profile", username=session["user"]))
@@ -347,7 +348,7 @@ def add_favourite(favourite_id):
 @app.route("/remove_favourite/<favourite_id>")
 def remove_favourite(favourite_id):
     """
-    Allows the user to add a book review to their personal
+    Allows the user to remove a book review from their
     favourites list
     """
     if session["user"]:
@@ -374,7 +375,10 @@ def remove_favourite(favourite_id):
         flash("Favourite removed from your profile")
         return redirect(url_for(
             "profile", username=username, favourites=favourites,
-            review_id=review["_id"]))
+            favourite_id=review["_id"]))
+    else:
+        flash("You need to log in first!")
+        return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
