@@ -40,13 +40,14 @@
                             </ul>
                             <div class="row center-align">
                                 <div class="col s12">
-                                    <a href="{{ url_for('add_favourite', favourite_id=review._id) }}">
-                                        <i class="fa-regular fa-star tooltipped small pink-text" data-position="bottom"
-                                            data-tooltip="Add book to favourites"></i>
-                                    </a>
-                                    <a href="{{ url_for('remove_favourite', favourite_id=review._id) }}">
-                                    <i class="fa-solid fa-star tooltipped small pink-text" data-position="bottom"
-                                        data-tooltip="Remove book from favourites"></i></a>
+                                    <div class="col s12">
+                                        <a href="{{ url_for('add_favourite', favourite_id=review._id) }}">
+                                            <i class="fa-regular fa-star tooltipped small pink-text" data-position="bottom"
+                                                data-tooltip="Add book to favourites"></i>
+                                        </a>
+                                        <a href="{{ url_for('remove_favourite', favourite_id=review._id) }}">
+                                            <i class="fa-solid fa-star tooltipped small pink-text" data-position="bottom"
+                                                data-tooltip="Remove book from favourites"></i></a>
                                 </div>
                             </div>
                         </div>
