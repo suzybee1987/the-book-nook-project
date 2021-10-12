@@ -24,38 +24,48 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-# When first landing on the page welcome page is loaded
 @app.route("/welcome")
 def welcome():
+    """
+        When first landing on the page welcome page is loaded
+    """
     quotes = list(mongo.db.quotes.find())
     return render_template("welcome.html", quotes=quotes)
 
 
 @app.route("/get_reviews")
-# display reviews on review page
 def get_reviews():
+    """
+        display reviews on review page
+    """
     reviews = list(mongo.db.reviews.find())
     return render_template("reviews.html", reviews=reviews)
 
 
 @app.route("/search", methods=["GET", "POST"])
-# Search for reviews by book name, author, reviewed_by
 def search():
+    """
+    Search for reviews by book name, author, reviewed_by
+    """
     query = request.form.get("query")
     reviews = list(mongo.db.reviews.find({"$text": {"$search": query}}))
     return render_template("reviews.html", reviews=reviews)
 
 
 @app.route("/see_review/<reviews>", methods=["GET", "POST"])
-# view the full review of individual book
 def see_review(reviews):
+    """
+    view the full review of individual book
+    """
     reviews = list(mongo.db.reviews.find({"_id": ObjectId(reviews)}))
     return render_template("book_review.html", reviews=reviews)
 
 
 @app.route("/book_review", methods=["GET", "POST"])
-# gets the information for the see_review function
 def book_review():
+    """
+    gets the information for the see_review function
+    """
     if request.method == "POST":
         review = {
             "genre_name": request.form.get("genre_name"),
@@ -78,8 +88,10 @@ def book_review():
 
 
 @app.route("/register", methods=["GET", "POST"])
-# allows the user to register
 def register():
+    """
+    allows the user to register
+    """
     if request.method == "POST":
         # check if username already exists
         existing_user = mongo.db.users.find_one(
@@ -95,7 +107,7 @@ def register():
 # Tim says if you want a confirm password you should do it
 # before this dictionary
 
-        register = {
+        user_info = {
             "fname": request.form.get("fname").capitalize(),
             "lname": request.form.get("lname").capitalize(),
             "email": request.form.get("email").lower(),
@@ -103,7 +115,7 @@ def register():
             # as a challenge can change the hash and salt method for project
             "password": generate_password_hash(request.form.get("password"))
         }
-        mongo.db.users.insert_one(register)
+        mongo.db.users.insert_one(user_info)
 
         # put new user in to session using session cookie
         # add user's name to flash method
@@ -117,8 +129,10 @@ def register():
 
 
 @app.route("/login", methods=["GET", "POST"])
-# allows user to log in
 def login():
+    """
+    allows user to log in
+    """
     if request.method == "POST":
         # check if username exists in db
         existing_user = mongo.db.users.find_one(
@@ -131,11 +145,6 @@ def login():
                 session["user"] = request.form.get("username").lower()
                 return redirect(url_for(
                         "profile", username=session["user"]))
-            else:
-                # invalid password match
-                flash("Incorrect Username and/or Password")
-                return redirect(url_for("login"))
-
         else:
             # username doesn't exist
             flash("Incorrect Username and/or Password")
@@ -145,8 +154,10 @@ def login():
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
-# profile page for user
 def profile(username):
+    """
+    profile page for user
+    """
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
@@ -165,16 +176,20 @@ def profile(username):
 
 
 @app.route("/logout")
-# log user out using session cookie
 def logout():
+    """
+    log user out using session cookie
+    """
     flash("You have been logged out")
     session.pop('user')
     return redirect(url_for('login'))
 
 
 @app.route("/add_review", methods=["GET", "POST"])
-# allows user to add review
 def add_review():
+    """
+    allows user to add review
+    """
     if request.method == "POST":
         review = {
             "genre_name": request.form.get("genre_name"),
@@ -196,8 +211,10 @@ def add_review():
 
 
 @app.route("/edit_review/<review_id>", methods=["GET", "POST"])
-# allows users to edit their own reviews
 def edit_review(review_id):
+    """
+    allows users to edit their own reviews
+    """
     if request.method == "POST":
         submit = {
             "genre_name": request.form.get("genre_name"),
@@ -220,23 +237,29 @@ def edit_review(review_id):
 
 
 @app.route("/delete_review/<review_id>")
-# allows user to delete review
 def delete_review(review_id):
+    """
+    allows user to delete review
+    """
     mongo.db.reviews.remove({"_id": ObjectId(review_id)})
     flash("Review deleted")
     return redirect(url_for('get_reviews'))
 
 
 @app.route("/get_genres")
-# allows superuser to manage the genres
 def get_genres():
+    """
+    allows superuser to manage the genres
+    """
     genres = list(mongo.db.genres.find().sort("genre_name", 1))
     return render_template("genres.html", genres=genres)
 
 
 @app.route("/add_genre", methods=["GET", "POST"])
-# allows superuser to add new genre
 def add_genre():
+    """
+    allows superuser to add new genre
+    """
     if request.method == "POST":
         genre = {
             "genre_name": request.form.get("genre_name")
@@ -249,8 +272,10 @@ def add_genre():
 
 
 @app.route("/edit_genre/<genre_id>", methods=["GET", "POST"])
-# allows superuser to edit the genres
 def edit_genre(genre_id):
+    """
+    allows superuser to edit the genres
+    """
     if request.method == "POST":
         submit = {
             "genre_name": request.form.get("genre_name")
@@ -266,8 +291,10 @@ def edit_genre(genre_id):
 
 
 @app.route("/delete_genre/<genre_id>")
-# allows superuser to delete the genres
 def delete_genre(genre_id):
+    """
+    allows superuser to delete the genres
+    """
     mongo.db.genres.remove({"_id": ObjectId(genre_id)})
     flash("Genre Successfully Deleted")
     return redirect(url_for("get_genres"))
@@ -341,7 +368,8 @@ def remove_favourite(favourite_id):
             {"$pull": {"favourites": favourites}})
 
         flash("Favourite added to your profile")
-        return redirect(url_for("profile", username=username, favourites=favourites,
+        return redirect(
+            url_for("profile", username=username, favourites=favourites,
             review_id=review["_id"]))
 
 
