@@ -2,7 +2,8 @@
 {% block content %}
 
 <div class="review-hero">
-    <button class="waves-effect waves-light btn" onclick="topFunction()" id="myBtn" title="Back to top">Back to top <i class="fa-solid fa-angle-up"></i></button>
+    <button class="waves-effect waves-light btn" onclick="topFunction()" id="myBtn" title="Back to top">Back to top <i
+            class="fa-solid fa-angle-up"></i></button>
     <div class="row">
         <div class="col s12 m8 offset-m2">
             <div class="card-panel z-depth-4">
@@ -16,8 +17,10 @@
                                 <label for="query">Search Reviews</label>
                             </div>
                             <div class="col s12 m4">
-                                <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light reset">Reset <i class="fa-solid fa-xmark"></i></a>
-                                <button type="submit" class="btn waves-effect waves-light">Search <i class="fa-solid fa-magnifying-glass"></i></button>
+                                <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light reset">Reset
+                                    <i class="fa-solid fa-xmark"></i></a>
+                                <button type="submit" class="btn waves-effect waves-light">Search <i
+                                        class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </div>
                     </form>
@@ -31,8 +34,10 @@
                         <div class="card card-review">
                             <ul>
                                 <li>
-                                    <div class="card-image">
-                                        <img src="static/images/pexels-book.jpg">
+                                    <div class="card-image review_image">
+                                        <a href="{{ url_for('see_review', reviews=review._id) }}"> 
+                                            <img src="{{ review.image }}" alt="Image of front cover of book">
+                                        </a>
                                     </div>
                                     <div class="card-title center-align">{{ review.book_name }}
                                         by {{ review.author_name }}
@@ -47,11 +52,13 @@
                                         <div class="col s12">
                                             {% if session.user|lower == review.reviewed_by|lower %}
                                             <a href="{{ url_for('edit_review', review_id=review._id) }}"
-                                                class="btn waves-effect waves-light">Edit <i class="fa-solid fa-pen-fancy"></i>
+                                                class="btn waves-effect waves-light">Edit <i
+                                                    class="fa-solid fa-pen-fancy"></i>
                                             </a>
                                             <!-- # add defensive programming here to confirm (Are you sure you want to delete?)  -->
                                             <a href="{{ url_for('delete_review', review_id=review._id) }}"
-                                                class="btn waves-effect waves-light cancel">Delete <i class="fa-solid fa-trash-can"></i>
+                                                class="btn waves-effect waves-light cancel">Delete <i
+                                                    class="fa-solid fa-trash-can"></i>
                                             </a>
                                             {% endif %}
                                         </div>

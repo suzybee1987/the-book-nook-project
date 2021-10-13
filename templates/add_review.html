@@ -54,6 +54,12 @@
                         <textarea id="review" name="review" class="materialize-textarea" required></textarea>
                         <label for="review">Review</label>
                     </div>
+                <div class="row">
+                    <div class="col s12 m10 offset-m1 input-field">
+                        <i class="fa-solid fa-book prefix"></i>
+                        <input id="image" name="image" type="url" class="validate" required>
+                        <label for="image">Cover Image for Book</label>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col s12 m10 offset-m1 input-field">
@@ -67,6 +73,10 @@
                         <label for="rating"></label>
                     </div>
                 </div>
+
+
+                                        <img src="{{ review.img }}" alt="Image of front cover of book">
+
                 <!-- Submit  -->
                 <div class="row center-align">
                     <div class="col s12">

@@ -69,7 +69,8 @@ def book_review():
     if request.method == "POST":
         review = {
             "genre_name": request.form.get("genre_name"),
-            "review_image": request.form.get("review_image"),
+            "image": request.form.get("image"),
+            "image_alt": request.form.get("image_alt"),
             "book_name": request.form.get("book_name"),
             "author_name": request.form.get("author_name"),
             "review_title": request.form.get("review_title"),
@@ -206,12 +207,13 @@ def add_review():
     if request.method == "POST":
         review = {
             "genre_name": request.form.get("genre_name"),
-            "review_image": request.form.get("review_image"),
+            "image_alt": request.form.get("image_alt"),
             "book_name": request.form.get("book_name"),
             "author_name": request.form.get("author_name"),
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
             "rating": request.form.get("rating_no"),
+            "image": request.form.get("image"),
             "favourites": request.form.get("favourites"),
             "reviewed_by": session["user"]
         }
@@ -232,7 +234,8 @@ def edit_review(review_id):
     if request.method == "POST":
         submit = {
             "genre_name": request.form.get("genre_name"),
-            "review_image": request.form.get("review_image"),
+            "image": request.form.get("image"),
+            "image_alt": request.form.get("image_alt"),
             "book_name": request.form.get("book_name"),
             "author_name": request.form.get("author_name"),
             "review_title": request.form.get("review_title"),
