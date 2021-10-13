@@ -261,10 +261,10 @@ h2,
     color: #3e2723;
 }
 
-.review_image {
-    max-height: 350px !important;
+/* .card_image {
+    height: 350px !important;
     width: auto !important;
-}
+} */
 
 
 /* End of review page  */
