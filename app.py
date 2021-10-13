@@ -75,6 +75,7 @@ def book_review():
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
             "rating": request.form.get("rating_no"),
+            "favourites": request.form.get("favourites"),
             # takes the username of the person logged in
             "reviewed_by": session["user"]
         }
@@ -155,28 +156,36 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/profile/<username>")
+@app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     """
     profile page for user
     """
-    # grab the session user's username from db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    # get the users name to load in profile page
-    fname = mongo.db.users.find_one(
-        {"username": username})["fname"]
-    # get the reviws written by session user
-    my_reviews = list(mongo.db.reviews.find(
-        {"reviewed_by": session["user"]}))
-    favourites = mongo.db.users.find_one(
-        {"username": username})["favourites"]
-    reviews = list(mongo.db.reviews.find())
+    if session["user"]:
+        # grab the session user's username from db
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        # get the users name to load in profile page
+        fname = mongo.db.users.find_one(
+            {"username": username})["fname"]
+        # get the reviws written by session user
+        my_reviews = list(mongo.db.reviews.find(
+            {"reviewed_by": session["user"]}))
+        reviews = list(mongo.db.reviews.find())
+        # favourites functionality
+        user = list(mongo.db.favourites.find(
+            {"$and": [{"username": {'$eq': session["user"]}}]}))
+        favourites_list = []
+        for i in user:
+            favourites_list.append(mongo.db.reviews.find_one(
+                {"_id": ObjectId(i["book_name"])}))
+        return render_template(
+            "profile.html", username=username,
+            my_reviews=my_reviews, fname=fname, reviews=reviews,
+            favourites_list=favourites_list)
 
-    return render_template(
-        "profile.html", username=session["user"], favourites=favourites,
-        my_reviews=my_reviews, fname=fname,
-        reviews=reviews)
+    flash("Please log in")
+    return redirect(url_for('login'))
 
 
 @app.route("/logout")
@@ -203,6 +212,7 @@ def add_review():
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
             "rating": request.form.get("rating_no"),
+            "favourites": request.form.get("favourites"),
             "reviewed_by": session["user"]
         }
         mongo.db.reviews.insert_one(review)
@@ -228,6 +238,7 @@ def edit_review(review_id):
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
             "rating_no": request.form.get("rating_no"),
+            "favourites": request.form.get("favourites"),
             "reviewed_by": session["user"]
         }
         mongo.db.reviews.update({"_id": ObjectId(review_id)}, submit)
@@ -248,6 +259,44 @@ def delete_review(review_id):
     mongo.db.reviews.remove({"_id": ObjectId(review_id)})
     flash("Review deleted")
     return redirect(url_for('get_reviews'))
+
+
+@app.route("/favourites")
+def favourites():
+    """
+        favourites functionality
+    """
+    user = list(mongo.db.favourites.find(
+        {"$and": [{"username": {'$eq': session["user"]}}]}))
+    favourites_list = []
+    for i in user:
+        favourites_list.append(mongo.db.recipes.find_one(
+            {"_id": ObjectId(i["recipe_name"])}))
+    return render_template("profile.html", favourites_list=favourites_list)
+
+
+@app.route("/get_reviews/add_favourite/<favourite_id>", methods=["GET", "POST"])
+def add_favourite(favourite_id):
+    """
+    add book into favourites collection in DB.
+    """
+    if session["user"]:
+        data = {
+            "book_name": ObjectId(favourite_id),
+            "username": session["user"],
+        }
+    mongo.db.favourites.insert_one(data)
+    return redirect(url_for("profile", username=session["user"]))
+
+
+@app.route("/get_reviews/remove_favourite/<favourite_id>")
+def remove_favourite(favourite_id):
+    """
+    deletes book from favourites collection in DB and from profile
+    """
+    if session["user"]:
+        mongo.db.favourites.remove({"book_name": ObjectId(favourite_id)})
+        return redirect(url_for("profile", username=session["user"]))
 
 
 @app.route("/get_genres")
@@ -302,80 +351,6 @@ def delete_genre(genre_id):
     mongo.db.genres.remove({"_id": ObjectId(genre_id)})
     flash("Genre Successfully Deleted")
     return redirect(url_for("get_genres"))
-
-
-@app.route("/add_favourite/<favourite_id>")
-def add_favourite(favourite_id):
-    """
-    Allows the user to add a book review to their personal
-    favourites list
-    """
-    if session["user"]:
-        # grab the session user's details from db
-        username = mongo.db.users.find_one(
-            {"username": session["user"]})
-
-        # grab the book review details
-        review = mongo.db.reviews.find_one(
-            {"_id": ObjectId(favourite_id)})
-
-        # Collect the favourites object data
-        favourites = {
-            "book_id": review["_id"],
-            "book_name": review["book_name"],
-            "author_name": review["author_name"]
-        }
-
-        # update the user document favourites array
-        mongo.db.users.update_one(
-            {"_id": ObjectId(username["_id"])},
-            {"$push": {"favourites": favourites}})
-
-        flash("Favourite added to your profile")
-        return redirect(url_for(
-            "profile", username=username, favourites=favourites,
-            review_id=review["_id"]))
-
-    # If user isn't logged in display a message and redirect to login page
-    else:
-        flash("Sorry, you are not logged in")
-        return redirect(url_for("login"))
-
-
-@app.route("/remove_favourite/<favourite_id>")
-def remove_favourite(favourite_id):
-    """
-    Allows the user to remove a book review from their
-    favourites list
-    """
-    if session["user"]:
-        # grab the session user's details from db
-        username = mongo.db.users.find_one(
-            {"username": session["user"]})
-
-        # grab the book review details
-        review = mongo.db.reviews.find_one(
-            {"_id": ObjectId(favourite_id)})
-
-        # Collect the favourites object data
-        favourites = {
-            "book_id": review["_id"],
-            "book_name": review["book_name"],
-            "author_name": review["author_name"]
-        }
-
-        # update the user document favourites array
-        mongo.db.users.update_one(
-            {"_id": ObjectId(username["_id"])},
-            {"$pull": {"favourites": favourites}})
-
-        flash("Favourite removed from your profile")
-        return redirect(url_for(
-            "profile", username=username, favourites=favourites,
-            favourite_id=review["_id"]))
-    else:
-        flash("You need to log in first!")
-        return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
