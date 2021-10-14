@@ -231,14 +231,12 @@ h2,
     color: #3e2723;
 }
 
-.card-review {
-    height: 600px;
-    overflow: hidden;
-}
-
-
 .flashes h4 {
     list-style: 2;
+}
+
+.card-review {
+    min-height: 700px;
 }
 
 #myBtn {
@@ -261,10 +259,10 @@ h2,
     color: #3e2723;
 }
 
-/* .card_image {
+.review_image {
     height: 350px !important;
     width: auto !important;
-} */
+}
 
 
 /* End of review page  */
