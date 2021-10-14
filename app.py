@@ -283,13 +283,19 @@ def add_favourite(favourite_id):
     """
     add book into favourites collection in DB.
     """
-    if session["user"]:
-        data = {
-            "book_name": ObjectId(favourite_id),
-            "username": session["user"],
-        }
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    data = {
+        "book_name": ObjectId(favourite_id),
+        "username": username
+    }
     mongo.db.favourites.insert_one(data)
-    return redirect(url_for("profile", username=session["user"]))
+
+    if username:
+        return redirect(url_for("profile", username=username))
+
+    flash("Please log in to save a favourite")
+    return render_template("login.html")
 
 
 @app.route("/get_reviews/remove_favourite/<favourite_id>")
@@ -300,7 +306,9 @@ def remove_favourite(favourite_id):
     if session["user"]:
         mongo.db.favourites.remove({"book_name": ObjectId(favourite_id)})
         return redirect(url_for("profile", username=session["user"]))
-
+    else:
+        flash("Please log in to save a favourite")
+        return render_template("login")
 
 @app.route("/get_genres")
 def get_genres():
