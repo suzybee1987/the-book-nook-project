@@ -70,12 +70,11 @@ def book_review():
         review = {
             "genre_name": request.form.get("genre_name"),
             "image": request.form.get("image"),
-            "image_alt": request.form.get("image_alt"),
             "book_name": request.form.get("book_name"),
             "author_name": request.form.get("author_name"),
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
-            "rating": request.form.get("rating_no"),
+            "rating_no": request.form.get("rating"),
             "favourites": request.form.get("favourites"),
             # takes the username of the person logged in
             "reviewed_by": session["user"]
@@ -208,12 +207,12 @@ def add_review():
     if request.method == "POST":
         review = {
             "genre_name": request.form.get("genre_name"),
-            "image_alt": request.form.get("image_alt"),
             "book_name": request.form.get("book_name"),
             "author_name": request.form.get("author_name"),
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
-            "rating": request.form.get("rating_no"),
+            "description": request.form.get("description"),
+            "rating_no": request.form.get("rating"),
             "image": request.form.get("image"),
             "favourites": request.form.get("favourites"),
             "reviewed_by": session["user"]
@@ -236,21 +235,21 @@ def edit_review(review_id):
         submit = {
             "genre_name": request.form.get("genre_name"),
             "image": request.form.get("image"),
-            "image_alt": request.form.get("image_alt"),
             "book_name": request.form.get("book_name"),
             "author_name": request.form.get("author_name"),
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
-            "rating_no": request.form.get("rating_no"),
+            "description": request.form.get("description"),
+            "rating_no": request.form.get("rating"),
             "favourites": request.form.get("favourites"),
             "reviewed_by": session["user"]
         }
         mongo.db.reviews.update({"_id": ObjectId(review_id)}, submit)
         flash("Review successfully updated")
 
-    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+    review = mongo.db.reviews.find_one.sort(({"_id": ObjectId(review_id)}, 1))
     genres = mongo.db.genres.find().sort("genre_name", 1)
-    ratings = list(mongo.db.ratings.find().sort("rating", 1))
+    ratings = list(mongo.db.ratings.find().sort("rating_no", 1))
     return render_template(
         "edit_review.html", genres=genres, ratings=ratings, review=review)
 

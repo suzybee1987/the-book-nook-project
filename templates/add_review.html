@@ -54,36 +54,45 @@
                         <textarea id="review" name="review" class="materialize-textarea" required></textarea>
                         <label for="review">Review</label>
                     </div>
-                    <div class="row">
-                        <div class="col s12 m10 offset-m1 input-field">
-                            <i class="fa-solid fa-book prefix"></i>
-                            <input id="image" name="image" type="url" class="validate">
-                            <label for="image">Cover Image for Book</label>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m10 offset-m1 input-field">
+                        <i class="fa-solid fa-keyboard prefix"></i>
+                        <textarea id="description" name="description" class="materialize-textarea" required>
+</textarea>
+                        <label for="description">Description</label>
                     </div>
-                    <div class="row">
-                        <div class="col s12 m10 offset-m1 input-field">
-                            <i class="fa-solid fa-star prefix"></i>
-                            <select id="rating" name="rating" class="validate" required>
-                                <option value="" disabled selected>Rating</option>
-                                {% for rating in ratings %}
-                                <option value="{{ rating.rating_no }}">{{ rating.rating_no }}</option>
-                                {% endfor %}
-                            </select>
-                            <label for="rating"></label>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m10 offset-m1 input-field">
+                        <i class="fa-solid fa-book prefix"></i>
+                        <input id="image" name="image" type="url" class="validate">
+                        <label for="image">Cover Image for Book</label>
                     </div>
-                    <!-- Submit  -->
-                    <div class="row center-align">
-                        <div class="col s12">
-                            <button class="btn waves-effect waves-light" type="submit">Submit Review <i
-                                    class="fa-solid fa-plus"></i>
-                            </button>
-                            <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light cancel">Cancel <i
-                                    class="fa-solid fa-xmark"></i>
-                            </a>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m10 offset-m1 input-field">
+                        <i class="fa-solid fa-star prefix"></i>
+                        <select id="rating" name="rating" class="validate" required>
+                            <option value="" disabled selected>Rating</option>
+                            {% for rating in ratings %}
+                            <option value="{{ rating.rating_no }}">{{ rating.rating_no }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="rating"></label>
                     </div>
+                </div>
+                <!-- Submit  -->
+                <div class="row center-align">
+                    <div class="col s12">
+                        <button class="btn waves-effect waves-light" type="submit">Submit Review <i
+                                class="fa-solid fa-plus"></i>
+                        </button>
+                        <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light cancel">Cancel <i
+                                class="fa-solid fa-xmark"></i>
+                        </a>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
