@@ -31,6 +31,7 @@
 
                     {% if session.user|lower == "superuser"|lower %}
                     <li><a href="{{ url_for('get_genres') }}">Manage Genres</a></li>
+                    <li><a href="{{ url_for('get_users') }}">Manage Users</a></li>
                     {% endif %}
                     <li><a href="{{ url_for('add_review') }}">Add Review</a></li>
                     <li><a href="{{ url_for('logout') }}">Log Out</a></li>
@@ -48,6 +49,7 @@
             <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
             {% if session.user|lower == "superuser"|lower %}
             <li><a href="{{ url_for('get_genres') }}">Manage Genres</a></li>
+            <li><a href="{{ url_for('get_users') }}">Manage Users</a></li>
             {% endif %}
             <li><a href="{{ url_for('add_review') }}">Add Review</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
@@ -70,7 +72,7 @@
         {% endif %}
         {% endwith %}
     </main>
-    
+
     {% block content %}
     <div class="container-fluid">
 

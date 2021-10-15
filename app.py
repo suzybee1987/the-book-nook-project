@@ -115,7 +115,8 @@ def register():
             "email": request.form.get("email").lower(),
             "username": request.form.get("username").lower(),
             # as a challenge can change the hash and salt method for project
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+            "admin": "off",
         }
         mongo.db.users.insert_one(user_details)
 
@@ -338,14 +339,14 @@ def add_genre():
 @app.route("/edit_genre/<genre_id>", methods=["GET", "POST"])
 def edit_genre(genre_id):
     """
-    allows superuser to edit the genres
+    allows admin to edit the genres
     """
     if request.method == "POST":
         submit = {
             "genre_name": request.form.get("genre_name")
         }
         mongo.db.genres.update({"_id": ObjectId(genre_id)}, submit)
-        flash("genre Successfully Updated")
+        flash("Genre Successfully Updated")
         return redirect(url_for("get_genres"))
 
     genre = list(mongo.db.genres.find_one({"_id": ObjectId(genre_id)}))
@@ -362,6 +363,42 @@ def delete_genre(genre_id):
     mongo.db.genres.remove({"_id": ObjectId(genre_id)})
     flash("Genre Successfully Deleted")
     return redirect(url_for("get_genres"))
+
+
+@app.route("/get_users")
+def get_users():
+    """
+    allows superuser to manage the users
+    """
+    users = list(mongo.db.users.find().sort("user_id", 1))
+    return render_template("users.html", users=users)
+
+
+@app.route("/edit_user/<user_id>", methods=["GET", "POST"])
+def edit_user(user_id):
+    """
+    allows superuser to edit the users to give them admin status
+    """
+    if request.method == "POST":
+        submit = {
+            "admin": request.form.get("admin")
+        }
+        mongo.db.users.update({"_id": ObjectId(user_id)}, submit)
+        flash("User Successfully Updated")
+        return redirect(url_for("get_users"))
+
+    user = list(mongo.db.users.find_one({"_id": ObjectId(user_id)}))
+    return render_template("edit_user.html", user=user)
+
+
+@app.route("/delete_user/<user_id>")
+def delete_user(user_id):
+    """
+    allows superuser to delete users
+    """
+    mongo.db.users.remove({"_id": ObjectId(user_id)})
+    flash("User Successfully Deleted")
+    return redirect(url_for("get_users"))
 
 
 if __name__ == "__main__":
