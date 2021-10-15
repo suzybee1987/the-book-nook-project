@@ -24,7 +24,7 @@
                                         class="review_image responsive-img">
                                 </a>
                                 {% else %}
-                                <img src="static/images/pexels-book.jpg" alt="default image of book"
+                                <img src="static/images/pexels-lilartsy" alt="default image of book"
                                     class="review_image responsive-img">
                                 {% endif %}
                             </div>
@@ -47,6 +47,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% if session["user"] %}
                         <div class="row center-align">
                             <div class="col s12">
                                 <a href="{{ url_for('add_favourite', favourite_id=review._id) }}">
@@ -58,6 +59,7 @@
                                         data-tooltip="Remove book from favourites"></i></a>
                             </div>
                         </div>
+                        {% endif %}
                         <div class="row center-align">
                             <div class="col s12">
                                 <div class="card-action">
