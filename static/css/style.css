@@ -102,16 +102,18 @@ main {
 .quotes-panel {
     text-align: center;
     font-family: 'Libre Baskerville',
-    serif;
+        serif;
     color: #3e2723;
 }
 
 /*  this isn't working? */
 .card-panel.welcome-quote-panel {
-    padding: 10px important!;
+    padding: 10px important !;
 }
 
-.row.carousel-row, .carousel-item-active, .carousel-item {
+.row.carousel-row,
+.carousel-item-active,
+.carousel-item {
     max-height: 250px;
 }
 
@@ -120,7 +122,8 @@ main {
 
 /* General styling  */
 
-.card-panel, .card {
+.card-panel,
+.card {
     border-radius: 12px;
 }
 
@@ -140,12 +143,14 @@ main {
 
 /* buttons  */
 
-.cancel, .reset {
+.cancel,
+.reset {
     color: #3e2723;
     background-color: #fff !important;
 }
 
-.cancel:hover, .reset:hover {
+.cancel:hover,
+.reset:hover {
     color: #fff;
     background-color: #3e2723 !important;
 }
@@ -163,6 +168,7 @@ i:hover {
         transform: rotate(360deg);
     }
 }
+
 h2,
 .paragraph {
     font-family: 'Libre Baskerville', serif;
@@ -170,7 +176,7 @@ h2,
 
 .title {
     font-family: 'Libre Baskerville',
-    serif;
+        serif;
 }
 
 .textshadow {
@@ -259,10 +265,15 @@ h2,
     color: #3e2723;
 }
 
-.review_image {
+/* .review_image {
     height: 350px !important;
     width: auto !important;
-}
+} */
+
+/* .card-image {
+    align-items:center;
+    height: 350px;
+} */
 
 
 /* End of review page  */
@@ -276,7 +287,7 @@ h2,
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    min-height:90vh;
+    min-height: 90vh;
 }
 
 .switch label input[type=checkbox]:checked+.lever:after {
