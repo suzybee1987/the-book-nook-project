@@ -48,10 +48,12 @@
                                 <div class="col s12">
                                     <div class="card-title center-align">{{ review.book_name }}
                                         by {{ review.author_name }}
+                                        {% if session['user'] %}
                                         <a href="{{ url_for('add_favourite', favourite_id=review._id) }}"
                                             class="btn-floating halfway-fab waves-effect waves-light red"><i
                                                 class="material-icons">add</i>
                                         </a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

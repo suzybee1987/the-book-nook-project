@@ -20,10 +20,12 @@
                             <div class="card-image center-align">
                                 {% if review.image %}
                                 <a href="{{ url_for('see_review', reviews=review._id) }}">
-                                    <img src="{{ review.image }}" alt="Image of front cover of book" class="review_image responsive-img">
+                                    <img src="{{ review.image }}" alt="Image of front cover of book"
+                                        class="review_image responsive-img">
                                 </a>
                                 {% else %}
-                                <img src="static/images/pexels-book.jpg" alt="default image of book" class="review_image responsive-img">
+                                <img src="static/images/pexels-book.jpg" alt="default image of book"
+                                    class="review_image responsive-img">
                                 {% endif %}
                             </div>
                         </div>
@@ -78,7 +80,6 @@
                                 </a>
                                 {% endif %}
                             </div>
-
                         </div>
                     </div>
                     {% endfor %}
