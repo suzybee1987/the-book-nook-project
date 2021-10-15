@@ -42,18 +42,22 @@
                                 {% else %}
                                 <img src="static/images/pexels-lilartsy.jpg" alt="default image of book"
                                     class="review_image responsive-img valign-wrapper ">
+                                    
+                                {% endif %}
+                                {% if session['user'] %}
+                                <a href="{{ url_for('add_favourite', favourite_id=review._id) }}"
+                                    class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i>
+                                </a>
                                 {% endif %}
                             </div>
                             <div class="row center-align">
                                 <div class="col s12">
-                                    <div class="card-title center-align">{{ review.book_name }}
-                                        by {{ review.author_name }}
-                                        {% if session['user'] %}
-                                        <a href="{{ url_for('add_favourite', favourite_id=review._id) }}"
-                                            class="btn-floating halfway-fab waves-effect waves-light red"><i
-                                                class="material-icons">add</i>
-                                        </a>
-                                        {% endif %}
+                                    <div class="card-title center-align">
+                                        <div class="review-card-title">
+                                        {{ review.book_name }}
+                                    </div>  
+                                        <div class="small-title">by</div>
+                                        <div class="review-card-title">{{ review.author_name }}</div>
                                     </div>
                                 </div>
                             </div>

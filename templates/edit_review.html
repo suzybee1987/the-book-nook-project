@@ -62,6 +62,14 @@
                 </div>
                 <div class="row">
                     <div class="col s12 m10 offset-m1 input-field">
+                        <i class="fa-solid fa-keyboard prefix"></i>
+                        <textarea id="description" name="description" class="materialize-textarea" required>
+                            {{- review.description }}</textarea>
+                        <label for="description">Description</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m10 offset-m1 input-field">
                         <i class="fa-solid fa-book prefix"></i>
                         <input id="image" name="image" type="url" class="validate" value="{{ review.image }}" required>
                         <label for="image">Cover Image for Book</label>
