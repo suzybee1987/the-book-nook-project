@@ -31,63 +31,68 @@
 
                 <div class="row">
                     {% for review in reviews %}
-                    <div class="col s12 m3">
+                    <div class="col s12 m4 l3 xl3">
                         <div class="card card-review">
-                            <div class="card-image  col s12 m12 l12 xl12">
+                            <div class="card-image col s12 m12 l12 xl12">
                                 {% if review.image %}
                                 <a href="{{ url_for('see_review', reviews=review._id) }}">
                                     <img src="{{ review.image }}" alt="Image of front cover of book"
-                                        class="review_image responsive-img  valign-wrapper">
+                                        class="review-image responsive-img valign-wrapper">
                                 </a>
                                 {% else %}
                                 <img src="static/images/pexels-lilartsy.jpg" alt="default image of book"
-                                    class="review_image responsive-img valign-wrapper ">
-                                    
+                                    class="review-image responsive-img valign-wrapper ">
                                 {% endif %}
-                                {% if session['user'] %}
-                                <a href="{{ url_for('add_favourite', favourite_id=review._id) }}"
-                                    class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i>
-                                </a>
-                                {% endif %}
+
                             </div>
                             <div class="row center-align">
-                                <div class="col s12">
-                                    <div class="card-title center-align">
-                                        <div class="review-card-title">
-                                        {{ review.book_name }}
-                                    </div>  
-                                        <div class="small-title">by</div>
-                                        <div class="review-card-title">{{ review.author_name }}</div>
+                                <div class="col s12 m12">
+                                    <div class="center-align">
+                                        <h5 class="review-card-title">
+                                            {{ review.book_name }}
+                                            by
+                                            {{ review.author_name }}</h5>
                                     </div>
                                 </div>
                             </div>
                             <div class="row center-align">
                                 <div class="col s12">
                                     <div class="card-body">
-                                        Rating: {{ review.rating_no }}
+
                                         <p>Title: {{ review.review_title }}</p>
+                                        <p> Rating: {{ review.rating_no }}</p>
                                         <!-- <p>Reviewer: '{{ review.reviewed_by }}'</p> -->
-                                        <p><a href="{{ url_for('see_review', reviews=review._id) }}">See Review</a>
-                                        </p>
+                                        <div class="bottom">
+                                            <a href="{{ url_for('see_review', reviews=review._id) }}">
+                                                See Full Review
+                                            </a>
+                                            {% if session['user'] %}
+                                            <a href="{{ url_for('add_favourite', favourite_id=review._id) }}"
+                                                class="btn-floating waves-effect waves-light red tooltipped"
+                                                data-position="top" data-tooltip="Save to Favourites"><i
+                                                    class="fa-solid fa-heart"></i>
+                                            </a>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            {% if session.user|lower == review.reviewed_by|lower %}
+                            <!-- {% if session.user|lower == review.reviewed_by|lower %}
                             <div class="row center-align">
                                 <div class="col s12">
-                                    
+
                                     <a href="{{ url_for('edit_review', review_id=review._id) }}"
                                         class="btn waves-effect waves-light">Edit <i class="fa-solid fa-pen-fancy"></i>
                                     </a>
-                                    <!-- # add defensive programming here to confirm (Are you sure you want to delete?)  -->
+                                    # add defensive programming here to confirm (Are you sure you want to delete?) 
                                     <a href="{{ url_for('delete_review', review_id=review._id) }}"
                                         class="btn waves-effect waves-light cancel">Delete <i
                                             class="fa-solid fa-trash-can"></i>
                                     </a>
-                                    
+
                                 </div>
                             </div>
-                            {% endif %}
+                            {% endif %} -->
                         </div>
                     </div>
                     {% endfor %}
