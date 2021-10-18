@@ -2,158 +2,173 @@
 {% block content %}
 
 <div class="review-hero">
+    {% for review in reviews %}
     <div class="row">
-        <div class="col s12 m8 offset-m2">
+        <div class="col s10 offset-s1 m10 offset-m1 ">
             <div class="card-panel z-depth-4">
-
                 <div class="row">
-                    <div class="col s12 m12">
-                        <a class="btn" href="{{ url_for('get_reviews') }}"><i
-                                class="fa-solid fa-circle-chevron-left"></i> Back to
-                            Reviews</a>
+                    <div class="col s10 offset-m1 m10 offset-m1">
+                        <a class="btn" href="{{ url_for('get_reviews') }}">
+                            <i
+                                class="fa-solid fa-circle-chevron-left"></i> 
+                                Back to Reviews</a>
                     </div>
                 </div>
-                {% for review in reviews %}
-                <div class="card">
-                    <div class="row center-align">
-                        <div class="col s4 m4">
-                            <div class="card-image center-align">
-                                {% if review.image %}
-                                <a href="{{ url_for('see_review', reviews=review._id) }}">
-                                    <img src="{{ review.image }}" alt="Image of front cover of book"
-                                        class="review_image responsive-img">
-                                </a>
-                                {% else %}
-                                <img src="static/images/pexels-lilartsy" alt="default image of book"
-                                    class="review_image responsive-img">
-                                {% endif %}
 
-                            </div>
-                        </div>
-                        {% if session['user'] %}
-                        <div>
-                            <a href="{{ url_for('add_favourite', favourite_id=review._id) }}"
-                                class="btn-floating right waves-effect waves-light red"><i class="fa-solid fa-plus"></i>
-                            </a>
-                        </div>
-                        {% endif %}
-                        <div class="col s8 m8">
-                            <div class="card-title">
-                                <div class="review-card-title">
-                                    {{ review.book_name }}
-                                    <span class="small-title">by</span>
-                                    {{ review.author_name }}
-                                </div>
-                                <div class="card-body-description">
-                                    <p>
-                                        Genre: {{ review.genre_name }}</p>
-                                    <p>Book description: {{ review.description }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row center-align">
-                        <div class="col s12">
-                            <div class="card-action">
-                                <!-- Here i'd like to click the link to go to book_review.html for the selected book  -->
-                                <a href="#">Affiliate Link</a>
-                                <p>Please support your local bookshop!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row center-align">
-                        <div class="col s12">
-                            {% if session.user|lower == review.reviewed_by|lower %}
-                            <a href="{{ url_for('edit_review', review_id=review._id) }}"
-                                class="btn waves-effect waves-light">Edit <i class="fa-solid fa-pen-fancy"></i>
-                            </a>
-                            <!-- # add defensive programming here to confirm (Are you sure you want to delete?)  -->
-                            <a href="{{ url_for('delete_review', review_id=review._id) }}"
-                                class="btn waves-effect waves-light cancel">Delete <i class="fa-solid fa-trash-can"></i>
-                            </a>
+                <div class="row center-align">
+                    <div class="col s4 m4">
+                        <div class="card-image center-align valign-wrapper">
+                            {% if review.image %}
+
+                            <img src="{{ review.image }}" alt="Image of front cover of book"
+                                class="review_image responsive-img">
+
+                            {% else %}
+                            <img src="static/images/pexels-lilartsy" alt="default image of book"
+                                class="review_image responsive-img">
                             {% endif %}
+
                         </div>
                     </div>
-                </div>
-            </div>
-            {% endfor %}
-            <div class="card">
-                <div class="row">
-                    <div class="col s12 m12 card-header">
-                        <h5 class="review-title center-align">
-                            Add review
-                        </h5>
+
+                    {% if session['user'] %}
+                    <div>
+                        <a href="{{ url_for('add_favourite', favourite_id=review._id) }}"
+                            class="btn-floating right waves-effect waves-light red"><i class="fa-solid fa-plus"></i>
+                        </a>
+                    </div>
+                    {% endif %}
+
+                    <div class="col s8 m8">
+                        <div class="card-title">
+                            <div class="review-card-title">
+                                {{ review.book_name }}
+                                <span class="small-title">by</span>
+                                {{ review.author_name }}
+                            </div>
+                            <div class="card-body-description">
+                                <p>
+                                    Genre: {{ review.genre_name }}</p>
+                                <p>Book description: {{ review.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-panel">
+                        {% for review in reviews %}
+                        <div class="row">
+                            <div class="col s8 m8">
+                                <div class="card-panel">
+                                    <div class="card-title">
+                                        <h6 class="review-title">{{ review.review_title }} {{ review.rating_no }} /5
+                                        </h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>{{ review.review }}</p>
+                                        <p>Reviewer: '{{ review.reviewed_by }}'</p>
+                                        <p>Date reviewed: '{{ review.date }}'</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-                <div class="row">
+                <div class="row center-align">
                     <div class="col s12">
-                        <form class="col s12 m12" method="POST" action="{{ url_for('add_review') }}">
-                            <div class="row">
-                                <div class="col s12 m10 offset-m1 input-field">
-                                    <i class="fa-solid fa-user-pen prefix"></i>
-                                    <input id="review_title" name="review_title" type="text" class="validate"
-                                        minlength="5" maxlength="100" pattern="^[a-zA-Z0-9]{5,50}$" required>
-                                    <label for="review_title">Review Title</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s12 m10 offset-m1 input-field">
-                                    <i class="fa-solid fa-keyboard prefix"></i>
-                                    <textarea id="review" name="review" class="materialize-textarea"
-                                        required></textarea>
-                                    <label for="review">Review</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s12 m10 offset-m1 input-field">
-                                    <i class="fa-solid fa-star prefix"></i>
-                                    <select id="rating" name="rating" class="validate" required>
-                                        <option value="" disabled selected>Rating</option>
-                                        {% for rating in ratings %}
-                                        <option value="{{ rating.rating_no }}">{{ rating.rating_no }}
-                                        </option>
-                                        {% endfor %}
-                                    </select>
-                                    <label for="rating"></label>
-                                </div>
-                            </div>
-                            <!-- Buttons  -->
-                            <div class="row center-align">
-                                <div class="col s12">
-                                    <button class="btn waves-effect waves-light" type="submit">Submit Review
-                                        <i class="fa-solid fa-plus"></i>
-                                    </button>
-                                    <a href="{{ url_for('get_reviews') }}"
-                                        class="btn waves-effect waves-light cancel">Cancel <i
-                                            class="fa-solid fa-xmark"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="card-panel">
-                <h6 class="review-title">Reviews</h6>
-                {% for review in reviews %}
-                <div class="row">
-                    <div class="col s12 m12">
-                        <div class="card-panel">
-                            <div class="card-title">
-                                <h6 class="review-title">{{ review.review_title }} {{ review.rating_no }} stars</h6>
-                            </div>
-                            <div class="card-body">
-                                <p>Review: {{ review.review }}</p>
-                                <p>Reviewer: '{{ review.reviewed_by }}'</p>
-                                <p>Date reviewed: '{{ review.date }}'</p>
-                            </div>
+                        <div class="card-action">
+                            <!-- Here i'd like to click the link to go to book_review.html for the selected book  -->
+                            <a href="#">Affiliate Link</a>
+                            <p>Please support your local bookshop!</p>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
+                <div class="row center-align">
+                    <div class="col s12">
+                        {% if session.user|lower == review.reviewed_by|lower %}
+                        <a href="{{ url_for('edit_review', review_id=review._id) }}"
+                            class="btn waves-effect waves-light">Edit
+                            <i class="fa-solid fa-pen-fancy"></i>
+                        </a>
+                        <!-- # add defensive programming here to confirm (Are you sure you want to delete?)  -->
+                        <a href="{{ url_for('delete_review', review_id=review._id) }}"
+                            class="btn waves-effect waves-light cancel">Delete <i class="fa-solid fa-trash-can"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="card-panel">
+                    <div class="row">
+                        <div class="col s12 m12 card-header">
+                            <h5 class="review-title center-align">
+                                What did you think?
+                            </h5>
+                        </div>
+                    </div>
+                    {% if session["user"] %}
+                    <div class="row">
+                        <div class="card-panel col s10 offset-s1 m10 offset-m1">
+                            <form class="col s12 m12" method="POST"
+                                action="{{ url_for('add_thoughts', thoughts_id=review._id) }}">
+                                <div class="row">
+                                    <div class="col s12 m10 offset-m1 input-field">
+                                        <i class="fa-solid fa-keyboard prefix"></i>
+                                        <textarea id="thoughts" name="thoughts" class="materialize-textarea"
+                                            required></textarea>
+                                        <label for="thoughts">Your thoughts on this book</label>
+                                    </div>
+                                </div>
+                                <!-- Buttons  -->
+                                <div class="row center-align">
+                                    <div class="col s12">
+                                        <button class="btn waves-effect waves-light" type="submit">Submit thoughts
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                        <a href="{{ url_for('get_reviews') }}"
+                                            class="btn waves-effect waves-light cancel">Cancel <i
+                                                class="fa-solid fa-xmark"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if review.thoughts|length > 0 %}
+                    <div class="row">
+                        <div class="card col s10 offset-s1 m10 offset-m1">
+                            <h5>What others think...</h5>
+                            {% for thought in review.thoughts %}
+                            <div class="row">
+                                <div class="col s8 m8">
+                                    <div class="card-panel">
+                                        <div class="card-title">
+                                            <h6 class="review-title">{{ thought.thoughts }}
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            by
+                                            {{ thought.review_by }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="row center-align">
+                        <div class="col s12">
+                            <h6><a href="{{ url_for('login') }}">Log in</a> to add your thoughts</h6>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
+    {% endfor %}
 </div>
 
 

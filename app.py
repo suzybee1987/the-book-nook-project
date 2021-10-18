@@ -9,6 +9,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 if os.path.exists("env.py"):
     import env
 
@@ -76,7 +77,6 @@ def book_review():
             "review": request.form.get("review"),
             "rating_no": request.form.get("rating"),
             "favourites": request.form.get("favourites"),
-            # takes the username of the person logged in
             "reviewed_by": session["user"]
         }
         mongo.db.reviews.insert_one(review)
@@ -264,6 +264,28 @@ def delete_review(review_id):
     return redirect(url_for('get_reviews'))
 
 
+@app.route("/add_thoughts/<thoughts_id>", methods=["GET", "POST"])
+def add_thoughts(thoughts_id):
+    """
+    allows user to add their thoughts to an existing review
+    """
+    if request.method == "POST":
+        new_thoughts = {
+            "thoughts": request.form.get("thoughts"),
+            "review_by": session["user"],
+            # "reviewed_date": datetime.datetime.utcnow()
+        }
+        mongo.db.reviews.update_one(
+                    {"_id": ObjectId(thoughts_id)},
+                    {"$push": {"thoughts": new_thoughts}})
+
+        flash("Your thoughts successfully added")
+        return redirect(url_for('see_review', reviews=thoughts_id))
+
+    thoughts = mongo.db.reviews.find_one({"_id": ObjectId(thoughts_id)})
+    return render_template("add_thoughts", thoughts=thoughts)
+
+
 @app.route("/favourites")
 def favourites():
     """
@@ -309,6 +331,7 @@ def remove_favourite(favourite_id):
     else:
         flash("Please log in to save a favourite")
         return render_template("login")
+
 
 @app.route("/get_genres")
 def get_genres():
