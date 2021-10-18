@@ -26,7 +26,9 @@
                     {% for review in my_reviews %}
                     <tbody>
                         <tr>
-                            <td><a href="{{ url_for('see_review', reviews=review._id) }}">{{ review.book_name }}</a>
+                            <td><a href="{{ url_for('see_review', reviews=review._id) }}"
+                                    class="profile-link tooltipped" data-position="right"
+                                    data-tooltip="Go to book">{{ review.book_name }}</a>
                             </td>
                             <td>{{ review.author_name }}</td>
                             <td>{{ review.review_title }}</td>
@@ -53,11 +55,16 @@
                     {% for favourite in favourites_list %}
                     <tbody>
                         <tr>
-                            <td>{{ favourite.book_name }}</td>
+                            <td><a class="profile-link tooltipped" data-position="right" data-tooltip="Go to book" href="{{  url_for('see_review', reviews=favourite._id)  }}">{{
+                                    favourite.book_name }}</a></td>
                             <td>{{ favourite.author_name }}</td>
-                            <td><a href="{{ url_for('remove_favourite', favourite_id=favourite._id) }}">
-                                    <i class="fa-solid fa-star tooltipped small pink-text" data-position="bottom"
-                                        data-tooltip="Remove book from favourites"></i></a>
+                            <td>
+                                <a href="{{ url_for('remove_favourite', favourite_id=favourite._id) }}"
+                                    alt="remove from favourites"
+                                    class="btn-floating waves-effect waves-light red tooltipped" data-position="top"
+                                    data-tooltip="Remove from Favourites">
+                                    <i class="fa-solid fa-heart"></i>
+                                </a>
                             </td>
                         </tr>
                     </tbody>

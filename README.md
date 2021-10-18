@@ -317,6 +317,8 @@ To clone this project from GitHub follow the instructions taken from [GitHub Doc
 
 ## **Credits**
 
+- [HR CSS](https://codepen.io/Grienauer/pen/PdPPKZ) to separate the book review sections.
+
 
 ### **Code**
 

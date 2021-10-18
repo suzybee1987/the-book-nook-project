@@ -116,7 +116,10 @@ main {
 .carousel-item {
     max-height: 250px;
 }
-
+.carousel.carousel-slider {
+    top: 100px;
+    left: 0;
+}
 
 /* end home page  */
 
@@ -128,7 +131,7 @@ main {
 }
 
 .card-panel {
-    /* opacity: 80%; */
+    background-color:rgba(255 248 246 / 90%);
 }
 
 .curly {
@@ -142,7 +145,7 @@ main {
 .row {
     margin-left: auto;
     margin-right: auto;
-    /* margin-bottom: 0; */
+    margin-bottom: 0;
 }
 
 /* buttons  */
@@ -226,6 +229,17 @@ h2,
     min-height: 80vh;
 }
 
+
+.profile-link {
+    color: #3e2723;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.profile-link:hover {
+    border-bottom: solid 2px #3e2723;
+}
+
 /* end of profile page  */
 
 /* Review page  */
@@ -250,7 +264,7 @@ h2,
 }
 
 .card-review {
-    min-height: 700px;
+    height: 700px;
 }
 
 #myBtn {
@@ -281,8 +295,7 @@ h2,
 
 .review-card-title {
     padding-top: 15px;
-    font-family: 'Special Elite',
-        cursive;
+    font-family: 'Special Elite',cursive;
     text-decoration: underline;
 }
 
@@ -295,6 +308,10 @@ h2,
 
 .card-body-description {
     font-size: 16px;
+}
+
+.review-image{
+    padding-top: 15px;
 }
 
 /* End of review page  */
@@ -366,8 +383,44 @@ h2,
 /* end of sass from materialize  */
 
 
-/* Manage genres  */
+/* Book review  */
 
-/* .card-title-genre {
-    font-size: 16px;
-} */
+.book-review-image {
+    padding-top: 20px;
+}
+
+@media screen and (min-width: 800px) {
+    .review_image {
+        padding-top: 60px;
+    }
+}
+
+/* Code to style the HR  */
+/* https: //codepen.io/Grienauer/pen/PdPPKZ  */
+
+.separator {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border: 0;
+}
+
+.separator--line {
+    border: 0;
+    border-bottom: 5px solid #634133;
+
+    width: 0;
+    animation: separator-width 1s ease-out forwards;
+}
+
+@keyframes separator-width {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 60%;
+    }
+}
+
+
+/* End of book review  */
