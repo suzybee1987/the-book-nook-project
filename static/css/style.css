@@ -127,6 +127,10 @@ main {
     border-radius: 12px;
 }
 
+.card-panel {
+    /* opacity: 80%; */
+}
+
 .curly {
     font-family: 'Pacifico', cursive;
 }
