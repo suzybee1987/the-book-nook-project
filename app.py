@@ -9,7 +9,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime
+import datetime
 if os.path.exists("env.py"):
     import env
 
@@ -215,7 +215,8 @@ def add_review():
             "rating_no": request.form.get("rating"),
             "image": request.form.get("image"),
             "favourites": request.form.get("favourites"),
-            "reviewed_by": session["user"]
+            "reviewed_by": session["user"],
+            "review_date": datetime.datetime.utcnow()
         }
         mongo.db.reviews.insert_one(review)
         flash("Review successfully added")
@@ -242,12 +243,14 @@ def edit_review(review_id):
             "description": request.form.get("description"),
             "rating_no": request.form.get("rating"),
             "favourites": request.form.get("favourites"),
-            "reviewed_by": session["user"]
+            "reviewed_by": session["user"],
+            # "review_date": datetime.datetime.utcnow()
+
         }
         mongo.db.reviews.update({"_id": ObjectId(review_id)}, submit)
         flash("Review successfully updated")
 
-    review = mongo.db.reviews.find_one.sort(({"_id": ObjectId(review_id)}, 1))
+    review = mongo.db.reviews.find_one(({"_id": ObjectId(review_id)}, 1))
     genres = mongo.db.genres.find().sort("genre_name", 1)
     ratings = list(mongo.db.ratings.find().sort("rating_no", 1))
     return render_template(
@@ -273,7 +276,7 @@ def add_thoughts(thoughts_id):
         new_thoughts = {
             "thoughts": request.form.get("thoughts"),
             "review_by": session["user"],
-            # "reviewed_date": datetime.datetime.utcnow()
+            "reviewed_date": datetime.datetime.utcnow()
         }
         mongo.db.reviews.update_one(
                     {"_id": ObjectId(thoughts_id)},

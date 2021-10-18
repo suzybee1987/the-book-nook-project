@@ -327,6 +327,7 @@ To clone this project from GitHub follow the instructions taken from [GitHub Doc
 - Stack Overflow for some bug fixing:
   - [Helpers](https://stackoverflow.com/questions/52113587/materializes-responsive-utilites-not-working) to explain how Materialize show/hide functions work
   - [JavaScript Function Guidance](https://stackoverflow.com/questions/36581504/materialize-carousel-slider-autoplay) to help with the carousel on welcome page
+  - [Datetime Tutorial](https://stackabuse.com/how-to-format-dates-in-python/) to help to add time the reviews and thoughts were submitted.
 
 
 ### **Content**
