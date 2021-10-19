@@ -47,25 +47,30 @@ Link to [live site]
 
 ### **User Stories**
 - As a first time user
-    - I would like to find books to read based on their reviews
-    - I
-
+    - I would like to be able to register with no problems and minimal information required
+    - I would like it to be obvious that I am on a book review site 
 
 - As a returning user
-
-
-- As a frequent user
-
+  - I would like to be able to see reviews I have previously written and favourited
+  - I would like to be able to log in to see book reviews I have written and favourited on one page
 
 - All users
-    - I want the site to have links to websites where I can buy the book I am interested in.
+    - I would like to find books to read based on their reviews
     - I want the site to be easy to navigate on mobile primarily so I can use it on the go.
     - I want the site to be responsive on all devices.
-    - I also want to be able to contact the site owner with feedback.
+    - I would like to see a timestamp from when the review was posted so I can determine how recent it is and if it follows on from a movie release or sequel/prequel
+    - I would like there to be a link to a site where I can buy the book after reading the review 
+    - I would like to be able to save book reviews to favourites to read later
+    - I would like to see the book cover images to get an idea of the book and genre
+    - I would like to see images of books and nice fonts in-keeping with the theme
+    - I would like there to be navigation buttons to prevent having to use the back browser button and lots of scrolling on long lists
+    - I would like a profile page showing the reviews I have written and favourited
+    - I would like to be able to search by author and book name for books I may have read or be interested in and be able to comment on those I have read
+    - I would like to be able to add a new review for a new book and be able to edit and delete if required.
 
 
 ### **Site Owner Goals** 
-- Earn money on each book purchased via a link from the site.
+- Earn money on each book purchased via an affiliate link from the site.
 - I want the site to be responsive on all devices for the best user experience to encourage customers to return. 
 
 
@@ -203,7 +208,7 @@ The wireframes were created using [Adobe XD](https://www.adobe.com/uk/products/x
 
 ### **Features Implemented**
 
-Features relevant to all pages:
+Features relevant to all pages (**base.html**):
 
 - **Header**
     - Contains the navigation links and is fixed to the top of the page for easy use on all devices.
@@ -215,6 +220,8 @@ Features relevant to all pages:
 
   
 - **Footer** 
+    - Contains links to privacy policy, terms and conditions and social media
+    - Copyright symbol with datetime feature to update the date every year
 
 
 #### Home Page
