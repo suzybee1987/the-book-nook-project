@@ -374,7 +374,7 @@ def edit_genre(genre_id):
         flash("Genre Successfully Updated")
         return redirect(url_for("get_genres"))
 
-    genre = list(mongo.db.genres.find_one({"_id": ObjectId(genre_id)}))
+    genre = mongo.db.genres.find_one({"_id": ObjectId(genre_id)})
     return render_template("edit_genre.html", genre=genre)
 
 # prompt if want to delete using toast/modal - defensive programming
@@ -405,14 +405,17 @@ def edit_user(user_id):
     allows superuser to edit the users to give them admin status
     """
     if request.method == "POST":
-        submit = {
-            "admin": request.form.get("admin")
-        }
-        mongo.db.users.update({"_id": ObjectId(user_id)}, submit)
+        admin = "on" if request.form.get("admin") else "off"
+        # submit = {
+        #     "admin": admin,
+        #     "username": request.form.get("username"),
+        # }
+        mongo.db.users.update({"_id": ObjectId(user_id)},
+            {"$set": {"admin": admin}})
         flash("User Successfully Updated")
         return redirect(url_for("get_users"))
 
-    user = list(mongo.db.users.find_one({"_id": ObjectId(user_id)}))
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     return render_template("edit_user.html", user=user)
 
 

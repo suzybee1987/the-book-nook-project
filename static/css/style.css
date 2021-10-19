@@ -111,11 +111,6 @@ main {
     padding: 10px important !;
 }
 
-.row.carousel-row,
-.carousel-item-active,
-.carousel-item {
-    max-height: 250px;
-}
 .carousel.carousel-slider {
     top: 100px;
     left: 0;
@@ -131,7 +126,7 @@ main {
 }
 
 .card-panel {
-    background-color:rgba(255 248 246 / 90%);
+    background-color: rgba(255 248 246 / 90%);
 }
 
 .curly {
@@ -295,7 +290,7 @@ h2,
 
 .review-card-title {
     padding-top: 15px;
-    font-family: 'Special Elite',cursive;
+    font-family: 'Special Elite', cursive;
     text-decoration: underline;
 }
 
@@ -310,7 +305,7 @@ h2,
     font-size: 16px;
 }
 
-.review-image{
+.review-image {
     padding-top: 15px;
 }
 
@@ -422,5 +417,20 @@ h2,
     }
 }
 
+
+/* code to remove the margin from textarea on mobile  */
+
+@media only screen and (max-width: 600px) {
+
+    .input-field .prefix~input,
+    .input-field .prefix~textarea,
+    .input-field .prefix~label,
+    .input-field .prefix~.validate~label,
+    .input-field .prefix~.helper-text,
+    .input-field .prefix~.autocomplete-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
 
 /* End of book review  */
