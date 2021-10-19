@@ -267,6 +267,8 @@ h2,
 .genre-header {
     font-family: 'Libre Baskerville', serif;
     color: #3e2723;
+    border-bottom: 2px solid #3e2723;
+    padding-bottom: 25px;
 }
 
 .flashes h4 {
@@ -397,6 +399,8 @@ h2,
 
 .book-review-image {
     padding-top: 20px;
+    max-height: 600px;
+
 }
 
 /* for larger screens add a bit of padding to the top of the image  */

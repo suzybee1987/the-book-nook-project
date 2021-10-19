@@ -208,15 +208,21 @@ The wireframes were created using [Adobe XD](https://www.adobe.com/uk/products/x
 
 ### **Features Implemented**
 
-Features relevant to all pages (**base.html**):
+#### Features relevant to all pages (extended via *base.html*):
 
 - **Header**
+  - **Navigation**
     - Contains the navigation links and is fixed to the top of the page for easy use on all devices.
-    - Mobile Side View navigation
+    - Mobile Side View navigation for easier use.
     - The home button is on the left side of the header and sections of the page listed on the right where a user would expect them to be.
-    - Navigation links are underlined or animated when the user hovers over them to give feedback that they have hovered over the right spot.
-    - The navbar is semi-transparent to allow the user to enjoy the full length of the hero images.
+    - Navigation links are highlighted or animated when the user hovers over them to give feedback that they have hovered over the right spot.
     - The colour scheme is designed to be easy to read with the contrast and the ratio tested on Google Dev Tools.
+    - Jinja if statements used to ensure only certain navbar menus are visible to certain users. Only users with `admin = "on"` are able to see `Manage Genres`, `Manage Users` links and only users who are logged in are able to see `Add Review`, `Profile` and `Log Out`. Users not logged in will see `Register`, `Log In` and all users will see `All Reviews`. This is to ensure the best user experience and avoid confusion or breaches of security. 
+
+  
+- **Hero sections**
+    - The images take up the full width of the browser to leave a high impact lasting impression with the user and this is replicated on all pages to bring a sense of familiarity when browsing.
+    - The content is displayed on cards with a slight opacity to make the background image visible underneath but not to the extent where it distracts.
 
   
 - **Footer** 
@@ -224,19 +230,64 @@ Features relevant to all pages (**base.html**):
     - Copyright symbol with datetime feature to update the date every year
 
 
-#### Home Page
-
--
-    -
-
+#### Welcome Page (*welcome.html*) 
+    - Card displaying an introduction to the site including name, brief description and typewriter feature on medium and above screen sizes prompting the user to log in. Button to click to enter the site, leading to *reviews.html*. User is not required to log in to view reviews. 
+    - Carousel of quotes from authors about books for users to view and enjoy.
 
 
 
-#### Contact Page
 
-- **Contact form**
-    - For the user to give feedback these fields are required: Name, Email and comments and show error messages if not filled before clicking submit. Once the user fills out this section an email is sent to my inbox with the details and the user receives confirmation via alert on window to confirm their email has been sent. 
-    - On the form the buttons are as a user would expect there is a submit and reset button on the form with the Reset button having more muted colours and Submit button the obvious choice for the user to select upon filling out the form.  
+#### Profile Page (*profile.html*)
+
+- **Welcome**
+    - Feedback to user that they have been logged in through flash message at the top of the page to feedback that log in was successful and also card heading `Welcome <users first name>` for the personal touch.
+- **My Reviews** 
+    - Reviews written by the user are in this section, including book name, author, review title and the rating left. By clicking on the book name the user is redirected to the book review page where they can view, edit or delete it. 
+- **My Favourites**
+    - Reviews where the user has clicked to add to favourites are located here, including book name, author and a link to remove the review from favourites. The user can click the book name link to be taken to the review if they wish.
+    
+
+
+#### All Reviews (*reviews.html*)
+
+ - **Search Bar**
+    - The search bar allows the user to search by book name, author, genre and reviewed by so they can find more books based on their interests. Search and reset buttons present for easy use. 
+    
+- **Book Reviews**
+    - List present of all books reviewed so far by other users including book front cover image, book name, author, title of review, rating, link to full review and button to save to favourites. This button allows the user to save for their own use later. By clicking on the image of the front cover or `See Full Review` link the user is directed to the full review page where they can add their thoughts. If no image available for the book review a default alternative will be posted. This is completed using Jinja for loop of reviews and extracting information from MongoDB.
+
+#### **Book Review Page**
+
+  - **Book Review**
+    - Image of book cover, book name, author and brief description of the book is displayed on page loading. This is completed using Jinja for loop of reviews and extracting information from MongoDB. Favourite button also present here to allow user to save to their profile.
+    - Original review posted beneath the description of the book to allow the user to see what the original reviewer thought. Username, date stamp and rating also included here so that the user can search for other reviews by this user.
+
+  - **Link to book store** 
+    - Link to direct the user to buy the book from an independent bookshop via this [website](https://www.booksellers.org.uk/bookshopsearch) for ease. It prompts the user to find their nearest book shop.
+
+  - **Thoughts section**
+    - Prompts the user to add their thoughts on the book and displays what previous users have commented, again with username of commenter and date and time stamp.
+
+ - **Button**
+    - The button redirects the user back to *reviews.html* to prevent them having to press the browser back button for better user experience. 
+
+
+#### **Add Review** *(add_review.html)*
+
+ - **Form** 
+  - Allows user to enter details of the book including: genre, book name, author, review title, full review, description of the book, link to cover image for the book and rating.
+
+ - **Buttons**
+    - The `Back to Reviews` button redirects the user back to *reviews.html* to prevent them having to press the browser back button for better user experience. This is also achieved by clicking `Cancel` underneath the form. The `Submit Review` button submits the add review form.
+
+
+#### **Edit Review** *(edit_review.html)*
+
+ - **Form** 
+  - Allows user to enter details of the book including: genre, book name, author, review title, full review, description of the book, link to cover image for the book and rating. This is prepopulated with the details existing already on the review document.
+
+ - **Buttons**
+    - The `Back to Reviews` button redirects the user back to *reviews.html* to prevent them having to press the browser back button for better user experience. This is also achieved by clicking `Cancel` underneath the form. The `Submit Review` button submits the add review form.
 
 
 #### *404.html*

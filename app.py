@@ -179,6 +179,7 @@ def profile(username):
         for i in user:
             favourites_list.append(mongo.db.reviews.find_one(
                 {"_id": ObjectId(i["book_name"])}))
+        flash("You are logged in, {}".format(fname))
         return render_template(
             "profile.html", username=username,
             my_reviews=my_reviews, fname=fname, reviews=reviews,
@@ -372,9 +373,19 @@ def edit_genre(genre_id):
         submit = {
             "genre_name": request.form.get("genre_name")
         }
-        mongo.db.genres.update({"_id": ObjectId(genre_id)}, submit)
-        flash("Genre Successfully Updated")
-        return redirect(url_for("get_genres"))
+        try:
+            if session["user"]:
+                username = mongo.db.users.find_one(
+                    {"username": session["user"]}
+                )
+
+                if username["admin"] == "on":
+                    mongo.db.genres.update({"_id": ObjectId(genre_id)}, submit)
+                    flash("Genre Successfully Updated")
+                    return redirect(url_for("get_genres"))
+        except Exception:
+            flash("You are not allowed to do that")
+            return redirect(url_for("get_reviews"))
 
     genre = mongo.db.genres.find_one({"_id": ObjectId(genre_id)})
     return render_template("edit_genre.html", genre=genre)
@@ -387,9 +398,18 @@ def delete_genre(genre_id):
     """
     allows superuser to delete the genres
     """
-    mongo.db.genres.remove({"_id": ObjectId(genre_id)})
-    flash("Genre Successfully Deleted")
-    return redirect(url_for("get_genres"))
+    try:
+        if session["user"]:
+            username = mongo.db.users.find_one(
+                {"username": session["user"]}
+            )
+            if username["admin"] == "on":
+                mongo.db.genres.remove({"_id": ObjectId(genre_id)})
+                flash("Genre Successfully Deleted")
+                return redirect(url_for("get_genres"))
+    except Exception:
+        flash("You are not allowed to do that")
+        return redirect(url_for("get_reviews"))
 
 
 @app.route("/get_users")
@@ -406,16 +426,25 @@ def edit_user(user_id):
     """
     allows superuser to edit the users to give them admin status
     """
-    if request.method == "POST":
-        # set admin variable
-        admin = "on" if request.form.get("admin") else "off"
-        # update user admin from "off" to "on"
-        mongo.db.users.update(
-            {"_id": ObjectId(user_id)}, {"$set": {"admin": admin}}
+    try:
+        if session["user"]:
+            username = mongo.db.users.find_one(
+                {"username": session["user"]}
             )
+            if request.method == "POST":
+                if username["admin"] == "on":
+                    # set admin variable
+                    admin = "on" if request.form.get("admin") else "off"
+                    # update user admin from "off" to "on"
+                    mongo.db.users.update(
+                        {"_id": ObjectId(user_id)}, {"$set": {"admin": admin}}
+                        )
 
-        flash("User Successfully Updated")
-        return redirect(url_for("get_users"))
+                    flash("User Successfully Updated")
+                    return redirect(url_for("get_users"))
+    except Exception:
+        flash("You are not allowed to do that!")
+        return redirect(url_for("get_reviews"))
 
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     return render_template("edit_user.html", user=user)
@@ -426,9 +455,18 @@ def delete_user(user_id):
     """
     allows superuser to delete users
     """
-    mongo.db.users.remove({"_id": ObjectId(user_id)})
-    flash("User Successfully Deleted")
-    return redirect(url_for("get_users"))
+    try:
+        if session["user"]:
+            username = mongo.db.users.find_one(
+                {"username": session["user"]}
+            )
+            if username["admin"] == "on":
+                mongo.db.users.remove({"_id": ObjectId(user_id)})
+                flash("User Successfully Deleted")
+                return redirect(url_for("get_users"))
+    except Exception:
+        flash("You are not allowed to do that!")
+        return redirect(url_for("get_reviews"))
 
 
 if __name__ == "__main__":
