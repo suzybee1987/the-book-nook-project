@@ -7,7 +7,8 @@
     <div class="row">
         <div class="col s12 m8 offset-m2">
             <div class="card-panel z-depth-4">
-                <h3 class="review-header center-align">Book Reviews</h3>
+                <div class="col s4 offset-s4 m4 offset-m4">
+                <h3 class="review-header center-align">Book Reviews</h3></div>
                 {% if reviews|length > 0 %}
                 <div class="row card-panel brown-text text-darken-3">
                     <form action="{{ url_for('search')  }}" method="post" class="col s12">
@@ -40,8 +41,9 @@
                                         class="review-image responsive-img valign-wrapper">
                                 </a>
                                 {% else %}
+                                <a href="{{ url_for('see_review', reviews=review._id) }}">
                                 <img src="static/images/pexels-lilartsy.jpg" alt="default image of book"
-                                    class="review-image responsive-img valign-wrapper ">
+                                    class="review-image responsive-img valign-wrapper"></a>
                                 {% endif %}
 
                             </div>
