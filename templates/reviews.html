@@ -66,7 +66,7 @@
                                             <a href="{{ url_for('see_review', reviews=review._id) }}">
                                                 See Full Review
                                             </a>
-                                            {% if session['user'] %}
+                                            {% if session["user"] %}
                                             <a href="{{ url_for('add_favourite', favourite_id=review._id) }}"
                                                 class="btn-floating waves-effect waves-light red tooltipped"
                                                 data-position="top" data-tooltip="Save to Favourites"><i

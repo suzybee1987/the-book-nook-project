@@ -4,12 +4,12 @@
 """
 
 import os
+import datetime
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-import datetime
 if os.path.exists("env.py"):
     import env
 
@@ -139,8 +139,8 @@ def login():
 
         if existing_user:
             # ensure hashed password matches user input
-            if check_password_hash(
-                existing_user["password"], request.form.get("password")):
+            if check_password_hash(existing_user["password"],
+                                   request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 return redirect(url_for(
                         "profile", username=session["user"]))
@@ -149,7 +149,6 @@ def login():
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
 
-        else:
             # username doesn't exist
             flash("Incorrect Username and/or Password")
             return redirect(url_for("login"))
@@ -279,8 +278,8 @@ def add_thoughts(thoughts_id):
             "reviewed_date": datetime.datetime.utcnow()
         }
         mongo.db.reviews.update_one(
-                    {"_id": ObjectId(thoughts_id)},
-                    {"$push": {"thoughts": new_thoughts}})
+            {"_id": ObjectId(thoughts_id)},
+            {"$push": {"thoughts": new_thoughts}})
 
         flash("Your thoughts successfully added")
         return redirect(url_for('see_review', reviews=thoughts_id))
@@ -298,12 +297,14 @@ def favourites():
         {"$and": [{"username": {'$eq': session["user"]}}]}))
     favourites_list = []
     for i in user:
-        favourites_list.append(mongo.db.recipes.find_one(
-            {"_id": ObjectId(i["recipe_name"])}))
+        favourites_list.append(mongo.db.reviews.find_one(
+            {"_id": ObjectId(i["book_id"])}))
+
+    # favourites_list = set(favourites_list)
     return render_template("profile.html", favourites_list=favourites_list)
 
 
-@app.route("/get_reviews/add_favourite/<favourite_id>", methods=["GET", "POST"])
+@app.route("/add_favourite/<favourite_id>", methods=["GET", "POST"])
 def add_favourite(favourite_id):
     """
     add book into favourites collection in DB.
@@ -315,6 +316,7 @@ def add_favourite(favourite_id):
         "username": username
     }
     mongo.db.favourites.insert_one(data)
+    flash("Book saved to favourites")
 
     if username:
         return redirect(url_for("profile", username=username))
@@ -323,7 +325,7 @@ def add_favourite(favourite_id):
     return render_template("login.html")
 
 
-@app.route("/get_reviews/remove_favourite/<favourite_id>")
+@app.route("/remove_favourite/<favourite_id>")
 def remove_favourite(favourite_id):
     """
     deletes book from favourites collection in DB and from profile
@@ -405,13 +407,13 @@ def edit_user(user_id):
     allows superuser to edit the users to give them admin status
     """
     if request.method == "POST":
+        # set admin variable
         admin = "on" if request.form.get("admin") else "off"
-        # submit = {
-        #     "admin": admin,
-        #     "username": request.form.get("username"),
-        # }
-        mongo.db.users.update({"_id": ObjectId(user_id)},
-            {"$set": {"admin": admin}})
+        # update user admin from "off" to "on"
+        mongo.db.users.update(
+            {"_id": ObjectId(user_id)}, {"$set": {"admin": admin}}
+            )
+
         flash("User Successfully Updated")
         return redirect(url_for("get_users"))
 
