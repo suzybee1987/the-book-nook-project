@@ -3,9 +3,9 @@
 <div class="hero-add-review">
     <div class="row">
         <div class="col s12 m8 offset-m2">
-            <form class="col s12 m8" method="POST" action="{{ url_for('edit_genre', genre_id=genre._id) }}">
-                <div class="card-panel">
-                    <h3 class="brown-text center-align">Edit Genre</h3>
+            <div class="card-panel">
+                <h3 class="brown-text center-align">Edit Genre</h3>
+                <form method="POST" action="{{ url_for('edit_genre', genre_id=genre._id) }}">
                     <a href="{{ url_for('get_genres') }}" class="btn waves-effect waves-light"><i
                             class="fa-solid fa-chevron-left"></i>
                         Back to genres
@@ -14,7 +14,8 @@
                     <div class="row">
                         <div class="col s12 m10 offset-m1 input-field">
                             <i class="fa-solid fa-book prefix"></i>
-                            <input id="genre_name" name="genre_name" type="text" class="validate" value="{{ genre.genre_name }}" required>
+                            <input id="genre_name" name="genre_name" type="text" class="validate"
+                                value="{{ genre.genre_name }}" required>
                             <label for="genre_name">Genre</label>
                         </div>
                     </div>
@@ -29,8 +30,8 @@
                             </button>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>

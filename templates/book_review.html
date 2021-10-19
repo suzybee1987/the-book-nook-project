@@ -4,7 +4,7 @@
 <div class="review-hero">
     {% for review in reviews %}
     <div class="row">
-        <div class="col s10 offset-s1 m8 offset-m2">
+        <div class="col s12 m8 offset-m2">
             <div class="card-panel z-depth-4">
                 <div class="row">
                     <div class="col s10 offset-m1 m10 offset-m1">
@@ -47,13 +47,12 @@
                         </h4>
                         <div class="card-body-description">
                             <p>
-                                <em>{{ review.genre_name }}</em></p>
+                                <em>{{ review.genre_name }}</em>
+                            </p>
                             <p>{{ review.description }}</p>
                         </div>
                     </div>
                     <!-- end of book info  -->
-
-                   
 
                     <!-- Review  -->
                     {% for review in reviews %}
@@ -69,29 +68,28 @@
                                 <p>Reviewer: '{{ review.reviewed_by }}'</p>
                                 <p>Review posted on {{ review.review_date.strftime("%d %B %y at %H:%M") }}</p>
                             </div>
-                                            <!-- edit/delete buttons if review written by user  -->
-                                            <div class="row center-align">
-                                                <div class="col s12">
-                                                    {% if session.user|lower == review.reviewed_by|lower %}
-                                                    <a href="{{ url_for('edit_review', review_id=review._id) }}" class="btn waves-effect waves-light">Edit
-                                                        <i class="fa-solid fa-pen-fancy"></i>
-                                                    </a>
-                                                    <!-- # add defensive programming here to confirm (Are you sure you want to delete?)  -->
-                                                    <a href="{{ url_for('delete_review', review_id=review._id) }}"
-                                                        class="btn waves-effect waves-light cancel">Delete <i class="fa-solid fa-trash-can"></i>
-                                                    </a>
-                                                    {% endif %}
-                                                </div>
-                                            </div>
-                                            <!-- end of buttons  -->
+                            <!-- edit/delete buttons if review written by user  -->
+                            <div class="row center-align">
+                                <div class="col s12">
+                                    {% if session.user|lower == review.reviewed_by|lower %}
+                                    <a href="{{ url_for('edit_review', review_id=review._id) }}"
+                                        class="btn waves-effect waves-light">Edit
+                                        <i class="fa-solid fa-pen-fancy"></i>
+                                    </a>
+                                    <!-- # add defensive programming here to confirm (Are you sure you want to delete?)  -->
+                                    <a href="{{ url_for('delete_review', review_id=review._id) }}"
+                                        class="btn waves-effect waves-light cancel">Delete <i
+                                            class="fa-solid fa-trash-can"></i>
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <!-- end of buttons  -->
                         </div>
                     </div>
                     {% endfor %}
-
                     <!-- end of review  -->
-
                 </div>
-
 
                 <hr class="separator separator--line">
                 <!-- link to waterstones site  -->
@@ -99,43 +97,43 @@
                     <div class="col s12">
                         <div class="card-action">
                             <!-- Here i'd like to click the link to go to book_review.html for the selected book  -->
-                            <a href="https://www.booksellers.org.uk/bookshopsearch" target="_blank"
-                                class="btn-large light-blue darken-4 waves-light waves-light"
-                                alt="Link to find local book shop">Please support your local bookshop!<i
-                                    class="fa-solid fa-basket-shopping"></i></a>
-
+                            
+                                Please support your local bookshop <a href="https://www.booksellers.org.uk/bookshopsearch" target="_blank"
+                                    class="waves-light waves-light" alt="Link to find local book shop">here!
+                                <i class="fa-solid fa-basket-shopping"></i></a>
                         </div>
                     </div>
                 </div>
                 <!-- end of link  -->
+
                 <hr class="separator separator--line">
-              
+
                 <!-- thoughts section  -->
                 <div class="card-panel">
                     <div class="row">
                         <div class="col s12 m12 card-header">
-                            <h5 class="review-title center-align">
+                            <h6 class="review-title center-align">
                                 What did you think?
-                            </h5>
+                            </h6>
                         </div>
                     </div>
                     {% if session["user"] %}
                     <div class="row">
-                        <div class="card-panel col s10 offset-s1 m10 offset-m1">
+                        <div class="col s12 m12">
                             <form class="col s12 m12" method="POST"
                                 action="{{ url_for('add_thoughts', thoughts_id=review._id) }}">
                                 <div class="row">
                                     <div class="col s12 m10 offset-m1 input-field">
-                                        <i class="fa-solid fa-keyboard prefix"></i>
+                                        <i class="fa-solid fa-keyboard prefix hide-on-small-only"></i>
                                         <textarea id="thoughts" name="thoughts" class="materialize-textarea"
                                             required></textarea>
-                                        <label for="thoughts">Your thoughts on this book</label>
+                                        <label for="thoughts" class="hide-on-small-only">Your thoughts on this book</label>
                                     </div>
                                 </div>
                                 <!-- Buttons  -->
                                 <div class="row center-align">
                                     <div class="col s12">
-                                        <button class="btn waves-effect waves-light" type="submit">Submit thoughts
+                                        <button class="btn waves-effect waves-light" type="submit">Submit
                                             <i class="fa-solid fa-plus"></i>
                                         </button>
                                         <a href="{{ url_for('get_reviews') }}"
