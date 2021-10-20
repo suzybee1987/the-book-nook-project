@@ -68,7 +68,7 @@
                                 <p>Reviewer: '{{ review.reviewed_by }}'</p>
                                 <p>Review posted on {{ review.review_date.strftime("%d %B %y at %H:%M") }}</p>
                             </div>
-                            <!-- edit/delete buttons if review written by user  -->
+                            <!-- edit/delete buttons if review written by user or admin -->
                             <div class="row center-align">
                                 <div class="col s12">
                                     {% if session.user|lower == review.reviewed_by|lower %}
@@ -76,7 +76,6 @@
                                         class="btn waves-effect waves-light">Edit
                                         <i class="fa-solid fa-pen-fancy"></i>
                                     </a>
-                                    <!-- # add defensive programming here to confirm (Are you sure you want to delete?)  -->
                                     <a href="{{ url_for('delete_review', review_id=review._id) }}"
                                         class="btn waves-effect waves-light cancel">Delete <i
                                             class="fa-solid fa-trash-can"></i>

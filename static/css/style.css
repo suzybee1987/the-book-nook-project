@@ -276,7 +276,7 @@ h2,
 }
 
 .card-review {
-    height: 700px;
+    min-height: 750px;
 }
 
 #myBtn {

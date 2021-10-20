@@ -2,16 +2,24 @@
 {% block content %}
 <div class="hero-add-review">
     <div class="row">
-        <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('edit_review', review_id=review._id) }}">
-            <div class="card-panel">
-                <h3 class="brown-text center-align">Edit Review</h3>
-                <div class="row">
-                    <div class="col s4">
-                        <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light"><i
-                                class="fa-solid fa-chevron-left"></i> Back to reviews
-                        </a>
-                    </div>
+        <div class="card-panel col s12 m8 offset-m2">
+            <!-- back to reviews button  -->
+            <div class="row">
+                <div class="col s4 m4">
+                    <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light"><i
+                            class="fa-solid fa-chevron-left"></i>
+                        Back to reviews
+                    </a>
                 </div>
+            </div>
+            <!-- end of back to reviews  -->
+
+            <div class="col s10 offset-s1 m6 offset-m3">
+                <h3 class="review-header center-align">Edit Review</h3>
+            </div>
+
+            <!-- form submit to edit review  -->
+            <form class="col s12 m10 offset-m1" method="POST" action="{{ url_for('edit_review', review_id=review._id) }}">
                 <div class="row">
                     <div class="col s12 m10 offset-m1 input-field"><i class="fa-solid fa-dragon prefix"></i>
                         <select id="genre_name" name="genre_name" class="validate" required>
@@ -63,7 +71,8 @@
                 <div class="row">
                     <div class="col s12 m10 offset-m1 input-field">
                         <i class="fa-solid fa-keyboard prefix"></i>
-                        <textarea id="description" name="description" class="materialize-textarea" maxlength="300" required>
+                        <textarea id="description" name="description" class="materialize-textarea" maxlength="300"
+                            required>
                             {{- review.description }}</textarea>
                         <label for="description">Description</label>
                     </div>
@@ -71,7 +80,7 @@
                 <div class="row">
                     <div class="col s12 m10 offset-m1 input-field">
                         <i class="fa-solid fa-book prefix"></i>
-                        <input id="image" name="image" type="url" class="validate" value="{{ review.image }}" required>
+                        <input id="image" name="image" type="url" class="validate" value="{{ review.image }}">
                         <label for="image">Cover Image for Book</label>
                     </div>
                 </div>
@@ -90,7 +99,7 @@
                         </select>
                         <label for="rating"></label>
                     </div>
-                    <!-- Favourite toggle  -->
+                    <!-- Buttons  -->
                     <div class="row center-align">
                         <div class="col s12">
                             <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light">Cancel <i
@@ -102,7 +111,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+        </div>
         </form>
     </div>
 </div>

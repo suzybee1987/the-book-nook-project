@@ -142,6 +142,13 @@ def login():
             if check_password_hash(existing_user["password"],
                                    request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
+
+                username = mongo.db.users.find_one(
+                    {"username": session["user"]})["username"]
+                # get the users name to load in profile page
+                fname = mongo.db.users.find_one(
+                    {"username": username})["fname"]
+                flash("You are logged in, {}".format(fname))
                 return redirect(url_for(
                         "profile", username=session["user"]))
             else:
@@ -179,7 +186,7 @@ def profile(username):
         for i in user:
             favourites_list.append(mongo.db.reviews.find_one(
                 {"_id": ObjectId(i["book_name"])}))
-        flash("You are logged in, {}".format(fname))
+
         return render_template(
             "profile.html", username=username,
             my_reviews=my_reviews, fname=fname, reviews=reviews,
@@ -235,22 +242,20 @@ def edit_review(review_id):
     if request.method == "POST":
         submit = {
             "genre_name": request.form.get("genre_name"),
-            "image": request.form.get("image"),
             "book_name": request.form.get("book_name"),
             "author_name": request.form.get("author_name"),
             "review_title": request.form.get("review_title"),
             "review": request.form.get("review"),
             "description": request.form.get("description"),
+            "image": request.form.get("image"),
             "rating_no": request.form.get("rating"),
             "favourites": request.form.get("favourites"),
-            "reviewed_by": session["user"],
-            # "review_date": datetime.datetime.utcnow()
-
+            "reviewed_by": session["user"]
         }
         mongo.db.reviews.update({"_id": ObjectId(review_id)}, submit)
         flash("Review successfully updated")
 
-    review = mongo.db.reviews.find_one(({"_id": ObjectId(review_id)}, 1))
+    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     genres = mongo.db.genres.find().sort("genre_name", 1)
     ratings = list(mongo.db.ratings.find().sort("rating_no", 1))
     return render_template(
