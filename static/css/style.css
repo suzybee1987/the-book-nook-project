@@ -250,6 +250,7 @@ h2,
 .comein {
     margin-top: 15px;
 }
+
 /* end of profile page  */
 
 /* Review page  */
@@ -454,3 +455,21 @@ h2,
 }
 
 /* End of book review  */
+
+/* edit review  */
+
+/* this code because the font awesome icons overlap the prepopulated text in edit forms  */
+@media only screen and (max-width: 600px) {
+
+    .input-field .prefix~input,
+    .input-field .prefix~textarea,
+    .input-field .prefix~label,
+    .input-field .prefix~.validate~label,
+    .input-field .prefix~.helper-text,
+    .input-field .prefix~.autocomplete-content {
+        margin-left: 42px;
+        width: 90%;
+    }
+}
+
+/* end of edit review  */
