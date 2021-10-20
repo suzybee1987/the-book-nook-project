@@ -134,7 +134,7 @@ main {
 }
 
 .brown-text {
-    color: #3e2723;
+    color: #473732;
 }
 
 .row {
@@ -157,16 +157,25 @@ main {
 
 /* buttons  */
 
-.cancel,
-.reset {
-    color: #3e2723;
+.btn:hover {
+    color: #473732;
+    background-color: #fff;
+}
+
+.btn {
+    color: #fff;
+    background-color: #473732;
+}
+
+.cancel, .reset {
+    color: #473732 !important;
     background-color: #fff !important;
 }
 
 .cancel:hover,
 .reset:hover {
-    color: #fff;
-    background-color: #3e2723 !important;
+    color: #fff !important;
+    background-color: #473732 !important;
 }
 
 i:hover {
@@ -238,13 +247,13 @@ h2,
 
 
 .profile-link {
-    color: #3e2723;
+    color: #473732;
     font-family: 'Poppins', sans-serif;
 
 }
 
 .profile-link:hover {
-    border-bottom: solid 2px #3e2723;
+    border-bottom: solid 2px #473732;
 }
 
 .comein {
@@ -267,8 +276,8 @@ h2,
 .review-header,
 .genre-header {
     font-family: 'Libre Baskerville', serif;
-    color: #3e2723;
-    border-bottom: 2px solid #3e2723;
+    color: #473732;
+    border-bottom: 2px solid #473732;
     padding-bottom: 25px;
 }
 
@@ -297,7 +306,7 @@ h2,
 
 #myBtn:hover {
     background-color: #fff;
-    color: #3e2723;
+    color: #473732;
 }
 
 .review-title {
@@ -342,20 +351,11 @@ h2,
 }
 
 .switch label input[type=checkbox]:checked+.lever:after {
-    background-color: #3e2723;
+    background-color: #473732;
 }
 
 .switch label input[type=checkbox]:checked+.lever {
-    background-color: #8d6e63;
-}
-
-.btn {
-    background-color: #8d6e63;
-    margin-bottom: 20px;
-}
-
-.btn:hover {
-    background-color: #3e2723;
+    background-color: #473732;
 }
 
 /* sass from materialize for input fields  */
@@ -372,8 +372,8 @@ h2,
 
 /* label underline focus color */
 .input-field input[type=text]:focus {
-    border-bottom: 1px solid #3e2723;
-    box-shadow: 0 1px 0 0 #3e2723;
+    border-bottom: 1px solid #473732;
+    box-shadow: 0 1px 0 0 #473732;
 }
 
 /* valid color */
@@ -422,7 +422,7 @@ h2,
 
 .separator--line {
     border: 0;
-    border-bottom: 5px solid #634133;
+    border-bottom: 5px solid #473732;
 
     width: 0;
     animation: separator-width 1s ease-out forwards;
@@ -473,3 +473,12 @@ h2,
 }
 
 /* end of edit review  */
+
+
+/* delete modal  */
+
+.modal-delete {
+    border-radius: 5px;
+    background-color:#473732;
+    color:#fff8f6e6;
+}

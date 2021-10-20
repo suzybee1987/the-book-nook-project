@@ -17,6 +17,7 @@ $(document).ready(function () {
     });
     $('.tooltipped').tooltip();
     $('.materialboxed').materialbox();
+    $('.modal').modal();
 });
 
 // I edited this function from stack overflow which plays the carousel automatically

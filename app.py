@@ -399,6 +399,15 @@ def edit_genre(genre_id):
 # prompt if want to delete using toast/modal - defensive programming
 
 
+@app.route("/see_genre/<genre_id>", methods=["GET", "POST"])
+def see_genre(genre_id):
+    """
+    view the full page of individual genre
+    """
+    genres = list(mongo.db.genres.find({"_id": ObjectId(genre_id)}))
+    return render_template("delete_genre.html", genres=genres)
+
+
 @app.route("/delete_genre/<genre_id>")
 def delete_genre(genre_id):
     """
