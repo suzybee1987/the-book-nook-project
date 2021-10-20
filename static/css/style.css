@@ -271,6 +271,7 @@ h2,
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    min-height: 90vh;
 }
 
 .review-header,
@@ -332,7 +333,8 @@ h2,
     font-size: 16px;
 }
 
-.review-image {
+.review-image-reviews {
+    max-height: 400px;
     padding-top: 15px;
 }
 
