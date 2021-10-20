@@ -505,6 +505,24 @@ def delete_user(user_id):
         return redirect(url_for("get_reviews"))
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    """
+    404 page, code from
+    https://flask.palletsprojects.com/en/2.0.x/errorhandling/?highlight=custom%20error%20pages
+    """
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    """
+    404 page, code from
+    https://flask.palletsprojects.com/en/2.0.x/errorhandling/?highlight=custom%20error%20pages
+    """
+    return render_template('500.html'), 500
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

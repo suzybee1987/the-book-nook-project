@@ -30,25 +30,29 @@
                     </form>
                 </div>
                 {% else %}
-                <h3 class="review-header center-align">No results found</h3>
+                <div class="row">
+                    <div class="col s12 m6 offset-m3">
+                        <h3 class="review-header center-align">No results found</h3>
+                    </div>
+                </div>
                 {% endif %}
 
                 <div class="row">
                     <!-- review loop  -->
                     {% for review in reviews %}
-                    <div class="col s12 m4 l3 xl3">
-                        <div class="card card-review">
+                    <div class="col s12 m3 l3 xl3">
+                        <div class="card card-large card-review">
                             <!-- card image  -->
                             <div class="card-image col s12 m12 l12 xl12">
                                 {% if review.image %}
                                 <a href="{{ url_for('see_review', reviews=review._id) }}">
                                     <img src="{{ review.image }}" alt="Image of front cover of book"
-                                        class="review-image responsive-img valign-wrapper">
+                                        class="review-image-reviews responsive-img valign-wrapper">
                                 </a>
                                 {% else %}
                                 <a href="{{ url_for('see_review', reviews=review._id) }}">
                                     <img src="static/images/pexels-lilartsy.jpg" alt="default image of book"
-                                        class="review-image responsive-img valign-wrapper"></a>
+                                        class="review-image-reviews responsive-img valign-wrapper"></a>
                                 {% endif %}
                             </div>
                             <!-- end of card image -->
@@ -67,11 +71,11 @@
                             <!-- review title, rating, buttons  -->
                             <div class="row center-align">
                                 <div class="col s12 m12 l12 xl12">
-                                    <div class="card-body">
+                                    <div class="card-content">
                                         <p>Title: {{ review.review_title }}</p>
                                         <p> Rating: {{ review.rating_no }}</p>
                                         <!-- <p>Reviewer: '{{ review.reviewed_by }}'</p> -->
-                                        <div class="bottom">
+                                        <div class="">
                                             <a href="{{ url_for('see_review', reviews=review._id) }}">
                                                 See Full Review
                                             </a>
@@ -88,16 +92,20 @@
                             </div>
                             <div class="row center-align">
                                 <div class="col s12 m12 l12">
+                                    <div class="card-action">
                                     {% if session.user|lower == review.reviewed_by|lower %}
-                                    <a href="{{ url_for('edit_review', review_id=review._id) }}" class="btn waves-effect waves-light">Edit <i
-                                            class="fa-solid fa-pen-fancy"></i>
+                                    <a href="{{ url_for('edit_review', review_id=review._id) }}"
+                                        class="btn waves-effect waves-light">Edit <i class="fa-solid fa-pen-fancy"></i>
                                     </a>
-                                    
-                                    <a href="{{ url_for('delete_review', review_id=review._id) }}" class="btn waves-effect waves-light cancel">Delete <i
+
+                                    <a href="{{ url_for('delete_review', review_id=review._id) }}"
+                                        class="btn waves-effect waves-light cancel">Delete <i
                                             class="fa-solid fa-trash-can"></i>
                                     </a>
                                     
+
                                     {% endif %}
+                                    </div>
                                 </div>
                             </div>
 
