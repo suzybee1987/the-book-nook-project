@@ -354,6 +354,15 @@ def get_genres():
     return render_template("genres.html", genres=genres)
 
 
+@app.route("/see_genre/<genre_id>", methods=["GET", "POST"])
+def see_genre(genre_id):
+    """
+    view the full page of individual genre
+    """
+    genres = list(mongo.db.genres.find({"_id": ObjectId(genre_id)}))
+    return render_template("delete_genre.html", genres=genres)
+
+
 @app.route("/add_genre", methods=["GET", "POST"])
 def add_genre():
     """
@@ -396,17 +405,6 @@ def edit_genre(genre_id):
     genre = mongo.db.genres.find_one({"_id": ObjectId(genre_id)})
     return render_template("edit_genre.html", genre=genre)
 
-# prompt if want to delete using toast/modal - defensive programming
-
-
-@app.route("/see_genre/<genre_id>", methods=["GET", "POST"])
-def see_genre(genre_id):
-    """
-    view the full page of individual genre
-    """
-    genres = list(mongo.db.genres.find({"_id": ObjectId(genre_id)}))
-    return render_template("delete_genre.html", genres=genres)
-
 
 @app.route("/delete_genre/<genre_id>")
 def delete_genre(genre_id):
@@ -430,36 +428,59 @@ def delete_genre(genre_id):
 @app.route("/get_users")
 def get_users():
     """
-    allows superuser to manage the users
+    allows admin to manage the users
     """
-    users = list(mongo.db.users.find().sort("user_id", 1))
+    users = list(mongo.db.users.find().sort("user_name", 1))
     return render_template("users.html", users=users)
+
+
+@app.route("/see_user/<user_id>", methods=["GET", "POST"])
+def see_user(user_id):
+    """
+    view the full page of individual user
+    """
+    users = list(mongo.db.users.find({"_id": ObjectId(user_id)}))
+    return render_template("delete_user.html", users=users)
+
+
+@app.route("/add_user", methods=["GET", "POST"])
+def add_user():
+    """
+    allows superuser to add new user
+    """
+    if request.method == "POST":
+        user = {
+            "user_name": request.form.get("user_name")
+        }
+        mongo.db.users.insert_one(user)
+        flash("New User Added")
+        return redirect(url_for("get_users"))
+
+    return render_template("add_user.html")
 
 
 @app.route("/edit_user/<user_id>", methods=["GET", "POST"])
 def edit_user(user_id):
     """
-    allows superuser to edit the users to give them admin status
+    allows admin to edit the users
     """
-    try:
-        if session["user"]:
-            username = mongo.db.users.find_one(
-                {"username": session["user"]}
-            )
-            if request.method == "POST":
-                if username["admin"] == "on":
-                    # set admin variable
-                    admin = "on" if request.form.get("admin") else "off"
-                    # update user admin from "off" to "on"
-                    mongo.db.users.update(
-                        {"_id": ObjectId(user_id)}, {"$set": {"admin": admin}}
-                        )
+    if request.method == "POST":
+        submit = {
+            "user_name": request.form.get("user_name")
+        }
+        try:
+            if session["user"]:
+                username = mongo.db.users.find_one(
+                    {"username": session["user"]}
+                )
 
+                if username["admin"] == "on":
+                    mongo.db.users.update({"_id": ObjectId(user_id)}, submit)
                     flash("User Successfully Updated")
                     return redirect(url_for("get_users"))
-    except Exception:
-        flash("You are not allowed to do that!")
-        return redirect(url_for("get_reviews"))
+        except Exception:
+            flash("You are not allowed to do that")
+            return redirect(url_for("get_reviews"))
 
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     return render_template("edit_user.html", user=user)
@@ -468,7 +489,7 @@ def edit_user(user_id):
 @app.route("/delete_user/<user_id>")
 def delete_user(user_id):
     """
-    allows superuser to delete users
+    allows superuser to delete the users
     """
     try:
         if session["user"]:
@@ -480,7 +501,7 @@ def delete_user(user_id):
                 flash("User Successfully Deleted")
                 return redirect(url_for("get_users"))
     except Exception:
-        flash("You are not allowed to do that!")
+        flash("You are not allowed to do that")
         return redirect(url_for("get_reviews"))
 
 
