@@ -298,6 +298,8 @@ def add_thoughts(thoughts_id):
 def favourites():
     """
         favourites functionality
+        following guidance from
+        https://github.com/manni8436/MS3-Project
     """
     user = list(mongo.db.favourites.find(
         {"$and": [{"username": {'$eq': session["user"]}}]}))
@@ -306,7 +308,6 @@ def favourites():
         favourites_list.append(mongo.db.reviews.find_one(
             {"_id": ObjectId(i["book_id"])}))
 
-    # favourites_list = set(favourites_list)
     return render_template("profile.html", favourites_list=favourites_list)
 
 

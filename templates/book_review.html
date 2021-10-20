@@ -23,7 +23,7 @@
                                 class="book-review-image responsive-img">
                             {% else %}
                             <img src="../static/images/pexels-lilartsy.jpg" alt="default image of book"
-                                class="book-review-image responsive-img" >
+                                class="book-review-image responsive-img">
                             {% endif %}
                         </div>
                     </div>
@@ -96,9 +96,9 @@
                     <div class="col s12">
                         <div class="card-action">
                             <!-- Here i'd like to click the link to go to book_review.html for the selected book  -->
-                            
-                                Please support your local bookshop <a href="https://www.booksellers.org.uk/bookshopsearch" target="_blank"
-                                    class="waves-light waves-light" alt="Link to find local book shop">here!
+
+                            Please support your local bookshop <a href="https://www.booksellers.org.uk/bookshopsearch"
+                                target="_blank" class="waves-light waves-light" alt="Link to find local book shop">here!
                                 <i class="fa-solid fa-basket-shopping"></i></a>
                         </div>
                     </div>
@@ -126,7 +126,8 @@
                                         <i class="fa-solid fa-keyboard prefix hide-on-small-only"></i>
                                         <textarea id="thoughts" name="thoughts" class="materialize-textarea"
                                             required></textarea>
-                                        <label for="thoughts" class="hide-on-small-only">Your thoughts on this book</label>
+                                        <label for="thoughts" class="hide-on-small-only">Your thoughts on this
+                                            book</label>
                                     </div>
                                 </div>
                                 <!-- Buttons  -->
@@ -151,37 +152,40 @@
                         </div>
                     </div>
                     {% endif %}
+                </div>
 
-                    {% if review.thoughts|length > 0 %}
-                    <div class="row">
-                        <div class="card col s10 offset-s1 m10 offset-m1">
-                            <h5>What others thought...</h5>
-                            {% for thought in review.thoughts %}
-                            <div class="row">
-                                <div class="col s8 m8">
-                                    <div class="card-panel">
-                                        <div class="card-title">
-                                            <h6 class="review-title">{{ thought.thoughts }}
-                                            </h6>
-                                        </div>
-                                        <div class="card-body">
-                                            by
-                                            {{ thought.review_by }}
-                                            on
-                                            {{ thought.reviewed_date.strftime("%d %B %y at %H:%M") }}
-                                        </div>
+                {% if review.thoughts|length > 0 %}
+                <div class="card-panel">
+                <div class="row">
+                    <div class="col s10 offset-s1 m10 offset-m1">
+                        <div class="review-header">What others thought...</div>
+                        {% for thought in review.thoughts %}
+                        <div class="row">
+                            <div class="col s12 m8">
+                                <div class="card-panel">
+                                    <div class="card-title">
+                                        <h6 class="review-title">{{ thought.thoughts }}
+                                        </h6>
+                                    </div>
+                                    <div class="card-body">
+                                        by
+                                        {{ thought.review_by }}
+                                        on
+                                        {{ thought.reviewed_date.strftime("%d %B %y at %H:%M") }}
                                     </div>
                                 </div>
                             </div>
-                            {% endfor %}
                         </div>
+                        {% endfor %}
                     </div>
-                    {% endif %}
                 </div>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
-    {% endfor %}
+</div>
+{% endfor %}
 </div>
 
 
