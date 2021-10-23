@@ -275,11 +275,10 @@ h2,
 .profile-link {
     color: #473732;
     font-family: 'Lato', sans-serif;
-
 }
 
 .profile-link:hover {
-    border-bottom: solid 2px #473732;
+   text-decoration: underline;
 }
 
 .comein {
@@ -354,8 +353,7 @@ h2,
 
 .small-title {
     font-size: 20px;
-    font-family: 'Lato',
-        sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
 .card-body-description {
@@ -524,7 +522,6 @@ h2,
     color: #fff;
 }
 
-.genre,
-.user {
+.card-padding-top {
     padding-top: 20px;
 }

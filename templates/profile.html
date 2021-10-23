@@ -3,7 +3,7 @@
 <div class="profile-hero">
     <div class="row">
         <div class="col s12 m6 offset-m3">
-            <div class="card-panel center-align">
+            <div class="card-panel center-align card-padding-top">
                 <h4 class="curly">
                     Welcome, {{ fname }}</h4>
             </div>
@@ -14,7 +14,9 @@
         <div class="col s12 m8 offset-m2">
             <div class="card-panel">
                 <div class="col s10 offset-s1 m6 offset-m3">
-                <h4 class="review-header center-align">My Reviews</h4></div>
+                    <h4 class="review-header center-align">My Reviews</h4>
+                </div>
+                {% if my_reviews %}
                 <table>
                     <thead>
                         <tr>
@@ -27,9 +29,11 @@
                     {% for review in my_reviews %}
                     <tbody>
                         <tr>
-                            <td><a href="{{ url_for('see_review', reviews=review._id) }}"
-                                    class="profile-link tooltipped" data-position="right"
-                                    data-tooltip="Go to book">{{ review.book_name }}</a>
+                            <td>
+                                <a href="{{ url_for('see_review', reviews=review._id) }}">
+                                   <h6 class="profile-link tooltipped" data-position="top" data-tooltip="Go to book">
+                                       {{ review.book_name }}</h6>
+                                </a>
                             </td>
                             <td>{{ review.author_name }}</td>
                             <td>{{ review.review_title }}</td>
@@ -38,6 +42,14 @@
                     </tbody>
                     {% endfor %}
                 </table>
+                {% else %}
+                <div class="row center-align">
+                    <h5 class="col s12 m12">
+                        You haven't written any reviews yet, click <a href="{{ url_for('add_review') }}">here</a> to add
+                        one!
+                    </h5>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -45,7 +57,9 @@
         <div class="col s12 m8 offset-m2">
             <div class="card-panel">
                 <div class="col s10 offset-s1 m6 offset-m3">
-                <h4 class="review-header center-align">My Favourites</h4></div>
+                    <h4 class="review-header center-align">My Favourites</h4>
+                </div>
+                {% if favourites_list %}
                 <table>
                     <thead>
                         <tr>
@@ -57,9 +71,13 @@
                     {% for favourite in favourites_list %}
                     <tbody>
                         <tr>
-                            <td><a class="profile-link tooltipped" data-position="right" data-tooltip="Go to book" href="{{  url_for('see_review', reviews=favourite._id)  }}">{{
-                                    favourite.book_name }}</a></td>
-                            <td>{{ favourite.author_name }}</td>
+                            <td>
+                                <a href="{{  url_for('see_review', reviews=favourite._id)  }}">
+                                    <h6 class="profile-link tooltipped" data-position="right" data-tooltip="Go to book" >{{ favourite.book_name }}</h6></h6></a>
+                            </td>
+                            <td>
+                                {{ favourite.author_name }}
+                            </td>
                             <td>
                                 <a href="{{ url_for('remove_favourite', favourite_id=favourite._id) }}"
                                     alt="remove from favourites"
@@ -72,6 +90,14 @@
                     </tbody>
                     {% endfor %}
                 </table>
+                {% else %}
+                <div class="row center-align">
+                    <h5 class="col s12 m12">
+                        You don't have any favourites yet, click <a href="{{ url_for('get_reviews') }}">here</a> to see
+                        some book reviews!
+                    </h5>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>

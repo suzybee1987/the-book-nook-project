@@ -430,7 +430,7 @@ def get_users():
     """
     allows admin to manage the users
     """
-    users = list(mongo.db.users.find().sort("user_name", 1))
+    users = list(mongo.db.users.find().sort("username", 1))
     return render_template("users.html", users=users)
 
 
@@ -450,7 +450,7 @@ def add_user():
     """
     if request.method == "POST":
         user = {
-            "user_name": request.form.get("user_name")
+            "username": request.form.get("username")
         }
         mongo.db.users.insert_one(user)
         flash("New User Added")
@@ -466,7 +466,7 @@ def edit_user(user_id):
     """
     if request.method == "POST":
         submit = {
-            "user_name": request.form.get("user_name")
+            "username": request.form.get("username")
         }
         try:
             if session["user"]:
@@ -482,7 +482,7 @@ def edit_user(user_id):
             flash("You are not allowed to do that")
             return redirect(url_for("get_reviews"))
 
-    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    user = list(mongo.db.users.find_one({"_id": ObjectId(user_id)}))
     return render_template("edit_user.html", user=user)
 
 

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="book review website, books, authors, book shop, book review, terry pratchett, neil gaimen, haruki murakami">
 
     <!-- favicon  -->
     <link rel="apple-touch-icon" sizes="180x180" href="../static/images/favicon/apple-touch-icon.png">
@@ -20,7 +21,9 @@
     <!-- end of stylesheets  -->
     {% block styles %}
     {% endblock %}
+
     <title>The Book Nook</title>
+    
 </head>
 
 <body>
@@ -28,77 +31,106 @@
         <nav class="nav-extended text-shadow brown darken-3">
             <!-- top navbar  -->
             <div class="nav-wrapper">
-                <a href="{{ url_for('welcome') }}" class="title"><i class="fa-solid fa-book-open-reader welcome-open"></i></a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
-                        class="fa-solid fa-ellipsis"></i></a>
+                <a href="{{ url_for('welcome') }}" class="title" aria-label="link for welcome page">
+                    <i class="fa-solid fa-book-open-reader welcome-open"></i>
+                </a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"
+                    aria-label="link for mobile navigation menu">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ url_for('get_reviews', username=session['user']) }}">All Reviews</a></li>
-                    {% if session.user %}
-                    <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-
-                    <!-- could have superuser as a toggle like with favourites? and then add to app.py  -->
-
-                    {% if session.user|lower == "superuser"|lower %}
-                    <li><a href="{{ url_for('get_genres') }}">Manage Genres</a></li>
-                    <li><a href="{{ url_for('get_users') }}">Manage Users</a></li>
-                    {% endif %}
-                    <li><a href="{{ url_for('add_review') }}">Add Review</a></li>
-                    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                    <li>
+                        <a href="{{ url_for('get_reviews', username=session['user']) }}"
+                            aria-label="Link to review page">All Reviews</a>
+                    </li>
+                {% if session.user %}
+                    <li>
+                        <a href="{{ url_for('profile', username=session['user']) }}"
+                            aria-label="link to profile page">Profile</a>
+                    </li>
+                        {% if session.user|lower == "superuser"|lower %}
+                            <li>
+                                <a href="{{ url_for('get_genres') }}" aria-label="Link to manage genres">Manage Genres</a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('get_users') }}" aria-label="Link to manage users">Manage Users</a>
+                            </li>
+                        {% endif %}
+                    <li>
+                        <a href="{{ url_for('add_review') }}" aria-label="Link to add a review">Add Review</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('logout') }}" aria-label="Link to log out">Log Out</a>
+                    </li>
                     {% else %}
-                    <li><a href="{{ url_for('login') }}">Log In</a></li>
-                    <li><a href="{{ url_for('register') }}">Register</a></li>
-                    {% endif %}
+                    <li>
+                        <a href="{{ url_for('login') }}" aria-label="Link to log in">Log In</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('register') }}" aria-label="Link to register">Register</a>
+                    </li>
+                {% endif %}
                 </ul>
             </div>
         </nav>
         <!-- mobile navbar  -->
         <ul class="sidenav" id="mobile-demo">
-            <li><a href="{{ url_for('get_reviews', username=session['user']) }}">All Reviews</a></li>
-            {% if session.user %}
-            <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-            {% if session.user|lower == "superuser"|lower %}
-            <li><a href="{{ url_for('get_genres') }}">Manage Genres</a></li>
-            <li><a href="{{ url_for('get_users') }}">Manage Users</a></li>
-            {% endif %}
-            <li><a href="{{ url_for('add_review') }}">Add Review</a></li>
-            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-            {% else %}
-            <li><a href="{{ url_for('login') }}">Log In</a></li>
-            <li><a href="{{ url_for('register') }}">Register</a></li>
-            {% endif %}
+            <li>
+                <a href="{{ url_for('get_reviews', username=session['user']) }}" aria-label="Link to review page">All
+                    Reviews</a>
+            </li>
+                {% if session.user %}
+                    <li>
+                        <a href="{{ url_for('profile', username=session['user']) }}"
+                            aria-label="link to profile page">Profile</a>
+                    </li>
+                        {% if session.user|lower == "superuser"|lower %}
+                            <li>
+                                <a href="{{ url_for('get_genres') }}" aria-label="Link to manage genres">Manage Genres</a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('get_users') }}" aria-label="Link to manage users">Manage Users</a>
+                            </li>
+                        {% endif %}
+                    <li>
+                        <a href="{{ url_for('add_review') }}" aria-label="Link to add a review">Add Review</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('logout') }}" aria-label="Link to log out">Log Out</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{{ url_for('login') }}" aria-label="Link to log in">Log In</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('register') }}" aria-label="Link to register">Register</a>
+                    </li>
+                {% endif %}
         </ul>
     </header>
 
     <main>
         <!-- Flash messages -->
         {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        {% for message in messages %}
-        <div class="row flashes">
-            <h5 class="brown-text text-darken-3 center-align white-text">{{ message }}</h5>
-        </div>
-        {% endfor %}
-        {% endif %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row flashes">
+                        <h5 class="brown-text text-darken-3 center-align white-text">{{ message }}</h5>
+                    </div>
+                {% endfor %}
+            {% endif %}
         {% endwith %}
     </main>
 
     {% block content %}
-    <div class="container-fluid">
-
-
-    </div>
+        <div class="container-fluid">
+        </div>
     {% endblock %}
 
     <footer class="page-footer brown darken-3">
         <div class="container">
-
+            <!-- social media links  -->
             <div class="row center-align">
-                <!-- <div class="col s6 m6 center-align footer-links">
-                    <ul>
-                        <li><a class="grey-text text-lighten-3" href="#">Privacy Policy</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#">Terms and Conditions</a></li>
-                    </ul>
-                </div> -->
                 <div class="col s12 m12">
                     <a class="grey-text text-lighten-4 btn-floating social" href="https://www.facebook.com/"
                         target="_blank"><i class="fa-brands fa-facebook-f white blue-text"></i></a>
@@ -107,7 +139,9 @@
                     <a class="grey-text text-lighten-4 btn-floating social" href="https://github.com/suzybee1987"
                         target="_blank"><i class="fa-brands fa-github white black-text"></i></a>
                 </div>
-
+                <!-- end of social media links  -->
+                
+                <!-- copyright and date  -->
                 <div class="row">
                     <div class="col s12 m12 center-align">
                         <!-- code for datetime from code institute mini project Thorin&Co  -->
@@ -116,15 +150,16 @@
                         <p class="text-muted">This site is for educational purposes and all rights reserved by book
                             owners.</p>
                     </div>
+                    <!-- end of copyright and date  -->
                 </div>
             </div>
     </footer>
 
     {% block scripts %}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     {% endblock %}
 </body>
 

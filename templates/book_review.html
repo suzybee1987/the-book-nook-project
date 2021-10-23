@@ -5,10 +5,10 @@
     {% for review in reviews %}
     <div class="row">
         <div class="col s12 m8 offset-m2">
-            <div class="card-panel z-depth-4">
+            <div class="card-panel z-depth-4 card-padding-top">
                 <div class="row">
                     <div class="col s12 m12">
-                        <a class="btn" href="{{ url_for('get_reviews') }}">
+                        <a class="btn" href="{{ url_for('get_reviews') }}" aria-label="link to go back to reviews">
                             <i class="fa-solid fa-circle-chevron-left"></i>
                             Back to Reviews</a>
                     </div>
@@ -18,7 +18,8 @@
                 <div>
                     <a href="{{ url_for('add_favourite', favourite_id=review._id) }}"
                         class="btn-floating right waves-effect waves-light red tooltipped hide-on-small-only"
-                        data-position="top" data-tooltip="Save to Favourites"><i class="fa-solid fa-heart"></i>
+                        data-position="top" data-tooltip="Save to Favourites" aria-label="link to add book to favourites">
+                        <i class="fa-solid fa-heart"></i>
                     </a>
                 </div>
                 {% endif %}
@@ -92,12 +93,12 @@
                                 <div class="col s12">
                                     {% if session.user|lower == review.reviewed_by|lower %}
                                     <a href="{{ url_for('edit_review', review_id=review._id) }}"
-                                        class="btn waves-effect waves-light row-buttons">Edit
+                                        class="btn waves-effect waves-light row-buttons" aria-label="click to edit review">Edit
                                         <i class="fa-solid fa-pen-fancy"></i>
                                     </a>
                                     <!-- button launches modal1 asking "Are you sure you want to delete?"  -->
                                     <a href="#modal-book"
-                                        class="btn waves-effect row-buttons waves-light modal-trigger cancel">Delete
+                                        class="btn waves-effect row-buttons waves-light modal-trigger cancel" aria-label="click to delete review">Delete
                                         <i class="fa-solid fa-trash-can"></i>
                                     </a>
                                     {% endif %}
@@ -166,11 +167,11 @@
                                 <!-- Buttons  -->
                                 <div class="row center-align">
                                     <div class="col s12">
-                                        <button class="btn waves-effect waves-light" type="submit">Submit
+                                        <button class="btn waves-effect waves-light row-buttons" type="submit">Submit
                                             <i class="fa-solid fa-plus"></i>
                                         </button>
                                         <a href="{{ url_for('get_reviews') }}"
-                                            class="btn waves-effect waves-light cancel">Cancel <i
+                                            class="btn waves-effect waves-light cancel row-buttons">Cancel <i
                                                 class="fa-solid fa-xmark"></i>
                                         </a>
                                     </div>
@@ -181,7 +182,7 @@
                     {% else %}
                     <div class="row center-align">
                         <div class="col s12">
-                            <h6><a href="{{ url_for('login') }}">Log in</a> to add your thoughts</h6>
+                            <h6><a href="{{ url_for('login') }}" alt="link to log in page">Log in</a> to add your thoughts</h6>
                         </div>
                     </div>
                     {% endif %}
@@ -196,10 +197,8 @@
                             <div class="row">
                                 <div class="col s12 m12">
                                     <div class="card card-thought">
-                                     
                                             <h6 class="quotes card-title">"{{ thought.thoughts }}"
                                             </h6>
-                                       
                                         <div class="card-article">
                                             <hr>
                                             by
@@ -236,12 +235,12 @@
         <div class="modal-footer">
             <div class="row center-align">
                 <div class="col s6 m6">
-                    <a href="{{ url_for('delete_review', review_id=review._id) }}" class="waves-effect submit btn">I'm
+                    <a href="{{ url_for('delete_review', review_id=review._id) }}" class="waves-effect submit row-buttons btn">I'm
                         sure!
                         <i class="fa-solid fa-plus"></i></a>
                 </div>
                 <div class="col s6 m6">
-                    <a href="#" class="modal-close waves-effect cancel btn">Wait, no!<i
+                    <a href="#" class="modal-close waves-effect cancel row-buttons btn" alt="cancel button">Wait, no!<i
                             class="fa-solid fa-xmark"></i></a>
                 </div>
             </div>
