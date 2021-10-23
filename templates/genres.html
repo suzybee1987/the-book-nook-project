@@ -6,12 +6,12 @@
             <div class="card-panel z-depth-4">
                 <div class="row">
                     <div class="col s6 offset-s3 m6 offset-m3">
-                        <h3 class="genre-header center-align">Manage Genres</h3>
+                        <h3 class="review-header center-align">Manage Genres</h3>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12 center-align">
-                        <a href="{{ url_for('add_genre') }}" class="btn waves-effect waves-light">
+                        <a href="{{ url_for('add_genre') }}" class="btn waves-effect waves-light row-buttons">
                             Add New Genre
                         </a>
                     </div>
@@ -25,11 +25,11 @@
                             </div>
                             <div class="card-body">
                                 <a href="{{ url_for('edit_genre', genre_id=genre._id) }}"
-                                    class="btn waves-effect waves-light">Edit
+                                    class="btn waves-effect waves-light row-buttons">Edit
                                     <i class="fa-solid fa-pen-fancy"></i>
                                 </a>
                                 <a href="{{ url_for('see_genre', genre_id=genre._id) }}"
-                                    class="btn waves-effect waves-light modal-trigger cancel">Delete
+                                    class="btn waves-effect waves-light modal-trigger cancel row-buttons">Delete
                                     <i class="fa-solid fa-trash-can"></i>
                                 </a>
                             </div>

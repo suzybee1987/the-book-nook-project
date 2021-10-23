@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="hero-add-review">
-    <div class="row">
+    <div class="row genre">
         {% for genre in genres %}
-        <div class="col s12 m8 offset-m2">
+        <div class="col s12 m6 offset-m3">
             <div class="card-panel">
                 <a href="{{ url_for('get_genres') }}" class="btn waves-effect waves-light"><i
                         class="fa-solid fa-chevron-left"></i>
@@ -16,19 +16,18 @@
                 </div>
                 <!-- Genre  -->
                 <div class="row center-align">
-                    <div class="col s12 m10 offset-m1 input-field">
-                        <h4>Genre to be deleted:</h4>
-                        <h5>{{ genre.genre_name }}</h5>
-                        
+                    <div class="col s12 m10 offset-m1">
+                        <h5>Genre to be deleted:</h5>
+                        <h6>{{ genre.genre_name }}</h6>
                     </div>
                 </div>
                 <!-- Submit  -->
                 <div class="row center-align">
                     <div class="col s12 m12">
-                        <a class="btn waves-effect waves-light modal-trigger" href="#modal-genre">
+                        <a  class="btn row-buttons waves-effect waves-light modal-trigger">
                             Delete Genre <i class="fa-solid fa-pen-fancy"></i>
                         </a>
-                        <a href="{{ url_for('get_genres') }}" class="btn waves-effect waves-light cancel">
+                        <a href="{{ url_for('get_genres') }}" class="btn row-buttons waves-effect waves-light cancel">
                             Cancel <i class="fa-solid fa-xmark"></i>
                         </a>
                     </div>
@@ -38,12 +37,12 @@
                     <div class="modal-content">
                         <div class="row center-align">
                             <div class="col s12 m12">
-                                <h4 class="review-title">Are you sure you want to delete this?</h4>
+                                <h4 class="modal-title">Are you sure you want to delete this?</h4>
                             </div>
                         </div>
                         <div class="row center-align">
                             <div class="col s12 m12">
-                                <h5>You are deleting {{ genre.genre_name }}.</h5>
+                                <h5>You are deleting <em>{{ genre.genre_name }}</em>.</h5>
                             </div>
                         </div>
 
@@ -52,11 +51,11 @@
                         <div class="row center-align">
                             <div class="col s6 m6">
                                 <a href="{{ url_for('delete_genre', genre_id=genre._id) }}"
-                                    class="waves-effect submit btn">I'm sure!
+                                    class="waves-effect submit btn row-buttons">I'm sure!
                                     <i class="fa-solid fa-plus"></i></a>
                             </div>
                             <div class="col s6 m6">
-                                <a href="#" class="modal-close waves-effect cancel btn">Wait, no!<i
+                                <a href="#" class="modal-close row-buttons waves-effect cancel btn">Wait, no!<i
                                         class="fa-solid fa-xmark"></i></a>
                             </div>
                         </div>

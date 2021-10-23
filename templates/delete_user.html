@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="hero-add-review">
-    <div class="row">
+    <div class="row user">
         {% for user in users %}
         <div class="col s12 m8 offset-m2">
             <div class="card-panel">
@@ -16,38 +16,37 @@
                 </div>
                 <!-- user  -->
                 <div class="row center-align">
-                    <div class="col s12 m10 offset-m1 input-field">
-                        <h4>User to be deleted:</h4>
-                        <h5>Username: {{ user.username }}</h5>
-                        <h5>First name: {{ user.fname }}</h5>
-                        <h5>Lastname: {{ user.lname }}</h5>
+                    <div class="col s12 m10 offset-m1">
+                        <h5>User to be deleted:</h5>
+                        <h6>Username: {{ user.username }}</h6>
+                        <h6>First name: {{ user.fname }}</h6>
+                        <h6>Lastname: {{ user.lname }}</h6>
                     </div>
                 </div>
                 <!-- Submit  -->
                 <div class="row center-align">
                     <div class="col s12 m12">
-                        <a class="btn waves-effect waves-light modal-trigger" href="#modal-user">
+                        <a href="#modal-user" class="btn row-buttons waves-effect waves-light modal-trigger">
                             Delete user <i class="fa-solid fa-pen-fancy"></i>
                         </a>
-                        <a href="{{ url_for('get_users') }}" class="btn waves-effect waves-light cancel">
+                        <a href="{{ url_for('get_users') }}" class="btn row-buttons waves-effect waves-light cancel">
                             Cancel <i class="fa-solid fa-xmark"></i>
                         </a>
                     </div>
                 </div>
-                <!-- modal1  -->
+                <!-- modal-user  -->
                 <div id="modal-user" class="modal modal-delete">
                     <div class="modal-content">
                         <div class="row center-align">
                             <div class="col s12 m12">
-                                <h4 class="review-title">Are you sure you want to delete this user?</h4>
+                                <h4 class="modal-title">Are you sure you want to delete this user?</h4>
                             </div>
                         </div>
                         <div class="row center-align">
                             <div class="col s12 m12">
-                                <h5>You are deleting {{ user.username }}.</h5>
+                                <h5>You are deleting <em>{{ user.username }}</em>.</h5>
                             </div>
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <div class="row center-align">
