@@ -1,13 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Pacifico&family=Poppins&family=Special+Elite&display=swap');
-/* font-family: 'Libre Baskerville', serif;
-font-family: 'Pacifico', cursive;
-font-family: 'Poppins', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Libre+Baskerville&family=Merienda:wght@400;700&family=Special+Elite&display=swap');
+/* font-family: 'Libre Baskerville', serif; 
+font-family: 'Lato', sans-serif;
+font-family: 'Merienda', cursive;
 font-family: 'Special Elite', cursive; */
+
 
 body,
 html {
     padding: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
 /* Navbar  */
@@ -130,17 +131,29 @@ main {
 }
 
 .curly {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Merienda', cursive;
+    font-weight:700;
 }
 
 .brown-text {
     color: #473732;
 }
 
+.underline {
+    text-decoration: underline;
+}
+
+.rating {
+    padding-bottom:10px;
+}
 .row {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0;
+}
+
+.row-buttons {
+    margin:20px;
 }
 
 .social {
@@ -248,7 +261,7 @@ h2,
 
 .profile-link {
     color: #473732;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Lato', sans-serif;
 
 }
 
@@ -287,7 +300,7 @@ h2,
 }
 
 .card-review {
-    min-height: 750px;
+    height: 650px;
 }
 
 #myBtn {
@@ -312,21 +325,21 @@ h2,
 
 .review-title {
     font-family: 'Libre Baskerville';
+    font-size: 1.1em;
     text-decoration: underline;
-
+    padding-bottom: 12px;
 }
 
 .review-card-title {
-    padding-top: 15px;
+    /* padding-top: 15px; */
     font-family: 'Special Elite', cursive;
     text-decoration: underline;
 }
 
 .small-title {
     font-size: 20px;
-    font-family: 'Poppins',
+    font-family: 'Lato',
         sans-serif;
-
 }
 
 .card-body-description {
@@ -336,6 +349,10 @@ h2,
 .review-image-reviews {
     max-height: 400px;
     padding-top: 15px;
+}
+
+.favourite {
+    margin-top: 10px;
 }
 
 /* End of review page  */
@@ -403,6 +420,12 @@ h2,
 .book-review-image {
     padding-top: 20px;
     max-height: 600px;
+}
+
+.quotes {
+    color: #473732;
+    font-family: 'Merienda', cursive;
+
 
 }
 
@@ -425,7 +448,6 @@ h2,
 .separator--line {
     border: 0;
     border-bottom: 5px solid #473732;
-
     width: 0;
     animation: separator-width 1s ease-out forwards;
 }
@@ -437,22 +459,6 @@ h2,
 
     100% {
         width: 60%;
-    }
-}
-
-
-/* code to remove the margin from textarea on mobile  */
-
-@media only screen and (max-width: 600px) {
-
-    .input-field .prefix~input,
-    .input-field .prefix~textarea,
-    .input-field .prefix~label,
-    .input-field .prefix~.validate~label,
-    .input-field .prefix~.helper-text,
-    .input-field .prefix~.autocomplete-content {
-        margin-left: 0;
-        width: 100%;
     }
 }
 

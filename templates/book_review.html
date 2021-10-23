@@ -7,13 +7,21 @@
         <div class="col s12 m8 offset-m2">
             <div class="card-panel z-depth-4">
                 <div class="row">
-                    <div class="col s10 offset-m1 m10 offset-m1">
+                    <div class="col s10 offset-s1 m10 offset-m1">
                         <a class="btn" href="{{ url_for('get_reviews') }}">
                             <i class="fa-solid fa-circle-chevron-left"></i>
                             Back to Reviews</a>
                     </div>
                 </div>
-
+                <!-- if user is logged in show the favourites button  -->
+                {% if session['user'] %}
+                <div>
+                    <a href="{{ url_for('add_favourite', favourite_id=review._id) }}"
+                        class="btn-floating right waves-effect waves-light red tooltipped hide-on-small-only"
+                        data-position="top" data-tooltip="Save to Favourites"><i class="fa-solid fa-heart"></i>
+                    </a>
+                </div>
+                {% endif %}
                 <div class="row center-align">
                     <div class="col s12 m6">
                         <div class="card-image center-align">
@@ -30,15 +38,6 @@
 
                     <!-- book info  -->
                     <div class="col s12 m6">
-                        <!-- if user is logged in show the favourites button  -->
-                        {% if session['user'] %}
-                        <div>
-                            <a href="{{ url_for('add_favourite', favourite_id=review._id) }}"
-                                class="btn-floating right waves-effect waves-light red tooltipped" data-position="top"
-                                data-tooltip="Save to Favourites"><i class="fa-solid fa-heart"></i>
-                            </a>
-                        </div>
-                        {% endif %}
                         <!-- end fave button  -->
                         <h4 class="review-card-title">
                             {{ review.book_name }}</h4>
@@ -52,21 +51,34 @@
                             <p>{{ review.description }}</p>
                         </div>
                     </div>
-                    <!-- end of book info  -->
+                </div>
+                {% if session['user'] %}
+                <div class="row center-align">
+                    <div class="col s12 m12">
+                        <a href="{{ url_for('add_favourite', favourite_id=review._id) }}"
+                            class="btn-floating middle waves-effect waves-light red tooltipped hide-on-med-and-up"
+                            data-position="top" data-tooltip="Save to Favourites"><i class="fa-solid fa-heart"></i>
+                        </a>
+                    </div>
+                </div>
 
-                    <!-- Review  -->
+                {% endif %}
+                <!-- end of book info  -->
+
+                <!-- Review  -->
+                <div class="row">
                     {% for review in reviews %}
                     <div class="col s12 m12 l12 xl12">
                         <div class="card-panel">
                             <div class="card-title">
-                                <h6 class="review-title">{{ review.review_title }} {{ review.rating_no }}/5
+                                <h6 class="quotes">{{ review.review_title }} {{ review.rating_no }}/5
                                 </h6>
                             </div>
                             <hr>
                             <div class="card-body">
-                                <p>{{ review.review }}</p>
-                                <p>Reviewer: '{{ review.reviewed_by }}'</p>
-                                <p>Review posted on {{ review.review_date.strftime("%d %B %y at %H:%M") }}</p>
+                                <p class="quotes">{{ review.review }}</p>
+                                <p>Reviewed by '{{ review.reviewed_by }}' on {{ review.review_date.strftime("%d %B %y at
+                                    %H:%M") }}</p>
                             </div>
                             <!-- edit/delete buttons if review written by user or admin -->
                             <div class="row center-align">
@@ -77,7 +89,8 @@
                                         <i class="fa-solid fa-pen-fancy"></i>
                                     </a>
                                     <!-- button launches modal1 asking "Are you sure you want to delete?"  -->
-                                    <a href="#modal-book" class="btn waves-effect waves-light modal-trigger cancel">Delete
+                                    <a href="#modal-book"
+                                        class="btn waves-effect waves-light modal-trigger cancel">Delete
                                         <i class="fa-solid fa-trash-can"></i>
                                     </a>
                                     {% endif %}
@@ -87,8 +100,8 @@
                         </div>
                     </div>
                     {% endfor %}
-                    <!-- end of review  -->
                 </div>
+                <!-- end of review  -->
 
                 <hr class="separator separator--line">
                 <!-- link to waterstones site  -->
@@ -123,10 +136,10 @@
                                 action="{{ url_for('add_thoughts', thoughts_id=review._id) }}">
                                 <div class="row">
                                     <div class="col s12 m10 offset-m1 input-field">
-                                        <i class="fa-solid fa-keyboard prefix hide-on-small-only"></i>
+                                        <i class="fa-solid fa-keyboard prefix"></i>
                                         <textarea id="thoughts" name="thoughts" class="materialize-textarea"
                                             required></textarea>
-                                        <label for="thoughts" class="hide-on-small-only">Your thoughts on this
+                                        <label for="thoughts">Your thoughts on this
                                             book</label>
                                     </div>
                                 </div>
@@ -157,22 +170,23 @@
                 {% if review.thoughts|length > 0 %}
                 <div class="card-panel">
                     <div class="row">
-                        <div class="col s10 offset-s1 m10 offset-m1">
-                            <div class="review-header">What others thought...</div>
+                        <div class="col s12 m12">
+                            <div class="review-title center-align">What others thought...</div>
                             {% for thought in review.thoughts %}
                             <div class="row">
-                                <div class="col s12 m8">
+                                <div class="col s12 m12">
                                     <div class="card-panel">
                                         <div class="card-title">
-                                            <h6 class="review-title">{{ thought.thoughts }}
+                                            <h6 class="quotes">"{{ thought.thoughts }}"
                                             </h6>
                                         </div>
-                                        <div class="card-body">
-                                            by
-                                            {{ thought.review_by }}
-                                            on
-                                            {{ thought.reviewed_date.strftime("%d %B %y at %H:%M") }}
-                                        </div>
+                                        <hr>
+
+                                        by
+                                        {{ thought.review_by }}
+                                        on
+                                        {{ thought.reviewed_date.strftime("%d %B %y at %H:%M") }}
+
                                     </div>
                                 </div>
                             </div>
