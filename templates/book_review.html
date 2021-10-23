@@ -7,7 +7,7 @@
         <div class="col s12 m8 offset-m2">
             <div class="card-panel z-depth-4">
                 <div class="row">
-                    <div class="col s10 offset-s1 m10 offset-m1">
+                    <div class="col s12 m12">
                         <a class="btn" href="{{ url_for('get_reviews') }}">
                             <i class="fa-solid fa-circle-chevron-left"></i>
                             Back to Reviews</a>
@@ -56,7 +56,7 @@
                 <div class="row center-align">
                     <div class="col s12 m12">
                         <a href="{{ url_for('add_favourite', favourite_id=review._id) }}"
-                            class="btn-floating middle waves-effect waves-light red tooltipped hide-on-med-and-up"
+                            class="btn-floating middle waves-effect waves-light red tooltipped hide-on-med-and-up favourite-review"
                             data-position="top" data-tooltip="Save to Favourites"><i class="fa-solid fa-heart"></i>
                         </a>
                     </div>
@@ -65,18 +65,25 @@
                 {% endif %}
                 <!-- end of book info  -->
 
+                <hr class="separator separator--line">
+
                 <!-- Review  -->
+                <div class="row center-align">
+                    <div class="col s12 m12">
+                        <h5 class="review-title">Review</h5>
+                    </div>
+                </div>
                 <div class="row">
                     {% for review in reviews %}
                     <div class="col s12 m12 l12 xl12">
                         <div class="card-panel">
-                            <div class="card-title">
-                                <h6 class="quotes">{{ review.review_title }} {{ review.rating_no }}/5
+                           
+                                <h6 class="quotes card-title">"{{ review.review_title }}" {{ review.rating_no }}/5
                                 </h6>
-                            </div>
+                           
                             <hr>
                             <div class="card-body">
-                                <p class="quotes">{{ review.review }}</p>
+                                <p class="quotes">"{{ review.review }}"</p>
                                 <p>Reviewed by '{{ review.reviewed_by }}' on {{ review.review_date.strftime("%d %B %y at
                                     %H:%M") }}</p>
                             </div>
@@ -85,12 +92,12 @@
                                 <div class="col s12">
                                     {% if session.user|lower == review.reviewed_by|lower %}
                                     <a href="{{ url_for('edit_review', review_id=review._id) }}"
-                                        class="btn waves-effect waves-light">Edit
+                                        class="btn waves-effect waves-light row-buttons">Edit
                                         <i class="fa-solid fa-pen-fancy"></i>
                                     </a>
                                     <!-- button launches modal1 asking "Are you sure you want to delete?"  -->
                                     <a href="#modal-book"
-                                        class="btn waves-effect waves-light modal-trigger cancel">Delete
+                                        class="btn waves-effect row-buttons waves-light modal-trigger cancel">Delete
                                         <i class="fa-solid fa-trash-can"></i>
                                     </a>
                                     {% endif %}
@@ -108,8 +115,6 @@
                 <div class="row center-align">
                     <div class="col s12">
                         <div class="card-action">
-                            <!-- Here i'd like to click the link to go to book_review.html for the selected book  -->
-
                             Please support your local bookshop <a href="https://www.booksellers.org.uk/bookshopsearch"
                                 target="_blank" class="waves-light waves-light" alt="Link to find local book shop">here!
                                 <i class="fa-solid fa-basket-shopping"></i></a>
@@ -118,6 +123,20 @@
                 </div>
                 <!-- end of link  -->
 
+                <!-- link to amazon  -->
+                <div class="row center-align">
+                    <div class="col s12">
+                        <div class="card-action">
+                            Or buy from Amazon
+                            <p>
+                                <a href="https://www.amazon.co.uk/" alt="link to amazon" target="_blank"
+                                    class="btn waves-light waves-light">
+                                    <i class="fa-brands fa-amazon"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of link  -->
                 <hr class="separator separator--line">
 
                 <!-- thoughts section  -->
@@ -140,7 +159,8 @@
                                         <textarea id="thoughts" name="thoughts" class="materialize-textarea"
                                             required></textarea>
                                         <label for="thoughts">Your thoughts on this
-                                            book</label>
+                                            book
+                                        </label>
                                     </div>
                                 </div>
                                 <!-- Buttons  -->
@@ -171,22 +191,22 @@
                 <div class="card-panel">
                     <div class="row">
                         <div class="col s12 m12">
-                            <div class="review-title center-align">What others thought...</div>
+                            <h4 class="review-title center-align">What others thought...</h4>
                             {% for thought in review.thoughts %}
                             <div class="row">
                                 <div class="col s12 m12">
-                                    <div class="card-panel">
-                                        <div class="card-title">
-                                            <h6 class="quotes">"{{ thought.thoughts }}"
+                                    <div class="card card-thought">
+                                     
+                                            <h6 class="quotes card-title">"{{ thought.thoughts }}"
                                             </h6>
+                                       
+                                        <div class="card-article">
+                                            <hr>
+                                            by
+                                            {{ thought.review_by }}
+                                            |
+                                            {{ thought.reviewed_date.strftime("%d %B %y | %H:%M") }}
                                         </div>
-                                        <hr>
-
-                                        by
-                                        {{ thought.review_by }}
-                                        on
-                                        {{ thought.reviewed_date.strftime("%d %B %y at %H:%M") }}
-
                                     </div>
                                 </div>
                             </div>
@@ -204,12 +224,12 @@
         <div class="modal-content">
             <div class="row center-align">
                 <div class="col s12 m12">
-                    <h4 class="review-title">Are you sure you want to delete this?</h4>
+                    <h4 class="modal-title">Are you sure you want to delete this?</h4>
                 </div>
             </div>
             <div class="row center-align">
                 <div class="col s12 m12">
-                    <h5>You are deleting {{ review.book_name }} by {{ review.author_name }}.</h5>
+                    <h5>You are deleting <em>{{ review.book_name }}</em> by <em>{{ review.author_name }}</em>.</h5>
                 </div>
             </div>
         </div>

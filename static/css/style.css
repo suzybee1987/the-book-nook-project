@@ -12,6 +12,13 @@ html {
 }
 
 /* Navbar  */
+@media screen {}
+
+@media only screen and (max-width: 600px) {
+    .welcome-open {
+        padding: 15px;
+    }
+}
 
 .fa-solid.fa-book-open-reader {
     padding-left: 15px;
@@ -124,18 +131,22 @@ main {
 .card-panel,
 .card {
     border-radius: 12px;
+    background-color: rgba(255 248 246 / 90%);
 }
 
-.card-panel {
-    background-color: rgba(255 248 246 / 90%);
+.card-thought {
+    /* https: //getcssscan.com/css-box-shadow-examples 
+box shadow #69 */
+    border: solid 2px #473732;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
+        rgba(17, 17, 26, 0.1) 0px 8px 24px,
+        rgba(17, 17, 26, 0.1) 0px 16px 48px;
+        padding: 12px;
 }
 
 .curly {
     font-family: 'Merienda', cursive;
-    font-weight:700;
-}
-
-.brown-text {
+    font-weight: 700;
     color: #473732;
 }
 
@@ -144,8 +155,9 @@ main {
 }
 
 .rating {
-    padding-bottom:10px;
+    padding-bottom: 10px;
 }
+
 .row {
     margin-left: auto;
     margin-right: auto;
@@ -153,7 +165,7 @@ main {
 }
 
 .row-buttons {
-    margin:20px;
+    margin: 20px;
 }
 
 .social {
@@ -180,7 +192,8 @@ main {
     background-color: #473732;
 }
 
-.cancel, .reset {
+.cancel,
+.reset {
     color: #473732 !important;
     background-color: #fff !important;
 }
@@ -287,8 +300,7 @@ h2,
     min-height: 90vh;
 }
 
-.review-header,
-.genre-header {
+.review-header {
     font-family: 'Libre Baskerville', serif;
     color: #473732;
     border-bottom: 2px solid #473732;
@@ -325,15 +337,19 @@ h2,
 
 .review-title {
     font-family: 'Libre Baskerville';
-    font-size: 1.1em;
+    font-size: 1.3em;
     text-decoration: underline;
     padding-bottom: 12px;
 }
 
 .review-card-title {
-    /* padding-top: 15px; */
     font-family: 'Special Elite', cursive;
     text-decoration: underline;
+}
+
+.card-title {
+        font-size:1.5em;
+        font-weight:600;
 }
 
 .small-title {
@@ -353,6 +369,10 @@ h2,
 
 .favourite {
     margin-top: 10px;
+}
+
+.favourite-review {
+    margin-bottom: 10px;
 }
 
 /* End of review page  */
@@ -425,8 +445,10 @@ h2,
 .quotes {
     color: #473732;
     font-family: 'Merienda', cursive;
+}
 
-
+.thoughts {
+    background-color: #DCB7A8;
 }
 
 /* for larger screens add a bit of padding to the top of the image  */
@@ -483,10 +505,26 @@ h2,
 /* end of edit review  */
 
 
-/* delete modal  */
+/* modal  */
+
+#modal-genre,
+#modal-user {
+    overflow-x: hidden;
+}
 
 .modal-delete {
     border-radius: 5px;
-    background-color:#473732;
-    color:#fff8f6e6;
+    background-color: #473732;
+    color: #fff8f6e6;
+}
+
+.modal-title {
+    font-family: 'Libre Baskerville', serif;
+    text-decoration: underline;
+    color: #fff;
+}
+
+.genre,
+.user {
+    padding-top: 20px;
 }
