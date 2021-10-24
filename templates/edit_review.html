@@ -83,10 +83,14 @@
                 </div>
                 <!-- Front page cover url  -->
                 <div class="row">
-                    <div class="col s12 m10 offset-m1 input-field">
+                    <div class="col s10 m10 offset-m1 input-field">
                         <i class="fa-solid fa-book prefix"></i>
-                        <input id="image" name="image" type="url" class="validate" value="{{ review.image }}">
+                        <input id="image" name="image" type="url" class="validate">
                         <label for="image">URL of book cover</label>
+                        <i class="fa-solid fa-circle-question tooltipped prefix hide-on-small-only" data-position="bottom"
+                            data-tooltip="Hint: Right-click the image you'd like to upload, click 'Copy Link Address' then paste in here."></i>
+                    </div>
+                    <div class="col s2 m2 show-on-small hide-on-med-and-up">
                         <i class="fa-solid fa-circle-question tooltipped prefix" data-position="bottom"
                             data-tooltip="Hint: Right-click the image you'd like to upload, click 'Copy Link Address' then paste in here."></i>
                     </div>
