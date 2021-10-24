@@ -250,7 +250,8 @@ def edit_review(review_id):
             "image": request.form.get("image"),
             "rating_no": request.form.get("rating"),
             "favourites": request.form.get("favourites"),
-            "reviewed_by": session["user"]
+            "reviewed_by": session["user"],
+            "review_date": datetime.datetime.utcnow()
         }
         mongo.db.reviews.update({"_id": ObjectId(review_id)}, submit)
         flash("Review successfully updated")
