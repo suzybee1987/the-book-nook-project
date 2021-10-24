@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
+
 <div class="hero-add-review">
     <div class="row">
-        <div class="card-panel col s12 m8 offset-m2">
+        <div class="card-panel col s12 m6 offset-m3 card-padding-top">
             <!-- back to reviews button  -->
             <div class="row">
                 <div class="col s4 m4">
-                    <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light"><i
-                            class="fa-solid fa-chevron-left"></i>
+                    <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light row-buttons"
+                        alt="back to reviews">
+                        <i class="fa-solid fa-chevron-left"></i>
                         Back to reviews
                     </a>
                 </div>
@@ -19,7 +21,7 @@
             </div>
 
             <!-- form submit to edit review  -->
-            <form class="col s12 m10 offset-m1" method="POST" action="{{ url_for('edit_review', review_id=review._id) }}">
+            <form method="POST" action="{{ url_for('edit_review', review_id=review._id) }}">
                 <div class="row">
                     <div class="col s12 m10 offset-m1 input-field"><i class="fa-solid fa-dragon prefix"></i>
                         <select id="genre_name" name="genre_name" class="validate" required>
@@ -51,7 +53,7 @@
                         <label for="author_name">Author</label>
                     </div>
                 </div>
-                <!-- Review text area  -->
+                <!-- Review title  -->
                 <div class="row">
                     <div class="col s12 m10 offset-m1 input-field">
                         <i class="fa-solid fa-user-pen prefix"></i>
@@ -60,6 +62,7 @@
                         <label for="review_title">Review Title</label>
                     </div>
                 </div>
+                <!-- review text area  -->
                 <div class="row">
                     <div class="col s12 m10 offset-m1 input-field">
                         <i class="fa-solid fa-keyboard prefix"></i>
@@ -68,6 +71,7 @@
                         <label for="review">Review</label>
                     </div>
                 </div>
+                <!-- book description  -->
                 <div class="row">
                     <div class="col s12 m10 offset-m1 input-field">
                         <i class="fa-solid fa-keyboard prefix"></i>
@@ -77,24 +81,28 @@
                         <label for="description">Description</label>
                     </div>
                 </div>
+                <!-- Front page cover url  -->
                 <div class="row">
                     <div class="col s12 m10 offset-m1 input-field">
                         <i class="fa-solid fa-book prefix"></i>
                         <input id="image" name="image" type="url" class="validate" value="{{ review.image }}">
-                        <label for="image">Cover Image for Book</label>
+                        <label for="image">URL of book cover</label>
+                        <i class="fa-solid fa-circle-question tooltipped prefix" data-position="bottom"
+                            data-tooltip="Hint: Right-click the image you'd like to upload, click 'Copy Link Address' then paste in here."></i>
                     </div>
                 </div>
+                <!-- Rating  -->
                 <div class="row">
                     <div class="col s12 m10 offset-m1 input-field">
                         <i class="fa-solid fa-star prefix"></i>
                         <select id="rating" name="rating" class="validate" required>
                             <option value="" disabled selected>Rating</option>
                             {% for rating in ratings %}
-                                {% if review.rating_no == review.rating_no %}
-                                    <option value="{{ rating.rating_no }}" selected>{{ rating.rating_no }}</option>
-                                {% else %}
-                                    <option value="{{ rating.rating_no }}">{{ rating.rating_no }}</option>
-                                {% endif %}
+                            {% if review.rating_no == review.rating_no %}
+                            <option value="{{ rating.rating_no }}" selected>{{ rating.rating_no }}</option>
+                            {% else %}
+                            <option value="{{ rating.rating_no }}">{{ rating.rating_no }}</option>
+                            {% endif %}
                             {% endfor %}
                         </select>
                         <label for="rating"></label>
@@ -102,17 +110,20 @@
                     <!-- Buttons  -->
                     <div class="row center-align">
                         <div class="col s12">
-                            <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light">Cancel <i
-                                    class="fa-solid fa-xmark"></i>
-                            </a>
-                            <button class="btn waves-effect waves-light" type="submit">Edit Review <i
-                                    class="fa-solid fa-pen-fancy"></i>
+                            <button class="btn waves-effect waves-light row-buttons" type="submit">
+                                Edit Review
+                                <i class="fa-solid fa-pen-fancy"></i>
                             </button>
+                            <a href="{{ url_for('get_reviews') }}"
+                                class="btn waves-effect waves-light row-buttons cancel">
+                                Cancel
+                                <i class="fa-solid fa-xmark"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
+            </form>
         </div>
-        </form>
     </div>
 </div>
 
