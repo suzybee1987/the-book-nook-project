@@ -360,7 +360,8 @@ See below for how this was managed:
 
 ## **Testing**
 
-- Testing can be found [here](TESTING.md)
+- Testing and Bugs can be found [here](TESTING.md)
+
 
 ## **Deployment**
 
