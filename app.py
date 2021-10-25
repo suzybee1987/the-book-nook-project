@@ -221,7 +221,6 @@ def add_review():
             "description": request.form.get("description"),
             "rating_no": request.form.get("rating"),
             "image": request.form.get("image"),
-            "favourites": request.form.get("favourites"),
             "reviewed_by": session["user"],
             "review_date": datetime.datetime.utcnow()
         }
@@ -249,7 +248,6 @@ def edit_review(review_id):
             "description": request.form.get("description"),
             "image": request.form.get("image"),
             "rating_no": request.form.get("rating"),
-            "favourites": request.form.get("favourites"),
             "reviewed_by": session["user"],
             "review_date": datetime.datetime.utcnow()
         }
