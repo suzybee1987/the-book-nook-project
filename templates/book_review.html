@@ -79,12 +79,12 @@
                     <div class="col s12 m12 l12 xl12">
                         <div class="card-panel">
                            
-                                <h6 class="quotes card-title">{{ review.review_title }} {{ review.rating_no }}/5
+                                <h6 class="quotes card-title">"{{ review.review_title }}" {{ review.rating_no }}/5
                                 </h6>
                            
                             <hr>
                             <div class="card-body">
-                                <p class="quotes">{{ review.review }}</p>
+                                <p class="quotes">"{{ review.review }}"</p>
                                 <p>Reviewed by '{{ review.reviewed_by }}' on {{ review.review_date.strftime("%d %B %y at
                                     %H:%M") }}</p>
                             </div>

@@ -70,7 +70,7 @@ Link to [live site]
 
 
 ### **Site Owner Goals** 
-- Earn money on each book purchased via an affiliate link from the site.
+- Earn money on each book purchased via an affiliate link from the site. Note no affiliate link was created for this site but a link to Amazon has been provided.
 - I want the site to be responsive on all devices for the best user experience to encourage customers to return. 
 
 
@@ -96,7 +96,7 @@ Link to [live site]
 
 ### **Imagery**
 
-The images used were taken from [Pexels](https://www.pexels.com/) which offers royalty free use of images as long as not for a business use. They were all used to compliment the colour scheme of the header and footer.
+The images used were taken from [Pexels](https://www.pexels.com/) which offers royalty free use of images as long as not for business use. They were all used to complement the colour scheme of the header and footer.
 - The [Register and Log in pages](static/images/pexels-skitterphoto.jpg) have a background image of a nice big library space to make the site inviting.
 - The [Welcome page and Profile page](static/images/pexels-skitterphoto-book.jpg) show a nice background image of a book opened wide with the pages spread out to encourage the user to come in to the book site. 
 - The [Hero Image](static/images/pexels-books-long.jpg) for the reviews page was used to bring a splash of colour and innovation. 
@@ -107,7 +107,7 @@ The images used were taken from [Pexels](https://www.pexels.com/) which offers r
 
 ### **Wireframes**
 
-The wireframes were created using [Adobe XD](https://www.adobe.com/uk/products/xd.html) and can be found in pdf form in [wireframes](wireframes)
+The wireframes were created using [Adobe XD](https://www.adobe.com/uk/products/xd.html) and can be found in pdf form in [wireframes](wireframes).
 
 
 - Desktop view
@@ -220,7 +220,7 @@ The wireframes were created using [Adobe XD](https://www.adobe.com/uk/products/x
 
 ### **Features Implemented**
 
-#### Features relevant to all pages (extended via *base.html*):
+#### **Features relevant to all pages** (extended via *base.html*):
 
 - **Header**
   - **Navigation**
@@ -242,14 +242,21 @@ The wireframes were created using [Adobe XD](https://www.adobe.com/uk/products/x
     - Copyright symbol with datetime feature to update the date every year
 
 
-#### Welcome Page (*welcome.html*) 
+#### **Welcome Page** (*welcome.html*) 
     - Card displaying an introduction to the site including name, brief description and typewriter feature on medium and above screen sizes prompting the user to log in. Button to click to enter the site, leading to *reviews.html*. User is not required to log in to view reviews. 
     - Carousel of quotes from authors about books for users to view and enjoy.
 
 
+#### **Log In Page** (*login.html*)
+  **Form** 
+    - Card requesting the user sign in with their username and password with prompt to create an account if they haven't already registered and linking them to `register.html` 
 
 
-#### Profile Page (*profile.html*)
+#### **Register** (*register.html*)
+   **Form**
+   - Card requesting the user register with their email address, name, username and password with prompt to log in to an account if they have already registered and linking them to `login.html`.
+
+#### **Profile Page** (*profile.html*)
 
 - **Welcome**
     - Feedback to user that they have been logged in through flash message at the top of the page to feedback that log in was successful and also card heading `Welcome <users first name>` for the personal touch.
@@ -259,8 +266,7 @@ The wireframes were created using [Adobe XD](https://www.adobe.com/uk/products/x
     - Reviews where the user has clicked to add to favourites are located here, including book name, author and a link to remove the review from favourites. The user can click the book name link to be taken to the review if they wish.
     
 
-
-#### All Reviews (*reviews.html*)
+#### **All Reviews** (*reviews.html*)
 
  - **Search Bar**
     - The search bar allows the user to search by book name, author, genre and reviewed by so they can find more books based on their interests. Search and reset buttons present for easy use. 
@@ -268,7 +274,7 @@ The wireframes were created using [Adobe XD](https://www.adobe.com/uk/products/x
 - **Book Reviews**
     - List present of all books reviewed so far by other users including book front cover image, book name, author, title of review, rating, link to full review and button to save to favourites. This button allows the user to save for their own use later. By clicking on the image of the front cover or `See Full Review` link the user is directed to the full review page where they can add their thoughts. If no image available for the book review a default alternative will be posted. This is completed using Jinja for loop of reviews and extracting information from MongoDB.
 
-#### **Book Review Page**
+#### **Book Review Page** (*book_review.html*)
 
   - **Book Review**
     - Image of book cover, book name, author and brief description of the book is displayed on page loading. This is completed using Jinja for loop of reviews and extracting information from MongoDB. Favourite button also present here to allow user to save to their profile.
@@ -302,13 +308,32 @@ The wireframes were created using [Adobe XD](https://www.adobe.com/uk/products/x
     - The `Back to Reviews` button redirects the user back to *reviews.html* to prevent them having to press the browser back button for better user experience. This is also achieved by clicking `Cancel` underneath the form. The `Submit Review` button submits the add review form.
 
 
+#### **Manage Users** (*users.html*) - Only seen by admin user
+  - Card displaying all of the users who have registered so far with options to edit them or delete them.
+  - **Edit users** button leads to (*edit_user.html*) and a form where a switch can be flipped to make a user an admin. The user's username is generated to provide confirmation of user to be made admin.
+  - **Delete users** button leads to (*delete_user.html*) and a form where the user can be deleted, whereupon a modal is launched to confirm you would like to delete; confirming the username and name of user to be deleted. 
+
+#### **Manage Genres** (*genres.html*) - Only seen by admin user
+  - Card displaying all of the genres created so far with options to edit them or delete them.
+  - **Edit Genres** button leads to (*edit_genre.html*) and a form where a genre's name can be changed. The genre name is generated to provide confirmation of genre to be made changed.
+  - **Delete Genres** button leads to (*delete_genre.html*) and a form where the genre can be deleted, whereupon a modal is launched to confirm you would like to delete; confirming the name of genre to be deleted. 
+
 #### *404.html*
 
  - **Button**
-    - On the 404.html page the button redirects the user back to Home Page to prevent them having to press the browser back button for better user experience. 
+    - On the (*404.html*) page the button redirects the user back to Home Page to prevent them having to press the browser back button for better user experience. 
+
+#### *500.html*
+
+ - **Button**
+    - On the (*500.html*) page the button redirects the user back to Home Page to prevent them having to press the browser back button for better user experience. 
 
 ### **Future Features**
 
+- In future I would like to implement a few extra features for example:
+  - the ability to click a username to find what other reviews they have written. At present this can be searched in the (*reviews.html*) search bar. 
+  - to add a privacy policy and terms and conditions page
+  - to allow users to edit their thoughts (comments) on the reviews.
 
 
 ### **Responsive Design**
@@ -339,7 +364,7 @@ See below for how this was managed:
 
 ## **Deployment**
 
-The project was developed using [GitPod](https://gitpod.io/) and pushed to [GitHub](https://github.com/) the deployed on Heroku using these instructions:
+The project was developed using [GitPod](https://gitpod.io/) and pushed to [GitHub](https://github.com/) then deployed on Heroku using these instructions:
 
 1. Create a requirements.txt file using command *pip3 freeze --local > requirements.txt*
 2. Create a Procfile with the terminal command *echo web: python app.py > Procfile* and at this point checking the Procfile to make sure there is no stray line as this can cause issues when deploying to Heroku.
@@ -387,9 +412,6 @@ To clone this project from GitHub follow the instructions taken from [GitHub Doc
 
 ## **Credits**
 
-- [HR CSS](https://codepen.io/Grienauer/pen/PdPPKZ) to separate the book review sections.
-
-
 ### **Code**
 
 - CodeInstitute Full Stack Developer Course
@@ -399,24 +421,31 @@ To clone this project from GitHub follow the instructions taken from [GitHub Doc
 - Stack Overflow for some bug fixing:
   - [Helpers](https://stackoverflow.com/questions/52113587/materializes-responsive-utilites-not-working) to explain how Materialize show/hide functions work
   - [JavaScript Function Guidance](https://stackoverflow.com/questions/36581504/materialize-carousel-slider-autoplay) to help with the carousel on welcome page
-  - [Datetime Tutorial](https://stackabuse.com/how-to-format-dates-in-python/) to help to add time the reviews and thoughts were submitted.
+  
+- [Datetime Tutorial](https://stackabuse.com/how-to-format-dates-in-python/) to help to add time the reviews and thoughts were submitted.
+- [HR CSS](https://codepen.io/Grienauer/pen/PdPPKZ) to separate the book review sections using <hr> elements and CSS.
+- [Simon Vardy's Reading Room project](https://github.com/simonjvardy/the-reading-room) brought some inspiration for how the site could look and some of the features that could be implemented, eg the comments section.
+- [Emanuel Silva MS3 favourites list](https://github.com/manni8436/MS3-Project) Emanuel helped me to set up the favourites list code in app.py.
+
+- Code Institute lessons
+  -[Background layout](https://css-tricks.com/perfect-full-page-background-image/) this was taught in one of the Code Institute lessons from css-tricks.com and I use it constantly for my background images. 
 
 
 ### **Content**
-
-
-
-### **Layout**
-
--Code Institute lessons
--[Background layout](https://css-tricks.com/perfect-full-page-background-image/) from css-tricks.com
-
+Some book review sites were consulted before beginning this project to check what content may be requested by the user. 
+Mainly:
+- [SFBook](https://sfbook.com/) gave me the idea of a carousel due to it's changing book images on the home page. I decided to use the carousel as a way to display quotes from authors.
+- [GoodReads](https://www.goodreads.com/?ref=nav_hom) and [Waterstones](https://www.waterstones.com/) helped me work out potential layout for the review pages to look
 
 
 ### **Images**
 
-
-
+- [User and Genre pages](https://www.pexels.com/photo/light-inside-library-590493/) use this photo by Janko Ferlic from Pexels.
+- The Login and Register pages sample [this image](https://www.pexels.com/photo/ancient-antique-architectural-design-architecture-442420/) by Skitterphoto on Pexels.
+- The Welcome and Profile pages sample [this image](https://www.pexels.com/photo/book-page-1005324/) by Skitterphoto on Pexels.
+- The Add Review and Edit Review pages [background](https://www.pexels.com/photo/books-old-book-knowledge-bookstore-34592/) is provided by Negative Space on Pexels.
+- All Reviews page [background](https://www.pexels.com/photo/books-1926988/) supplied by Ricardo Esquivel on Pexels
+- If no image is posted in the review [this](https://www.pexels.com/photo/photo-of-hands-holding-a-book-3563625/) one is shown instead. Photo by lilartsy from Pexels
 
 ### **Inspiration**
  
@@ -425,8 +454,9 @@ To clone this project from GitHub follow the instructions taken from [GitHub Doc
 ### **Acknowledgements**
 
 - My Mentor for confidence boosting and helpful advice and feedback.
-- Friends and family for testing the site and giving feedback on different devices.
-- @Tobi and @Scott_Boning_lead on Slack who supported me through the journey.
+- Friends and family for testing the site and giving feedback on different devices, especially my father in law, Alasdair for diligently testing and finding things to be fixed.
+- @Eventyret_mentor, Amy O'Shea, Iryna, Claire Lemmonaire on Slack who supported me through the journey.
 - My husband for all his support, patience and great ideas.
+- and lastly my cheerleaders Emanuel Silva and Jonathan Swift for helping me to stay motivated, sharing great ideas and bad jokes to keep us going. 
 
 [Back to contents](#contents)
