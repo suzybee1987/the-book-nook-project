@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="hero-add-review">
+<div class="genre-users">
     <div class="row">
         {% for genre in genres %}
         <div class="col s12 m6 offset-m3">
-            <div class="card-panel card-padding-top">
+            <div class="card-panel card-margin-top">
                 <a href="{{ url_for('get_genres') }}" class="btn waves-effect waves-light" alt="back to genres">
                     <i class="fa-solid fa-chevron-left"></i>
                     Back to genres

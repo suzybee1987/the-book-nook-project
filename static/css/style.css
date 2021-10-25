@@ -249,13 +249,13 @@ h2,
     min-height: 90vh;
 }
 
-.link-here {
+/* .link-here {
     color: #F78764;
 }
 
 .link-here:hover {
     border-bottom: 2px solid #F78764;
-}
+} */
 
 /* end of login page  */
 
@@ -502,6 +502,19 @@ h2,
 
 /* end of edit review  */
 
+/* Users and Genres  */
+
+
+.genre-users {
+    background: url("../images/pexels-janko.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 90vh;
+}
+
+
 
 /* modal  */
 
@@ -522,6 +535,6 @@ h2,
     color: #fff;
 }
 
-.card-padding-top {
-    padding-top: 20px;
+.card-margin-top {
+    margin-top: 50px;
 }
