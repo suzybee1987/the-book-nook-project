@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="hero-add-review">
-    <div class="row card-padding-top">
+<div class="genre-users">
+    <div class="row card-margin-top">
         {% for user in users %}
         <div class="col s12 m8 offset-m2">
-            <div class="card-panel">
+            <div class="card-panel card-margin-top">
                 <a href="{{ url_for('get_users') }}" class="btn waves-effect waves-light" alt="back to users">
                     <i class="fa-solid fa-chevron-left"></i>
                     Back to users

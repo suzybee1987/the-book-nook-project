@@ -82,15 +82,27 @@ Link to [live site]
 
 ### **Fonts**
 
-
+- The fonts have been chosem to complement one another and also give the aesthetic of a book store with a mixture of serif for the book names, sans serif for descriptions and cursive for quotes and comments.
+  -  [Libre Baskerville](static/images/readme/libre-baskerville.PNG) was used for the headings on each of the pages to create consistency.
+  - [Special Elite](static/images/readme/special-elite.PNG) was used the the book titles and author names as it mimics the traditional typewriter font and puts the user in mind of vintage books.
+  - [Merienda](static/images/readme/merienda.PNG) is a cursive font with a look of real handwriting which was used for the comments and reviews to give the impression they were handwritten.
+  - [Lato](static/images/readme/lato.png) was used for any descriptions or text which is instructional so as not to distract from the rest of the page.
 
 
 ### **Colours**
 
+- [This Coolors palette](static/images/readme/ms3-coolors.png) was used to put together a colour scheme in keeping with the colour of the wood on book shelves to make the user feel like they are closer to a book store than online site. The lighter 'Desert Sand' colour was used for the cards and opacity added so the background underneath can still be seen without having to use a harsher white colour. 
 
 
 ### **Imagery**
 
+The images used were taken from [Pexels](https://www.pexels.com/) which offers royalty free use of images as long as not for a business use. They were all used to compliment the colour scheme of the header and footer.
+- The [Register and Log in pages](static/images/pexels-skitterphoto.jpg) have a background image of a nice big library space to make the site inviting.
+- The [Welcome page and Profile page](static/images/pexels-skitterphoto-book.jpg) show a nice background image of a book opened wide with the pages spread out to encourage the user to come in to the book site. 
+- The [Hero Image](static/images/pexels-books-long.jpg) for the reviews page was used to bring a splash of colour and innovation. 
+- The [Add Review](static/images/pexels-negative-space.jpg) image was used to encourage the user with some examples of vintage book titles.
+- The [Users and Genres](static/images/pexels-janko.jpg) image was used to continue the theme of the book shop but was kept different to the other pages to remind the user these are admin pages. 
+- The [back up image](static/images/pexels-lilartsy.jpg) was provided in the instance that the reviewer does not add an image or the image link provided is broken. 
 
 
 ### **Wireframes**

@@ -2,9 +2,11 @@
 {% block content %}
 <div class="login-hero">
     <div class="row">
-        <form class="col s12 m6 offset-m3 card-padding-top" method="POST" action="{{ url_for('login') }}">
+        <form class="col s12 m6 offset-m3 card-margin-top" method="POST" action="{{ url_for('login') }}">
             <div class="card-panel z-depth-4">
-                <h3 class="center-align">Log In</h3>
+                <div class="col s12 m6 offset-m3">
+                    <h3 class="center-align review-header">Log In</h3>
+                </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fa-solid fa-user-cog prefix"></i>

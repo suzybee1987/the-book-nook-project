@@ -1,64 +1,68 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="login-hero">
+    <div class="row">
+        <form class="col s12 m6 offset-m3 card-margin-top" method="POST" action="{{ url_for('register') }}">
+            <div class="card-panel z-depth-4">
+                <div class="col s12 m6 offset-m3">
+                    <h3 class="review-header center-align">Register</h3>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-solid fa-envelope prefix"></i>
+                        <input id="email" name="email" type="text" class="validate" required>
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-solid fa-circle-user prefix"></i>
+                        <input id="fname" name="fname" type="text" class="validate" required>
+                        <label for="fname">First Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-solid fa-circle-user prefix"></i>
+                        <input id="lname" name="lname" type="text" class="validate" required>
+                        <label for="lname">Last Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-solid fa-user prefix"></i>
+                        <input id="username" name="username" type="text" pattern="^[a-zA-Z0-9]{5,20}$" class="validate"
+                            minlength="5" maxlength="20" required>
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-solid fa-user-lock prefix"></i>
+                        <input id="password" name="password" type="password" minlength="8" maxlength="20"
+                            pattern="^[a-zA-Z0-9]{8,20}$" class="validate" required>
+                        <label for="password">Password</label>
+                        <span>Please enter a password minimum of 8 characters using letters and numbers.</span>
+                    </div>
+                </div>
+                <div class="row center-align">
+                    <button type="submit" class="col s12 btn waves-effect waves-light btn-large">
+                        Register
+                        <i class="fa-solid fa-sign-in-alt"></i>
+                    </button>
+                </div>
 
-<h3 class="center-align">Register</h3>
-<div class="row">
-    <form class="col s12 m8 offset-m2 card-padding-top" method="POST" action="{{ url_for('register') }}">
-        <div class="card-panel">
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fa-solid fa-envelope prefix"></i>
-                    <input id="email" name="email" type="text" class="validate" required>
-                    <label for="email">Email</label>
+                <div class="row">
+                    <div class="col s12">
+                        <p class="center-align">
+                            Not registered yet? </p>
+                        <p class="center-align">
+                            Click <a href="{{ url_for('register') }}" class="link-here">here</a> to register!
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fa-solid fa-circle-user prefix"></i>
-                    <input id="fname" name="fname" type="text" class="validate" required>
-                    <label for="fname">First Name</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fa-solid fa-circle-user prefix"></i>
-                    <input id="lname" name="lname" type="text" class="validate" required>
-                    <label for="lname">Last Name</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fa-solid fa-user prefix"></i>
-                    <input id="username" name="username" type="text" pattern="^[a-zA-Z0-9]{5,20}$" class="validate"
-                        minlength="5" maxlength="20" required>
-                    <label for="username">Username</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fa-solid fa-user-lock prefix"></i>
-                    <input id="password" name="password" type="password" minlength="8" maxlength="20"
-                        pattern="^[a-zA-Z0-9]{8,20}$" class="validate" required>
-                    <label for="password">Password</label>
-                    <span>Please enter a password minimum of 8 characters using letters and numbers.</span>
-                </div>
-            </div>
-            <div class="row">
-                <button type="submit" class="col s12 btn-large text-shadow brown darken-3">
-                    Register
-                    <i class="fa-solid fa-sign-in-alt"></i>
-                </button>
-            </div>
-        </div>
-    </form>
-</div>
-<div class="row">
-    <div class="col s12">
-        <p class="center-align">
-            Already registered? </p>
-        <p class="center-align">
-            Click <a href="{{ url_for('login') }}" class="link-here">here</a> to log in!
-        </p>
+        </form>
     </div>
 </div>
 {% endblock %}
