@@ -57,7 +57,7 @@ main {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    /* min-height: 100vh; */
+    min-height: 100vh;
 }
 
 /* Code from CSS tricks to produce typewriter effect on home page heading  */
@@ -246,7 +246,7 @@ h2,
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    /* min-height: 90vh; */
+    min-height: 90vh;
 }
 
 /* .link-here {
@@ -268,7 +268,7 @@ h2,
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    /* min-height: 80vh; */
+    min-height: 80vh;
 }
 
 
@@ -384,7 +384,7 @@ h2,
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    /* min-height: 90vh; */
+    min-height: 90vh;
 }
 
 .switch label input[type=checkbox]:checked+.lever:after {
