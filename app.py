@@ -458,33 +458,6 @@ def add_user():
     return render_template("add_user.html")
 
 
-@app.route("/edit_user/<user_id>", methods=["GET", "POST"])
-def edit_user(user_id):
-    """
-    allows admin to edit the users
-    """
-    if request.method == "POST":
-        submit = {
-            "username": request.form.get("username")
-        }
-        try:
-            if session["user"]:
-                username = mongo.db.users.find_one(
-                    {"username": session["user"]}
-                )
-
-                if username["admin"] == "on":
-                    mongo.db.users.update({"_id": ObjectId(user_id)}, submit)
-                    flash("User Successfully Updated")
-                    return redirect(url_for("get_users"))
-        except Exception:
-            flash("You are not allowed to do that")
-            return redirect(url_for("get_reviews"))
-
-    user = list(mongo.db.users.find_one({"_id": ObjectId(user_id)}))
-    return render_template("edit_user.html", user=user)
-
-
 @app.route("/delete_user/<user_id>")
 def delete_user(user_id):
     """
