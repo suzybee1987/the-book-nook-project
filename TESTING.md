@@ -105,3 +105,4 @@ Contents
   
 - **Bugs not solved**
   - When a user selects to add a book to favourites this can be added multiple times evidenced [here](static/images/testing/favourites-bug.PNG). This is a bug I thought could be solved by converting to a Python set but unsuccessfully.
+  - Search bar on mobile issue, user must click under the input form for this to work. Issue with MaterializeCSS that couldn't be rectified. See [here](static/images/testing/search-input-bug.png)
