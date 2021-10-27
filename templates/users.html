@@ -5,7 +5,7 @@
         <div class="col s12 m8 offset-m2">
             <div class="card-panel z-depth-4 card-margin-top">
                 <div class="row">
-                    <div class="col s12 m8 offset-m2">
+                    <div class="col s12 m6 offset-m3">
                         <h3 class="review-header center-align">Manage Users</h3>
                     </div>
                 </div>
@@ -17,12 +17,8 @@
                                 <span class="">{{ user.username }}</span>
                             </div>
                             <div class="card-body">
-                                <a href="{{ url_for('edit_user', user_id=user._id) }}"
-                                    class="btn waves-effect waves-light row-buttons">Edit
-                                    <i class="fa-solid fa-pen-fancy"></i>
-                                </a>
                                 <a href="{{ url_for('see_user', user_id=user._id) }}"
-                                    class="btn waves-effect waves-light row-buttons cancel">Delete
+                                    class="btn waves-effect waves-light row-buttons">Delete
                                     <i class="fa-solid fa-trash-can"></i>
                                 </a>
                             </div>
