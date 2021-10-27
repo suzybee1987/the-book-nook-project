@@ -156,11 +156,10 @@
                                 action="{{ url_for('add_thoughts', thoughts_id=review._id) }}">
                                 <div class="row">
                                     <div class="col s12 m10 offset-m1 input-field">
-                                        <i class="fa-solid fa-keyboard prefix"></i>
+                                        <i class="fa-solid fa-keyboard prefix hide-on-small-only"></i>
                                         <textarea id="thoughts" name="thoughts" class="materialize-textarea"
                                             required></textarea>
-                                        <label for="thoughts">Your thoughts on this
-                                            book
+                                        <label for="thoughts" class="thoughts">Your thoughts
                                         </label>
                                     </div>
                                 </div>

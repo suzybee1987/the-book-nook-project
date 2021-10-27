@@ -445,8 +445,16 @@ h2,
     font-family: 'Merienda', cursive;
 }
 
-.thoughts {
-    background-color: #DCB7A8;
+@media only screen and (max-width: 600px) {
+    #thoughts {
+            margin-left: 0;
+            width: 100%;
+    }
+    .thoughts {
+        margin-left:0 !important;
+        width: 100%;
+    }
+
 }
 
 /* for larger screens add a bit of padding to the top of the image  */
