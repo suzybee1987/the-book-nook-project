@@ -10,8 +10,9 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fa-solid fa-envelope prefix"></i>
-                        <input id="email" name="email" type="text" class="validate" required>
+                        <input id="email" name="email" type="email" class="validate" required>
                         <label for="email">Email</label>
+                        <span class="helper-text" data-error="Please enter valid email address"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -32,8 +33,10 @@
                     <div class="input-field col s12">
                         <i class="fa-solid fa-user prefix"></i>
                         <input id="username" name="username" type="text" pattern="^[a-zA-Z0-9]{5,20}$" class="validate"
-                            minlength="5" maxlength="20" required>
+                            minlength="8" maxlength="20" required>
                         <label for="username">Username</label>
+                        <span class="helper-text" data-error="Please use a minimum of 8 characters and maximum of 20"></span>
+                        
                     </div>
                 </div>
                 <div class="row">
@@ -42,7 +45,7 @@
                         <input id="password" name="password" type="password" minlength="8" maxlength="20"
                             pattern="^[a-zA-Z0-9]{8,20}$" class="validate" required>
                         <label for="password">Password</label>
-                        <span>Please enter a password minimum of 8 characters using letters and numbers.</span>
+                        <span class="helper-text" data-error="Please use a minimum of 8 characters and maximum of 20"></span>
                     </div>
                 </div>
                 <div class="row center-align">

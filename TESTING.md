@@ -13,49 +13,71 @@ Contents
 
 **Navigation all pages - Logged In Users**
 
-| Feature        | Expected           | Testing  | Result |
-| ------------- |-------------| -----|  ---------- |
-| Home button    | To redirect to home page| Click the home button | Button navigates to home |
-| Social Media Links | Redirect to Facebook in new tab | Click Facebook icon | Facebook page opened in new tab |
-|  | Redirect to Instagram in new tab | Click Instagram icon | Instagram page opened in new tab |
-| | Redirect to GitHub in new tab | Click GitHub icon | My GitHub profile page opened in new tab |
-| Nav links | Clicking All Reviews takes user to All Reviews page | Click All Reviews | Redirected to All Reviews page 
-|   | Clicking Profile takes user to their profile page | Click Profile | Redirected to Profile Page |
-|   | Click Add Review takes user to Add Review form | Click Add Review | Redirected to Add Review page |
-|  | Click Log Out logs out the user | Click Log Out | User logged out and redirected to Log In Page |
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-------------| -----|  ---------- | :----: |
+| Home button    | To redirect to home page| Click the home button | Button navigates to home | Pass |
+| Social Media Links | Redirect to Facebook in new tab | Click Facebook icon | Facebook page opened in new tab | Pass |
+|  | Redirect to Instagram in new tab | Click Instagram icon | Instagram page opened in new tab | Pass |
+| | Redirect to GitHub in new tab | Click GitHub icon | My GitHub profile page opened in new tab | Pass |
+| Nav links | Clicking All Reviews takes user to All Reviews page | Click All Reviews | Redirected to All Reviews page | Pass |
+|   | Clicking Profile takes user to their profile page | Click Profile | Redirected to Profile Page | Pass |
+|   | Click Add Review takes user to Add Review form | Click Add Review | Redirected to Add Review page | Pass |
+|  | Click Log Out logs out the user | Click Log Out | User logged out and redirected to Log In Page | Pass |
 
 
 **Navigation all pages - User not logged in**
 
-| Feature        | Expected           | Testing  | Result |
-| ------------- |-------------| -----|  ---------- |
-| Nav links | Clicking All Reviews takes user to All Reviews page | Click All Reviews | Redirected to All Reviews page 
-| | Click Log In redirects to log in page | Click Log In | User redirected to Log In Page |
-|  | Click Register redirects to log in page | Click Register | User redirected to Register Page |
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-------------| -----|  ---------- | :-----:|
+| Nav links | Clicking All Reviews takes user to All Reviews page | Click All Reviews | Redirected to All Reviews page | Pass |
+| | Click Log In redirects to log in page | Click Log In | User redirected to Log In Page | Pass |
+|  | Click Register redirects to log in page | Click Register | User redirected to Register Page | Pass |
 
 
 **Welcome Page**
-| Feature        | Expected           | Testing  | Result |
-| ------------- |-------------| -----|  ---------- |
-| Card 'Come On In' button | Clicking "Come On In" button takes users to All Reviews | Click "Come On In" button | User redirected to All Reviews |
-| Quotes Carousel  | Play automatically | View carousel to make sure it moves automatically | carousel moves automatically |
-|                  | Stop when hovered over              | hover mouse over to see if it stops  | carousel stops on mouse hover |
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-------------| -----|  ---------- |:----:|
+| Card 'Come On In' button | Clicking "Come On In" button takes users to All Reviews | Click "Come On In" button | User redirected to All Reviews | Pass |
+| Quotes Carousel  | Play automatically | View carousel to make sure it moves automatically | carousel moves automatically | Pass |
+|  | Stop when hovered over  | hover mouse over to see if it stops  | carousel stops on mouse hover | Pass |
 
 
 **Log In Page**
-| Feature        | Expected           | Testing  | Result |
-| ------------- |-------------| -----|  ---------- |
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-----------------| ----------|  ---------- | :----: |
+| Log in functionality | Correct user/pass combination directs user to their profile page | Log in with correct user/pass combination | Redirected to user profile page | Pass |
+|   | Incorrect user/pass combination | Error showing "incorrect username/password" | Flash message displaying [error](static/images/testing/user-pass-error.png) | Pass |
+|Link to Register | Redirect to Register page | Click link to register | Redirected to Register page | Pass |
+
 
 
 **Register Page**
 | Feature        | Expected           | Testing  | Result |
 | ------------- |-------------| -----|  ---------- |
+| Register functionality | Form validation for email requires `@` symbol |  Attempt to register without `@` in input field | Form validation requests valid email [address](static/images/testing/email-test.png) | Pass |
+| | Username and Password must be between 8 and 20 characters | Attempt to enter username and password with less than 8 characters | Feedback error [displayed](static/images/testing/user-pass-validation.png) | Pass |
+| | Username and Password must be between 8 and 20 characters | Attempt to enter username and password with more than 20 characters | Form won't let the user use more than 20 characters | Pass |
+| | Register with new user and password to be logged in and redirected to Profile page | Enter email address, name, username, password and click register | New account registered and profile page shown | Pass |
+
+**All Reviews Page - user not logged in**
+
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-------------| -----|  ---------- | :----:|
+| Search Function | Search by book name | Type book name "Mort" into search field and click search | Search returns book name "Mort" by Terry Pratchett | Pass |
+|  | Search by author | Type "Terry Pratchett" into search field and click search | Search returns "Mort" and "Guards! Guards" results | Pass |
+| | Search by genre | Type "fantasy" into search field and click search  | Search returns all books with genre "Fantasy" | Pass |
+|  | Search by username | Type username "cdesquire" into search field | Search displays book/books written by the username "cdesquire" | Pass |
+| | Reset button should reset the search form | Enter text to search form then click Reset | Form resets to show all reviews | Pass |
+| Reviews | Clicking the image of the book takes user to the book review for that specific book | Click image of "Mort" | Redirected to the book review page for "Mort" | Pass |  
+|  | Clicking the See Full Review link under book title on book card takes user to the book review for that specific book | Click See Full Review on "Mort" card | Redirected to the book review page for "Mort" | Pass |  
+| Back to Top | When the user scrolls down the page a button appears to click to go back to top of the page | Scroll down the page to see if Back to Top appears | Back to Top Button [displayed](static/images/testing/back-to-top.png) | Pass | 
 
 
-**All Reviews Page**
+**All Reviews Page - user logged in**
 
-| Feature        | Expected           | Testing  | Result |
-| ------------- |-------------| -----|  ---------- |
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-------------| -----|  ---------- | :----:|
+| Favourites | User clicks Favourite button and book is added to favourites, user is redirected to Profile to display this and flash message displayed to confirm | Click Favourite button underneath "Mort" | Redirected to Profile and book is displayed in Favourites table and flash message [displayed](static/images/testing/favourite.png) | Pass |
 
 
 **Book Review Page**
