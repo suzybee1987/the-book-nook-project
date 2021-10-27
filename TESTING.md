@@ -85,6 +85,8 @@ Contents
 - The project was produced on git branches to allow new features to be tested and merged to the main branch if successful. Any bugs caught afterwards are noted on the commit message as follows: `Fix: "commit message"`.
 
 - **Bugs found and fixed** 
+  - [Manifest Bug](static/images/testing/manifest-bug.png) 
+    - Fixed by adding `crossorigin="use-credentials"` to the manifest link in the head of *base.html*
   - [Commit e61643a](https://github.com/suzybee1987/the-book-nook-project/commit/e61643a76dbcec7bd4174f30c534d2066c83fcd4), [Commit cbe04ec](https://github.com/suzybee1987/the-book-nook-project/commit/cbe04ec84624ee2cd34c191cf3a44a2039a8c7dc) and [Commit 7292f14](https://github.com/suzybee1987/the-book-nook-project/commit/7292f1492b26796a9f0a42aa09f6aba0ce98f6a7)
     - Bug as a result of incorrectly trying to retrieve the users first name to display on the welcome page. This caused no name to be shown at all and was fixed by adding 
 
