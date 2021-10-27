@@ -1,17 +1,31 @@
 ![The Book Nook](static/images/testing/the-book-nook.PNG)
 
 
-Contents
+## **Contents**
 
 - [**Testing**](#testing)
+  - [**Navigation**](#navigation)
+  - [**Buttons**](#buttons)
+  - [**Welcome Page**](#welcome-page)
+  - [**Register Page**](#register-page)
+  - [**Log In Page**](#log-in-page)
+  - [**Profile Page**](#profile-page)
+  - [**All Reviews Page**](#all-reviews-page)
+  - [**Book Review Page**](#book-review-page)
+  - [**Add Review Page**](#add-review-page)
+  - [**Edit/Delete Review Page**](#editdelete-review-page)
 
+  -[**Admin Pages**](#admin-pages)
+    - [**Manage Users**](#manage-users)
+    - [**Manage Genres**](#manage-genres)
 - [**Bugs**](#bugs)
 
-## **Testing**
+# **Testing**
 
 ### Navigation is extended from *base.html* so the navigation links on all pages are the same with some differences for admin users.
 
-**Navigation all pages - Logged In Users**
+### **Navigation** 
+    - all pages - Logged In Users
 
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- | :----: |
@@ -25,7 +39,8 @@ Contents
 |  | Click Log Out logs out the user | Click Log Out | User logged out and redirected to Log In [Page](static/images/testing/log-out-feedback.png) | Pass |
 
 
-**Navigation all pages - User not logged in**
+### **Navigation**
+    - all pages - User not logged in
 
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- | :-----:|
@@ -34,12 +49,18 @@ Contents
 |  | Click Register redirects to log in page | Click Register | User redirected to Register Page | Pass |
 
 
-**Buttons all pages - on desktop site**
+[Back to contents](#contents)
+
+### **Buttons**
+  - all pages - on desktop site
+
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- | :-----:|
 | Feedback on hover | buttons change colour when user hovers the mouse over them and icons rotate on all except Home and Come On In Button on Welcome screen  | Hover mouse over each button | Buttons change colour when hovered over and icons rotate on all except Home and Come On In Button on Welcome screen | Pass | 
 
-**Welcome Page**
+
+### **Welcome Page**
+
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- |:----:|
 | Card 'Come On In' button | Clicking "Come On In" button takes users to All Reviews | Click "Come On In" button | User redirected to All Reviews | Pass |
@@ -48,16 +69,7 @@ Contents
 |  | Stop when hovered over  | hover mouse over to see if it stops  | carousel stops on mouse hover | Pass |
 
 
-**Log In Page**
-| Feature        | Expected           | Testing  | Result | Pass/Fail |
-| ------------- |-----------------| ----------|  ---------- | :----: |
-| Log in functionality | Correct user/pass combination directs user to their profile page with name displayed | Log in with correct user/pass combination | Redirected to user profile [page](static/images/testing/log-in-feedback.png) with name displayed | Pass |
-|   | Incorrect user/pass combination | Error showing "incorrect username/password" | Flash message displaying [error](static/images/testing/user-pass-error.png) | Pass |
-|Link to Register | Redirect to Register page | Click link to register | Redirected to Register page | Pass |
-
-
-
-**Register Page**
+### **Register Page**
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- | :-----:|
 | Register functionality | Form validation for email requires `@` symbol |  Attempt to register without `@` in input field | Form validation requests valid email [address](static/images/testing/email-test.png) | Pass |
@@ -65,7 +77,31 @@ Contents
 | | Username and Password must be between 8 and 20 characters | Attempt to enter username and password with more than 20 characters | Form won't let the user use more than 20 characters | Pass |
 | | Register with new user and password to be logged in and redirected to Profile page | Enter email address, name, username, password and click register | New account registered and profile page shown | Pass |
 
-**All Reviews Page - user not logged in**
+
+[Back to contents](#contents)
+
+### **Log In Page**
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-----------------| ----------|  ---------- | :----: |
+| Log in functionality | Correct user/pass combination directs user to their profile page with name displayed | Log in with correct user/pass combination | Redirected to user profile [page](static/images/testing/log-in-feedback.png) with name displayed | Pass |
+|   | Incorrect user/pass combination | Error showing "incorrect username/password" | Flash message displaying [error](static/images/testing/user-pass-error.png) | Pass |
+| Link to Register | Redirect to Register page | Click link to register | Redirected to Register page | Pass |
+
+
+### **Profile Page**
+
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-------------| -----|  ---------- | :----:|
+| Reviews written | Reviews written can be viewed and navigated to | Navigate to Profile page, scroll to My Reviews section, click book review. | The book review is visible in My Reviews section and can be accessed when clicking the book name | Pass |
+|  | If no reviews written there is a prompt to write one | Scroll to My Reviews section, see message prompt to click to create a review | No reviews written so message is displayed and clicking the link leads to the add review page | Pass |
+| Favourites | Favourites can be viewed and removed | Scroll down to Favourites section, click icon to remove from favourites | Upon clicking favourites the book review is removed from favourites for that [user](static/images/testing/favourite.png) | Pass |
+|  | If no reviews saved as a favourite there is a prompt to add one with link to all reviews | Scroll to Favourites section, see message prompt to click to look at reviews | No favourites added so message is displayed and clicking the link leads to the reviews page | Pass |
+
+
+[Back to contents](#contents)
+
+### **All Reviews Page**
+    - user not logged in
 
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- | :----:|
@@ -81,14 +117,19 @@ Contents
 | Back to Top | When the user scrolls down the page a button appears to click to go back to top of the page | Scroll down the page to see if Back to Top appears | Back to Top Button [displayed](static/images/testing/back-to-top.png) | Pass | 
 
 
-**All Reviews Page - user logged in**
+### **All Reviews Page**
+    - user logged in
 
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- | :----:|
 | Favourites | User clicks Favourite button and book is added to favourites, user is redirected to Profile to display this and flash message displayed to confirm | Click Favourite button underneath "Mort" | Redirected to Profile and book is displayed in Favourites table and flash message [displayed](static/images/testing/favourite.png) | Pass |
 
 
-**Book Review Page - user logged in**
+[Back to contents](#contents)
+
+
+### **Book Review Page**
+    - user logged in
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- | :-----:|
 | Favourites | User clicks Favourite button and book is added to favourites, user is redirected to Profile to display this and flash message displayed to confirm | Click Favourite button underneath "Mort" | Redirected to Profile and book is displayed in Favourites table and flash message [displayed](static/images/testing/favourite.png) | Pass |
@@ -101,13 +142,17 @@ Contents
 | | Thoughts displayed in thoughts section | All thoughts displayed in thoughts section | Scroll to thoughts section | All thoughts [displayed](static/images/testing/thoughts.png) | Pass | 
 
 
-**Book Review - the user is the reviewer**
+### **Book Review Page**
+    - the user is the reviewer or admin logged in
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- | :-----:|
 | Edit and Delete  | If the user wrote the review they should have edit and delete buttons displayed | Write test review, Look for Edit and Delete Buttons under review | Edit and Delete buttons [displayed](static/images/testing/edit-delete.png) | Pass |
 | | Editing the review saves the changes | Click to edit test review, edit the review, click submit | Review edited [successfully](static/images/testing/review-edited.png) with flash message [confirmation](static/images/testing/review-flash-edit.png)| Pass |  
 
-**Add Review Page**
+
+[Back to contents](#contents)
+
+### **Add Review Page**
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- | :-----:|
 | Submit new review | New review is saved to all reviews page | Click add review, fill in new review form, click submit | New review added to reviews [page](static/images/testing/test-review.png) and flash message feedback [given](static/images/testing/review-added.png) | Pass | 
@@ -115,29 +160,40 @@ Contents
 
 
 
-**Edit Review Page**
+### **Edit/Delete Review Page**
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-------------| -----|  ---------- | :-----: |
+| Edit functionality | Only reviewer or admin can edit reviews | Log in as admin, navigate to a book review page, click edit, edit review, click submit, view book review to check edit successful | Edit successful for admin user | Pass |
+| | | Log in as standard user, create review, edit review, click submit, view book review to check edit successful | Edit successful for reviewer | Pass | 
+| | | Log in as different standard user, attempt to edit review | Edit/Delete button not available | Pass |
+| Review info prepopulated on edit | Book review title, author, genre, etc should be prepopulated on editing a review | Log in as admin, click edit review, check book info is the same as book review | Book information in form is present in form | Pass | 
+| Delete functionality | Only reviewer and admin can delete reviews | Log in as admin, navigate to a book review page, click delete, modal launch to confirm, click confirm | Delete successful for admin | Pass |
+| | | Log in as standard user, create review, click delete | Delete successful for reviewer | Pass | 
+| | | Log in as different standard user, attempt to edit review | Edit button not available | Pass |
+| | | Log in as different standard user, attempt to delete review | Delete button not available | Pass |
+
+
+[Back to contents](#contents)
+
+## Admin Pages
+As well as the ability to edit and delete reviews the admin has access to manage genres and users. This includes creating new genres and deleting generes and users. User is required to log in as admin before attempting these tests.
+
+### **Manage Users**
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- | :-----:|
+| Delete User | The functionality to delete a user | Navigate to Manage Users, click delete button under user to delete, redirected to delete user page, click delete, and confirm on modal | User deleted successfully with flash [confirmation](static/images/testing/user-deleted.png) | Pass |
 
-**Book Review Page**
+
+### **Manage Genres**
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- | :-----:|
+| Add Genre | Be able to add new genre | Navigate to Manage Genres, click Add New Genre, type genre name in form, submit | Genre created successfully and flash message confirms to the [user](static/images/testing/new-genre.png) | Pass | 
+| Delete Genre | The functionality to delete a genre | Navigate to Manage Genres, click delete button under genre to delete, redirected to delete genre page, click delete, and confirm on modal | Genre deleted successfully with flash [confirmation](static/images/testing/genre-deleted.png) | Pass |
+
+[Back to contents](#contents)
 
 
-### Admin Pages
-**Manage Users**
-| Feature        | Expected           | Testing  | Result | Pass/Fail |
-| ------------- |-------------| -----|  ---------- | :-----:|
-
-**Manage Genres**
-| Feature        | Expected           | Testing  | Result | Pass/Fail |
-| ------------- |-------------| -----|  ---------- | :-----:|
-
-
-
-
-
-## **Bugs**
+# **Bugs**
 
 - The project was produced on git branches to allow new features to be tested and merged to the main branch if successful. Any bugs caught afterwards are noted on the commit message as follows: `Fix: "commit message"`.
 
@@ -161,7 +217,13 @@ Contents
     - Bug when editing a review caused because review_date was not added to the edit_review() function in the app.py file. This was fixed by manually updating the app.py with `"review_date": datetime.datetime.utcnow()` and the edited reviews updated to have a valid review_date field. This is because the review_date field was added later and the implications not considered on the edit_review() function.
   - [Commit 14434dd](https://github.com/suzybee1987/the-book-nook-project/commit/14434dd2e9c152c92a0ddc1a176c53ea88462b0a)
     - Bug when logging in with incorrect username or password did not display the flash message due to an indentation error. Fixed by rectifying the indentation error.
+
+
+[Back to contents](#contents)
   
 - **Bugs not solved**
   - When a user selects to add a book to favourites this can be added multiple times evidenced [here](static/images/testing/favourites-bug.PNG). This is a bug I thought could be solved by converting to a Python set but unsuccessfully.
   - Search bar on mobile issue, user must click under the input form for this to work. Issue with MaterializeCSS that couldn't be rectified. See [here](static/images/testing/search-input-bug.png)
+
+
+  [Back to contents](#contents)

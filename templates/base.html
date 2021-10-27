@@ -50,7 +50,7 @@
                         <a href="{{ url_for('profile', username=session['user']) }}"
                             aria-label="link to profile page">Profile</a>
                     </li>
-                    {% if session.user|lower == "superuser"|lower %}
+                    {% if session.user|lower == "admin"|lower %}
                     <li>
                         <a href="{{ url_for('get_genres') }}" aria-label="Link to manage genres">Manage Genres</a>
                     </li>
@@ -78,15 +78,13 @@
         <!-- mobile navbar  -->
         <ul class="sidenav" id="mobile-demo">
             <li>
-                <a href="{{ url_for('get_reviews', username=session['user']) }}" aria-label="Link to review page">All
-                    Reviews</a>
+                <a href="{{ url_for('get_reviews', username=session['user']) }}" aria-label="Link to review page">All Reviews</a>
             </li>
             {% if session.user %}
             <li>
-                <a href="{{ url_for('profile', username=session['user']) }}"
-                    aria-label="link to profile page">Profile</a>
+                <a href="{{ url_for('profile', username=session['user']) }}" aria-label="link to profile page">Profile</a>
             </li>
-            {% if session.user|lower == "superuser"|lower %}
+            {% if session.user|lower == "admin"|lower %}
             <li>
                 <a href="{{ url_for('get_genres') }}" aria-label="Link to manage genres">Manage Genres</a>
             </li>

@@ -347,7 +347,7 @@ def remove_favourite(favourite_id):
 @app.route("/get_genres")
 def get_genres():
     """
-    allows superuser to manage the genres
+    allows admin to manage the genres
     """
     genres = list(mongo.db.genres.find().sort("genre_name", 1))
     return render_template("genres.html", genres=genres)
@@ -365,7 +365,7 @@ def see_genre(genre_id):
 @app.route("/add_genre", methods=["GET", "POST"])
 def add_genre():
     """
-    allows superuser to add new genre
+    allows admin to add new genre
     """
     if request.method == "POST":
         genre = {
@@ -393,7 +393,7 @@ def edit_genre(genre_id):
                     {"username": session["user"]}
                 )
 
-                if username["admin"] == "on":
+                if username == "admin":
                     mongo.db.genres.update({"_id": ObjectId(genre_id)}, submit)
                     flash("Genre Successfully Updated")
                     return redirect(url_for("get_genres"))
@@ -408,17 +408,17 @@ def edit_genre(genre_id):
 @app.route("/delete_genre/<genre_id>")
 def delete_genre(genre_id):
     """
-    allows superuser to delete the genres
+    allows admin to delete the genres
     """
     try:
         if session["user"]:
             username = mongo.db.users.find_one(
                 {"username": session["user"]}
             )
-            if username["admin"] == "on":
-                mongo.db.genres.remove({"_id": ObjectId(genre_id)})
-                flash("Genre Successfully Deleted")
-                return redirect(url_for("get_genres"))
+
+            mongo.db.genres.remove({"_id": ObjectId(genre_id)})
+            flash("Genre Successfully Deleted")
+            return redirect(url_for("get_genres"))
     except Exception:
         flash("You are not allowed to do that")
         return redirect(url_for("get_reviews"))
@@ -445,7 +445,7 @@ def see_user(user_id):
 @app.route("/add_user", methods=["GET", "POST"])
 def add_user():
     """
-    allows superuser to add new user
+    allows admin to add new user
     """
     if request.method == "POST":
         user = {
@@ -461,14 +461,14 @@ def add_user():
 @app.route("/delete_user/<user_id>")
 def delete_user(user_id):
     """
-    allows superuser to delete the users
+    allows admin to delete the users
     """
     try:
         if session["user"]:
             username = mongo.db.users.find_one(
                 {"username": session["user"]}
             )
-            if username["admin"] == "on":
+            if username == "admin":
                 mongo.db.users.remove({"_id": ObjectId(user_id)})
                 flash("User Successfully Deleted")
                 return redirect(url_for("get_users"))
