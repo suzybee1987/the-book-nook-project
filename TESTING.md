@@ -9,6 +9,74 @@ Contents
 
 ## **Testing**
 
+### Navigation is extended from *base.html* so the navigation links on all pages are the same with some differences for admin users.
+
+**Navigation all pages - Logged In Users**
+
+| Feature        | Expected           | Testing  | Result |
+| ------------- |-------------| -----|  ---------- |
+| Home button    | To redirect to home page| Click the home button | Button navigates to home |
+| Social Media Links | Redirect to Facebook in new tab | Click Facebook icon | Facebook page opened in new tab |
+|  | Redirect to Instagram in new tab | Click Instagram icon | Instagram page opened in new tab |
+| | Redirect to GitHub in new tab | Click GitHub icon | My GitHub profile page opened in new tab |
+| Nav links | Clicking All Reviews takes user to All Reviews page | Click All Reviews | Redirected to All Reviews page 
+|   | Clicking Profile takes user to their profile page | Click Profile | Redirected to Profile Page |
+|   | Click Add Review takes user to Add Review form | Click Add Review | Redirected to Add Review page |
+|  | Click Log Out logs out the user | Click Log Out | User logged out and redirected to Log In Page |
+
+
+**Navigation all pages - User not logged in**
+
+| Feature        | Expected           | Testing  | Result |
+| ------------- |-------------| -----|  ---------- |
+| Nav links | Clicking All Reviews takes user to All Reviews page | Click All Reviews | Redirected to All Reviews page 
+| | Click Log In redirects to log in page | Click Log In | User redirected to Log In Page |
+|  | Click Register redirects to log in page | Click Register | User redirected to Register Page |
+
+
+**Welcome Page**
+| Feature        | Expected           | Testing  | Result |
+| ------------- |-------------| -----|  ---------- |
+| Card 'Come On In' button | Clicking "Come On In" button takes users to All Reviews | Click "Come On In" button | User redirected to All Reviews |
+| Quotes Carousel  | Play automatically | View carousel to make sure it moves automatically | carousel moves automatically |
+|                  | Stop when hovered over              | hover mouse over to see if it stops  | carousel stops on mouse hover |
+
+
+**Log In Page**
+| Feature        | Expected           | Testing  | Result |
+| ------------- |-------------| -----|  ---------- |
+
+
+**Register Page**
+| Feature        | Expected           | Testing  | Result |
+| ------------- |-------------| -----|  ---------- |
+
+
+**All Reviews Page**
+
+| Feature        | Expected           | Testing  | Result |
+| ------------- |-------------| -----|  ---------- |
+
+
+**Book Review Page**
+| Feature        | Expected           | Testing  | Result |
+| ------------- |-------------| -----|  ---------- |
+
+
+**Add Review Page**
+| Feature        | Expected           | Testing  | Result |
+| ------------- |-------------| -----|  ---------- |
+
+
+**Edit Review Page**
+| Feature        | Expected           | Testing  | Result |
+| ------------- |-------------| -----|  ---------- |
+
+**Book Review Page**
+| Feature        | Expected           | Testing  | Result |
+| ------------- |-------------| -----|  ---------- |
+
+
 
 
 
@@ -32,6 +100,8 @@ Contents
     - Form wasn't inside the card, fixed by removing an end div tag.
   - [Commit 261a013](https://github.com/suzybee1987/the-book-nook-project/commit/261a01e624b32a1da34269ca2c4d1af1da290452)
     - Bug when editing a review caused because review_date was not added to the edit_review() function in the app.py file. This was fixed by manually updating the app.py with `"review_date": datetime.datetime.utcnow()` and the edited reviews updated to have a valid review_date field. This is because the review_date field was added later and the implications not considered on the edit_review() function.
+  - [Commit 14434dd](https://github.com/suzybee1987/the-book-nook-project/commit/14434dd2e9c152c92a0ddc1a176c53ea88462b0a)
+    - Bug when logging in with incorrect username or password did not display the flash message due to an indentation error. Fixed by rectifying the indentation error.
   
 - **Bugs not solved**
   - When a user selects to add a book to favourites this can be added multiple times evidenced [here](static/images/testing/favourites-bug.PNG). This is a bug I thought could be solved by converting to a Python set but unsuccessfully.

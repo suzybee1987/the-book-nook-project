@@ -334,6 +334,7 @@ The wireframes were created using [Adobe XD](https://www.adobe.com/uk/products/x
   - the ability to click a username to find what other reviews they have written. At present this can be searched in the (*reviews.html*) search bar. 
   - to add a privacy policy and terms and conditions page
   - to allow users to edit their thoughts (comments) on the reviews.
+  - allow the users with admin rights to give other users admin rights.
 
 
 ### **Responsive Design**
