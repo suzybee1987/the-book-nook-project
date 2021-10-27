@@ -313,7 +313,8 @@ h2,
 .card-review {
     height: 650px;
 }
-
+/* Floating button to click to go to top of review.html 
+ https: //www.w3schools.com/howto/howto_js_scroll_to_top.asp */
 #myBtn {
     display: none;
     /* Hidden by default */
@@ -326,7 +327,7 @@ h2,
     z-index: 99;
     /* Make sure it does not overlap */
     border: 3px solid #fff;
-    border-radius: 6px;
+    border-radius: 20px;
 }
 
 #myBtn:hover {
