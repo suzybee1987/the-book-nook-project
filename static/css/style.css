@@ -336,7 +336,7 @@ h2,
 
 .review-title {
     font-family: 'Libre Baskerville';
-    font-size: 1.3em;
+    font-size: 1.em;
     text-decoration: underline;
     padding-bottom: 12px;
 }

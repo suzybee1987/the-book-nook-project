@@ -22,7 +22,7 @@ Contents
 | Nav links | Clicking All Reviews takes user to All Reviews page | Click All Reviews | Redirected to All Reviews page | Pass |
 |   | Clicking Profile takes user to their profile page | Click Profile | Redirected to Profile Page | Pass |
 |   | Click Add Review takes user to Add Review form | Click Add Review | Redirected to Add Review page | Pass |
-|  | Click Log Out logs out the user | Click Log Out | User logged out and redirected to Log In Page | Pass |
+|  | Click Log Out logs out the user | Click Log Out | User logged out and redirected to Log In [Page](static/images/testing/log-out-feedback.png) | Pass |
 
 
 **Navigation all pages - User not logged in**
@@ -34,26 +34,32 @@ Contents
 |  | Click Register redirects to log in page | Click Register | User redirected to Register Page | Pass |
 
 
+**Buttons all pages - on desktop site**
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-------------| -----|  ---------- | :-----:|
+| Feedback on hover | buttons change colour when user hovers the mouse over them and icons rotate on all except Home and Come On In Button on Welcome screen  | Hover mouse over each button | Buttons change colour when hovered over and icons rotate on all except Home and Come On In Button on Welcome screen | Pass | 
+
 **Welcome Page**
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- |:----:|
 | Card 'Come On In' button | Clicking "Come On In" button takes users to All Reviews | Click "Come On In" button | User redirected to All Reviews | Pass |
-| Quotes Carousel  | Play automatically | View carousel to make sure it moves automatically | carousel moves automatically | Pass |
+| Typewriter message - on desktop | On page load typewriter message is displayed gradually in card | Reload page to view typewriter message | Typewritter message successfully displayed | Pass |
+| Quotes Carousel - on desktop | Play automatically | View carousel to make sure it moves automatically | carousel moves automatically | Pass |
 |  | Stop when hovered over  | hover mouse over to see if it stops  | carousel stops on mouse hover | Pass |
 
 
 **Log In Page**
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-----------------| ----------|  ---------- | :----: |
-| Log in functionality | Correct user/pass combination directs user to their profile page | Log in with correct user/pass combination | Redirected to user profile page | Pass |
+| Log in functionality | Correct user/pass combination directs user to their profile page with name displayed | Log in with correct user/pass combination | Redirected to user profile [page](static/images/testing/log-in-feedback.png) with name displayed | Pass |
 |   | Incorrect user/pass combination | Error showing "incorrect username/password" | Flash message displaying [error](static/images/testing/user-pass-error.png) | Pass |
 |Link to Register | Redirect to Register page | Click link to register | Redirected to Register page | Pass |
 
 
 
 **Register Page**
-| Feature        | Expected           | Testing  | Result |
-| ------------- |-------------| -----|  ---------- |
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-------------| -----|  ---------- | :-----:|
 | Register functionality | Form validation for email requires `@` symbol |  Attempt to register without `@` in input field | Form validation requests valid email [address](static/images/testing/email-test.png) | Pass |
 | | Username and Password must be between 8 and 20 characters | Attempt to enter username and password with less than 8 characters | Feedback error [displayed](static/images/testing/user-pass-validation.png) | Pass |
 | | Username and Password must be between 8 and 20 characters | Attempt to enter username and password with more than 20 characters | Form won't let the user use more than 20 characters | Pass |
@@ -68,6 +74,8 @@ Contents
 | | Search by genre | Type "fantasy" into search field and click search  | Search returns all books with genre "Fantasy" | Pass |
 |  | Search by username | Type username "cdesquire" into search field | Search displays book/books written by the username "cdesquire" | Pass |
 | | Reset button should reset the search form | Enter text to search form then click Reset | Form resets to show all reviews | Pass |
+| | Message displayed if no search results found | Type nonsense word into search bar and click search | No Results Found displayed to the [user](static/images/testing/no-search.png) and button to try again | Pass |
+| | Try Again button if no search results | Type nonsense word into search bar and click search, when no results found click Please Try Again | User redirected to All Reviews | Pass |
 | Reviews | Clicking the image of the book takes user to the book review for that specific book | Click image of "Mort" | Redirected to the book review page for "Mort" | Pass |  
 |  | Clicking the See Full Review link under book title on book card takes user to the book review for that specific book | Click See Full Review on "Mort" card | Redirected to the book review page for "Mort" | Pass |  
 | Back to Top | When the user scrolls down the page a button appears to click to go back to top of the page | Scroll down the page to see if Back to Top appears | Back to Top Button [displayed](static/images/testing/back-to-top.png) | Pass | 
@@ -80,23 +88,50 @@ Contents
 | Favourites | User clicks Favourite button and book is added to favourites, user is redirected to Profile to display this and flash message displayed to confirm | Click Favourite button underneath "Mort" | Redirected to Profile and book is displayed in Favourites table and flash message [displayed](static/images/testing/favourite.png) | Pass |
 
 
-**Book Review Page**
-| Feature        | Expected           | Testing  | Result |
-| ------------- |-------------| -----|  ---------- |
+**Book Review Page - user logged in**
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-------------| -----|  ---------- | :-----:|
+| Favourites | User clicks Favourite button and book is added to favourites, user is redirected to Profile to display this and flash message displayed to confirm | Click Favourite button underneath "Mort" | Redirected to Profile and book is displayed in Favourites table and flash message [displayed](static/images/testing/favourite.png) | Pass |
+| Book information | Book name, author, genre, image and description information expected for individual books | Click to view "Mort" | Image, book name, author name, genre and description all displayed correctly for individual book | Pass |
+| | | Click to view "Guards! Guards!" | Image, book name, author name, genre and description all displayed correctly for individual book | Pass |
+| Review information | Review title, full review, rating, username of reviewer and date of review displayed for each review | Scroll to Review section, view review is specific to the book | Review displayed | Pass |
+| Local book shop link | Clicking the link takes the user to the site in new tab | Click link for local bookshop | New tab opens with local bookshop search page displayed | Pass |
+| Amazon link | Clicking the link takes the user to amazon.co.uk in new tab | Click Amazon icon | New tab opens and user taken to amazon.co.uk | Pass |
+| Thoughts section | User can add a comment/their thoughts about the book by filling in the form | Add thoughts to the form and click submit | Thoughts [added](static/images/testing/thoughts-test.png) to the page and flash message [confirms](static/images/testing/thoughts-flash.png) | Pass |  
+| | Thoughts displayed in thoughts section | All thoughts displayed in thoughts section | Scroll to thoughts section | All thoughts [displayed](static/images/testing/thoughts.png) | Pass | 
 
+
+**Book Review - the user is the reviewer**
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-------------| -----|  ---------- | :-----:|
+| Edit and Delete  | If the user wrote the review they should have edit and delete buttons displayed | Write test review, Look for Edit and Delete Buttons under review | Edit and Delete buttons [displayed](static/images/testing/edit-delete.png) | Pass |
+| | Editing the review saves the changes | Click to edit test review, edit the review, click submit | Review edited [successfully](static/images/testing/review-edited.png) with flash message [confirmation](static/images/testing/review-flash-edit.png)| Pass |  
 
 **Add Review Page**
-| Feature        | Expected           | Testing  | Result |
-| ------------- |-------------| -----|  ---------- |
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-------------| -----|  ---------- | :-----:|
+| Submit new review | New review is saved to all reviews page | Click add review, fill in new review form, click submit | New review added to reviews [page](static/images/testing/test-review.png) and flash message feedback [given](static/images/testing/review-added.png) | Pass | 
+| Back up image | If no book image URL provided a back up image displayed | Make new review without including image URL: fill out form, click submit but leave image input blank | Back up image is displayed to the [user](static/images/testing/test-review.png) | Pass | 
+
 
 
 **Edit Review Page**
-| Feature        | Expected           | Testing  | Result |
-| ------------- |-------------| -----|  ---------- |
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-------------| -----|  ---------- | :-----:|
 
 **Book Review Page**
-| Feature        | Expected           | Testing  | Result |
-| ------------- |-------------| -----|  ---------- |
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-------------| -----|  ---------- | :-----:|
+
+
+### Admin Pages
+**Manage Users**
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-------------| -----|  ---------- | :-----:|
+
+**Manage Genres**
+| Feature        | Expected           | Testing  | Result | Pass/Fail |
+| ------------- |-------------| -----|  ---------- | :-----:|
 
 
 
