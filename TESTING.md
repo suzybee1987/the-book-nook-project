@@ -56,7 +56,7 @@
 
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- | :-----:|
-| Feedback on hover | buttons change colour when user hovers the mouse over them and icons rotate on all except Home and Come On In Button on Welcome screen  | Hover mouse over each button | Buttons change colour when hovered over and icons rotate on all except Home and Come On In Button on Welcome screen | Pass | 
+| Feedback on hover | buttons change colour or when user hovers the mouse over them and icons rotate on all except Home (which transforms to increase in size) and Come On In Button on Welcome screen  | Hover mouse over each button | Buttons change colour when hovered over and icons rotate on all except Home (which increases in size) and Come On In Button on Welcome screen | Pass |
 
 
 ### **Welcome Page**
@@ -74,17 +74,18 @@
 | ------------- |-------------| -----|  ---------- | :-----:|
 | Register functionality | Form validation for email requires `@` symbol |  Attempt to register without `@` in input field | Form validation requests valid email [address](static/images/testing/email-test.png) | Pass |
 | | Username and Password must be between 8 and 20 characters | Attempt to enter username and password with less than 8 characters | Feedback error [displayed](static/images/testing/user-pass-validation.png) | Pass |
-| | Username and Password must be between 8 and 20 characters | Attempt to enter username and password with more than 20 characters | Form won't let the user use more than 20 characters | Pass |
+| | Username and Password must be between 8 and 20 characters | Attempt to enter username and password with more than 20 characters | Form restrcits the user from using more than 20 characters | Pass |
 | | Register with new user and password to be logged in and redirected to Profile page | Enter email address, name, username, password and click register | New account registered and profile page shown | Pass |
 
 
 [Back to contents](#contents)
 
 ### **Log In Page**
+
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-----------------| ----------|  ---------- | :----: |
-| Log in functionality | Correct user/pass combination directs user to their profile page with name displayed | Log in with correct user/pass combination | Redirected to user profile [page](static/images/testing/log-in-feedback.png) with name displayed | Pass |
-|   | Incorrect user/pass combination | Error showing "incorrect username/password" | Flash message displaying [error](static/images/testing/user-pass-error.png) | Pass |
+| Log in functionality | Correct user/pass combination directs user to their profile page with name displayed | Log in with correct username/password combination | Redirected to user profile [page](static/images/testing/log-in-feedback.png) with name displayed | Pass |
+|   | Incorrect username/password combination | Error showing "incorrect username/password" | Flash message displaying [error](static/images/testing/user-pass-error.png) | Pass |
 | Link to Register | Redirect to Register page | Click link to register | Redirected to Register page | Pass |
 
 
@@ -143,6 +144,7 @@
 
 
 ### **Book Review Page**
+
     - the user is the reviewer or admin logged in
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- | :-----:|
@@ -153,6 +155,7 @@
 [Back to contents](#contents)
 
 ### **Add Review Page**
+
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- | :-----:|
 | Submit new review | New review is saved to all reviews page | Click add review, fill in new review form, click submit | New review added to reviews [page](static/images/testing/test-review.png) and flash message feedback [given](static/images/testing/review-added.png) | Pass | 
@@ -161,10 +164,11 @@
 
 
 ### **Edit/Delete Review Page**
+
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- | :-----: |
-| Edit functionality | Only reviewer or admin can edit reviews | Log in as admin, navigate to a book review page, click edit, edit review, click submit, view book review to check edit successful | Edit successful for admin user | Pass |
-| | | Log in as standard user, create review, edit review, click submit, view book review to check edit successful | Edit successful for reviewer | Pass | 
+| Edit functionality | Only admin or reviewer can edit reviews | Log in as admin, navigate to a book review page, click edit, edit review, click submit, view book review to check edit successful | Edit successful for admin user | Pass |
+| | Only admin or reviewer can edit reviews | Log in as standard user, create review, edit review, click submit, view book review to check edit successful | Edit successful for reviewer | Pass | 
 | | | Log in as different standard user, attempt to edit review | Edit/Delete button not available | Pass |
 | Review info prepopulated on edit | Book review title, author, genre, etc should be prepopulated on editing a review | Log in as admin, click edit review, check book info is the same as book review | Book information in form is present in form | Pass | 
 | Delete functionality | Only reviewer and admin can delete reviews | Log in as admin, navigate to a book review page, click delete, modal launch to confirm, click confirm | Delete successful for admin | Pass |
@@ -175,18 +179,21 @@
 
 [Back to contents](#contents)
 
-## Admin Pages
+## **Admin Pages**
+
 As well as the ability to edit and delete reviews the admin has access to manage genres and users. This includes creating new genres and deleting generes and users. User is required to log in as admin before attempting these tests.
 
 ### **Manage Users**
+
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
 | ------------- |-------------| -----|  ---------- | :-----:|
 | Delete User | The functionality to delete a user | Navigate to Manage Users, click delete button under user to delete, redirected to delete user page, click delete, and confirm on modal | User deleted successfully with flash [confirmation](static/images/testing/user-deleted.png) | Pass |
 
 
 ### **Manage Genres**
+
 | Feature        | Expected           | Testing  | Result | Pass/Fail |
-| ------------- |-------------| -----|  ---------- | :-----:|
+| ------------- |-------------| -----|  ---------- | :-----: |
 | Add Genre | Be able to add new genre | Navigate to Manage Genres, click Add New Genre, type genre name in form, submit | Genre created successfully and flash message confirms to the [user](static/images/testing/new-genre.png) | Pass | 
 | Delete Genre | The functionality to delete a genre | Navigate to Manage Genres, click delete button under genre to delete, redirected to delete genre page, click delete, and confirm on modal | Genre deleted successfully with flash [confirmation](static/images/testing/genre-deleted.png) | Pass |
 
