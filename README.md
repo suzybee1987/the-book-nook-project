@@ -344,6 +344,52 @@ The wireframes were created using [Adobe XD](https://www.adobe.com/uk/products/x
 [Back to contents](#contents)
 
 
+## **Database Layout**
+
+Collection: book-nook
+| Title      | Field    |
+| ---------- | -------- |
+| Favourites | _id      |
+|            | book_id  |
+|            | username |  
+
+
+| Title      | Field    |
+| ---------- | -------- |
+| Genre      | _id      |
+|            | genre_id |
+
+
+| Title      | Field        |
+| ---------- | -----------  |
+| Quotes     | _id          |
+|            | quote_author |
+|            | quote_text   |
+|            | href         |
+
+
+| Title      | Field     |
+| ---------- | --------- |
+| Ratin      | _id       |
+|            | rating_no |
+
+| Title      | Field        |          |             |               |
+| ---------- | -----------  |  ------- | ----------  | ------------- |
+| Reviews    | _id          |          |             |               |
+|            | book_name    |          |             |               |
+|            | author_name  |          |             |               |
+|            | review_title |          |             |               |
+|            | review       |          |             |               |
+|            | description  |          |             |               |
+|            | rating_no    |          |             |               |
+|            | image        |          |             |               |
+|            | reviewed_by  |          |             |               |
+|            | review_date  |          |             |               |
+|            | thoughts     | thoughts | reviewed_by | reviewed_date |  
+
+
+
+
 ## **Version Control**
 
 **Version control** was managed within **GitHub** and **Gitpod** and regular commits pushed to **GitHub**. 
