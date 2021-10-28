@@ -103,11 +103,6 @@ def register():
             flash("Username already exists, please select another")
             return redirect(url_for("register"))
 
-# in Mini Project | Putting It All Together  User Authentication
-# Adding Registration Functionality video
-# Tim says if you want a confirm password you should do it
-# before this dictionary
-
         user_details = {
             "fname": request.form.get("fname").capitalize(),
             "lname": request.form.get("lname").capitalize(),
@@ -264,7 +259,7 @@ def edit_review(review_id):
 @app.route("/delete_review/<review_id>")
 def delete_review(review_id):
     """
-    allows user to delete review
+    allows reviewer to delete review
     """
     mongo.db.reviews.remove({"_id": ObjectId(review_id)})
     flash("Review deleted")
@@ -371,10 +366,14 @@ def add_genre():
         genre = {
             "genre_name": request.form.get("genre_name")
         }
-        mongo.db.genres.insert_one(genre)
-        flash("New Genre Added")
-        return redirect(url_for("get_genres"))
-
+        try:
+            if session["user"] == "admin":
+                mongo.db.genres.insert_one(genre)
+                flash("New Genre Added")
+                return redirect(url_for("get_genres"))
+        except Exception:
+            flash("You are not allowed to do that")
+            return redirect(url_for("get_reviews"))
     return render_template("add_genre.html")
 
 
@@ -388,15 +387,10 @@ def edit_genre(genre_id):
             "genre_name": request.form.get("genre_name")
         }
         try:
-            if session["user"]:
-                username = mongo.db.users.find_one(
-                    {"username": session["user"]}
-                )
-
-                if username == "admin":
-                    mongo.db.genres.update({"_id": ObjectId(genre_id)}, submit)
-                    flash("Genre Successfully Updated")
-                    return redirect(url_for("get_genres"))
+            if session["user"] == "admin":
+                mongo.db.genres.update({"_id": ObjectId(genre_id)}, submit)
+                flash("Genre Successfully Updated")
+                return redirect(url_for("get_genres"))
         except Exception:
             flash("You are not allowed to do that")
             return redirect(url_for("get_reviews"))
@@ -411,11 +405,7 @@ def delete_genre(genre_id):
     allows admin to delete the genres
     """
     try:
-        if session["user"]:
-            username = mongo.db.users.find_one(
-                {"username": session["user"]}
-            )
-
+        if session["user"] == "admin":
             mongo.db.genres.remove({"_id": ObjectId(genre_id)})
             flash("Genre Successfully Deleted")
             return redirect(url_for("get_genres"))
@@ -442,36 +432,16 @@ def see_user(user_id):
     return render_template("delete_user.html", users=users)
 
 
-@app.route("/add_user", methods=["GET", "POST"])
-def add_user():
-    """
-    allows admin to add new user
-    """
-    if request.method == "POST":
-        user = {
-            "username": request.form.get("username")
-        }
-        mongo.db.users.insert_one(user)
-        flash("New User Added")
-        return redirect(url_for("get_users"))
-
-    return render_template("add_user.html")
-
-
 @app.route("/delete_user/<user_id>")
 def delete_user(user_id):
     """
     allows admin to delete the users
     """
     try:
-        if session["user"]:
-            username = mongo.db.users.find_one(
-                {"username": session["user"]}
-            )
-            if username == "admin":
-                mongo.db.users.remove({"_id": ObjectId(user_id)})
-                flash("User Successfully Deleted")
-                return redirect(url_for("get_users"))
+        if session["user"] == "admin":
+            mongo.db.users.remove({"_id": ObjectId(user_id)})
+            flash("User Successfully Deleted")
+            return redirect(url_for("get_users"))
     except Exception:
         flash("You are not allowed to do that")
         return redirect(url_for("get_reviews"))
@@ -489,7 +459,7 @@ def page_not_found(e):
 @app.errorhandler(500)
 def internal_server_error(e):
     """
-    404 page, code from
+    500 page, code from
     https://flask.palletsprojects.com/en/2.0.x/errorhandling/?highlight=custom%20error%20pages
     """
     return render_template('500.html'), 500

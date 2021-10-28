@@ -21,7 +21,12 @@ html {
 }
 
 .fa-solid.fa-book-open-reader {
+    transition: transform 0.2s;
     padding-left: 15px;
+}
+
+.fa-solid.fa-book-open-reader.welcome-open:hover {
+    transform: scale(1.5);
 }
 
 /* end of Navbar  */
