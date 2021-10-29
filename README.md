@@ -27,6 +27,7 @@ Link to [live site]
   - [**Libraries**](#libraries)
   - [**Tools**](#tools)
 - [**Features**](#features)
+  - [**Site Navigation**](#site-navigation)
   - [**Features Implemented**](#features-implemented)
   - [**Future Features**](#future-features)
   - [**Responsive Design**](#responsive-design)
@@ -218,6 +219,21 @@ The wireframes were created using [Adobe XD](https://www.adobe.com/uk/products/x
 
 ## **Features**
 
+### **Site Navigation**
+
+The site journey taken by users is shown below.
+
+For users logged out:
+![](static/images/readme/site-logged-out.png)
+
+For users logged in:
+![](static/images/readme/site-logged-in.png)
+
+For admin users:
+![](static/images/readme/site-admin.png)
+
+
+
 ### **Features Implemented**
 
 #### **Features relevant to all pages** (extended via *base.html*):
@@ -370,7 +386,7 @@ Collection: book-nook
 
 | Title      | Field     |
 | ---------- | --------- |
-| Ratin      | _id       |
+| Rating      | _id       |
 |            | rating_no |
 
 | Title      | Field        |          |             |               |
@@ -386,6 +402,15 @@ Collection: book-nook
 |            | reviewed_by  |          |             |               |
 |            | review_date  |          |             |               |
 |            | thoughts     | thoughts | reviewed_by | reviewed_date |  
+
+| Title      | Field        |
+| ---------- | -----------  |
+| users      | _id          |
+|            | fname        |
+|            | lname        |
+|            | email        |
+|            | username     |
+|            | password     |
 
 
 
