@@ -1,5 +1,7 @@
 # The Book Nook
 
+![](static/images/readme/amiresponsive.PNG)
+
 ![GitHub contributors](https://img.shields.io/github/contributors/suzybee1987/the-book-nook-project)
 ![GitHub last commit](https://img.shields.io/github/last-commit/suzybee1987/the-book-nook-project)
 ![GitHub language count](https://img.shields.io/github/languages/count/suzybee1987/the-book-nook-project)
@@ -9,7 +11,7 @@
 
 **The Book Nook** is an interactive book review site aimed at book lovers looking to find reviews on books they are interested in reading and allows them to leave reviews for ones they have read. The site is designed to be responsive and easy to navigate on a range of devices to make it accessible for book lovers. 
 
-Link to [live site]
+Link to [live site](https://the-book-nook-project.herokuapp.com/)
 
 ## **Contents**
 
@@ -236,6 +238,34 @@ For admin users:
 
 ### **Features Implemented**
 
+All aspects of CRUD functionality are included in this site for users who are logged in. 
+For example: 
+
+| Function | Location     |
+| -------- | ------------ |
+| Create   | Add Reviews  |
+|          | Add Thoughts |
+| Read     | All Reviews  |
+|          | Book Review  |
+|          | Profile      |
+| Update   | Edit Reviews | 
+| Delete   | Book Review  |
+
+
+The admin user has extra functionality included:
+
+| Function    | Location                   |
+| ----------- | -------------------------- |
+| Create      | Manage Genres -> Add Genre |
+| Read        | Manage Genres              |
+|             | Manage Users               |
+| Update      | Edit Genres                | 
+| Delete      | Delete Genre               |
+|             | Delete User                |
+
+[Back to contents](#contents)
+
+
 #### **Features relevant to all pages** (extended via *base.html*):
 
 - **Header**
@@ -272,7 +302,9 @@ For admin users:
    **Form**
    - Card requesting the user register with their email address, name, username and password with prompt to log in to an account if they have already registered and linking them to `login.html`.
 
-#### **Profile Page** (*profile.html*)
+[Back to contents](#contents)
+
+#### **Profile Page** (*profile.html*) [see here](static/images/readme/profile-page.png)
 
 - **Welcome**
     - Feedback to user that they have been logged in through flash message at the top of the page to feedback that log in was successful and also card heading `Welcome <users first name>` for the personal touch.
@@ -282,12 +314,12 @@ For admin users:
     - Reviews where the user has clicked to add to favourites are located here, including book name, author and a link to remove the review from favourites. The user can click the book name link to be taken to the review if they wish.
     
 
-#### **All Reviews** (*reviews.html*)
+#### **All Reviews** (*reviews.html*) [see here](static/images/readme/all-reviews.png)
 
  - **Search Bar**
     - The search bar allows the user to search by book name, author, genre and reviewed by so they can find more books based on their interests. Search and reset buttons present for easy use. 
     
-- **Book Reviews**
+- **Book Reviews** [see here](static/images/readme/book-review.png)
     - List present of all books reviewed so far by other users including book front cover image, book name, author, title of review, rating, link to full review and button to save to favourites. This button allows the user to save for their own use later. By clicking on the image of the front cover or `See Full Review` link the user is directed to the full review page where they can add their thoughts. If no image available for the book review a default alternative will be posted. This is completed using Jinja for loop of reviews and extracting information from MongoDB.
 
 #### **Book Review Page** (*book_review.html*)
@@ -314,6 +346,7 @@ For admin users:
  - **Buttons**
     - The `Back to Reviews` button redirects the user back to *reviews.html* to prevent them having to press the browser back button for better user experience. This is also achieved by clicking `Cancel` underneath the form. The `Submit Review` button submits the add review form.
 
+[Back to contents](#contents)
 
 #### **Edit Review** *(edit_review.html)*
 
@@ -333,6 +366,10 @@ For admin users:
   - Card displaying all of the genres created so far with options to edit them or delete them.
   - **Edit Genres** button leads to (*edit_genre.html*) and a form where a genre's name can be changed. The genre name is generated to provide confirmation of genre to be made changed.
   - **Delete Genres** button leads to (*delete_genre.html*) and a form where the genre can be deleted, whereupon a modal is launched to confirm you would like to delete; confirming the name of genre to be deleted. 
+
+[Back to contents](#contents)
+
+### **Error Pages**
 
 #### *404.html*
 
@@ -363,57 +400,56 @@ For admin users:
 ## **Database Layout**
 
 Collection: book-nook
-| Title      | Field    |
-| ---------- | -------- |
-| Favourites | _id      |
-|            | book_id  |
-|            | username |  
+| Title      | Field    | Data Type |
+| ---------- | -------- | --------- |
+| Favourites | _id      | ObjectId  |
+|            | book_id  | ObjectId  |
+|            | username | String    |
 
 
-| Title      | Field    |
-| ---------- | -------- |
-| Genre      | _id      |
-|            | genre_id |
+| Title      | Field    | Data Type |
+| ---------- | -------- | --------- |
+| Genre      | _id      | ObjectId  | 
+|            | genre_id | ObjectId  |
 
 
-| Title      | Field        |
-| ---------- | -----------  |
-| Quotes     | _id          |
-|            | quote_author |
-|            | quote_text   |
-|            | href         |
+| Title      | Field        | Data Type |
+| ---------- | -----------  | --------- |
+| Quotes     | _id          | ObjectId  |
+|            | quote_author | String    |
+|            | quote_text   | String    |
+|            | href         | String    |
 
 
-| Title      | Field     |
-| ---------- | --------- |
-| Rating      | _id       |
-|            | rating_no |
+| Title      | Field     | Data Type |
+| ---------- | --------- | --------- |
+| Rating      | _id      | ObjectId  |
+|            | rating_no | Int32     |
 
-| Title      | Field        |          |             |               |
-| ---------- | -----------  |  ------- | ----------  | ------------- |
-| Reviews    | _id          |          |             |               |
-|            | book_name    |          |             |               |
-|            | author_name  |          |             |               |
-|            | review_title |          |             |               |
-|            | review       |          |             |               |
-|            | description  |          |             |               |
-|            | rating_no    |          |             |               |
-|            | image        |          |             |               |
-|            | reviewed_by  |          |             |               |
-|            | review_date  |          |             |               |
-|            | thoughts     | thoughts | reviewed_by | reviewed_date |  
+| Title      | Field        | Data Type | 
+| ---------- | -----------  |  -------- | 
+| Reviews    | _id          | ObjectId  |  
+|            | book_name    | String    | 
+|            | author_name  | String    |  
+|            | review_title | String    |  
+|            | review       | String    | 
+|            | description  | String    | 
+|            | rating_no    | Int32     |  
+|            | image        | String    | 
+|            | reviewed_by  | String    |    
+|            | review_date  | Date      | 
+|            | thoughts     | Array     |  
 
-| Title      | Field        |
-| ---------- | -----------  |
-| users      | _id          |
-|            | fname        |
-|            | lname        |
-|            | email        |
-|            | username     |
-|            | password     |
+| Title      | Field        | Data Type |
+| ---------- | -----------  | --------- |
+| users      | _id          | ObjectId  | 
+|            | fname        | String    |
+|            | lname        | String    | 
+|            | email        | String    | 
+|            | username     | String    | 
+|            | password     | String    | 
 
-
-
+[Back to contents](#contents)
 
 ## **Version Control**
 
