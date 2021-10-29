@@ -113,10 +113,8 @@ def register():
             "admin": "off",
         }
         mongo.db.users.insert_one(user_details)
-
         # put new user in to session using session cookie
         session["user"] = request.form.get("username").lower()
-
         return redirect(url_for("get_reviews"))
 
     return render_template("register.html")
@@ -468,4 +466,4 @@ def internal_server_error(e):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)

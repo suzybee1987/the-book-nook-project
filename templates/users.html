@@ -1,89 +1,63 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="genre-users">
-    <!-- Floating button to click to go to top of review.html
-    https: //www.w3schools.com/howto/howto_js_scroll_to_top.asp -->
-    <button class="waves-effect waves-light btn" onclick="topFunction()" id="myBtn" title="Back to top"
-        aria-label="Button takes back to top of page"><i class="fa-solid fa-angle-up"></i></button>
-    <div class="row">
-        <div class="col s12 m8 offset-m2">
-            <div class="card-panel z-depth-4 card-margin-top">
-                <div class="row">
-                    <div class="col s12 m6 offset-m3">
-                        <h3 class="review-header center-align">Manage Users</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    {% for user in users %}
-                    <div class="col s12 m4">
-                        <div class="card center-align">
-                            <div class="card-content">
-                                <span class="">{{ user.username }}</span>
-                            </div>
-                            <div class="card-body">
-                                <a href="{{ url_for('see_user', user_id=user._id) }}"
-                                    class="btn waves-effect waves-light row-buttons">Delete
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </a>
-                            </div>
+    <div class="genre-users">
+        <!-- Floating button to click to go to top of page
+        https: //www.w3schools.com/howto/howto_js_scroll_to_top.asp -->
+        <button class="waves-effect waves-light btn" onclick="topFunction()" id="myBtn" title="Back to top"
+            aria-label="Button takes back to top of page"><i class="fa-solid fa-angle-up"></i></button>
+        <div class="row">
+            <div class="col s12 m8 offset-m2">
+                <div class="card-panel z-depth-4 card-margin-top">
+                    <div class="row">
+                        <div class="col s12 m6 offset-m3">
+                            <h3 class="review-header center-align">Manage Users</h3>
                         </div>
                     </div>
-                    {% endfor %}
+                    <div class="row">
+                        {% for user in users %}
+                            <div class="col s12 m4">
+                                <div class="card center-align">
+                                    <div class="card-content">
+                                        <span class="">{{ user.username }}</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <a href="{{ url_for('see_user', user_id=user._id) }}"
+                                            class="btn waves-effect waves-light row-buttons">Delete
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    // Floating button to click to go to top of review.html 
-    // https: //www.w3schools.com/howto/howto_js_scroll_to_top.asp 
-    //Get the button:
-    mybutton = document.getElementById("myBtn");
+    <script>
+        // Floating button to click to go to top of page
+        // https: //www.w3schools.com/howto/howto_js_scroll_to_top.asp 
+        //Get the button:
+        mybutton = document.getElementById("myBtn");
 
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function () {
-        scrollFunction()
-    };
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
 
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            mybutton.style.display = "block";
-        } else {
-            mybutton.style.display = "none";
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
         }
-    }
 
-    // When the user clicks on the button, scroll to the top of the document
-    function topFunction() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
-</script>
-<script>
-    // Floating button to click to go to top of review.html 
-    // https: //www.w3schools.com/howto/howto_js_scroll_to_top.asp 
-    //Get the button:
-    mybutton = document.getElementById("myBtn");
-
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function () {
-        scrollFunction()
-    };
-
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            mybutton.style.display = "block";
-        } else {
-            mybutton.style.display = "none";
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         }
-    }
-
-    // When the user clicks on the button, scroll to the top of the document
-    function topFunction() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
-</script>
-
+    </script>
 {% endblock %}

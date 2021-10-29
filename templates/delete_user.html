@@ -1,81 +1,81 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="genre-users">
-    <div class="row card-margin-top">
-        {% for user in users %}
-        <div class="col s12 m8 offset-m2">
-            <div class="card-panel card-margin-top">
-                <a href="{{ url_for('get_users') }}" class="btn waves-effect waves-light" alt="back to users">
-                    <i class="fa-solid fa-chevron-left"></i>
-                    Back to users
-                </a>
-                <div class="row">
-                    <div class="col s12 m6 offset-m3">
-                        <h3 class="review-header center-align">Delete user</h3>
-                    </div>
-                </div>
-                <!-- user  -->
-                <div class="row center-align">
-                    <div class="col s12 m10 offset-m1">
-                        <h5>User to be deleted:</h5>
-                        <h6>Username: {{ user.username }}</h6>
-                        <h6>First name: {{ user.fname }}</h6>
-                        <h6>Lastname: {{ user.lname }}</h6>
-                    </div>
-                </div>
-                <!-- Submit  -->
-                <div class="row center-align">
-                    <div class="col s12 m12">
-                        <a href="#modal-user" class="btn row-buttons waves-effect waves-light modal-trigger"
-                            alt="click to trigger modal">
-                            Delete user
-                            <i class="fa-solid fa-pen-fancy"></i>
+    <div class="genre-users">
+        <div class="row card-margin-top">
+            {% for user in users %}
+                <div class="col s12 m8 offset-m2">
+                    <div class="card-panel card-margin-top">
+                        <a href="{{ url_for('get_users') }}" class="btn waves-effect waves-light" alt="back to users">
+                            <i class="fa-solid fa-chevron-left"></i>
+                            Back to users
                         </a>
-                        <a href="{{ url_for('get_users') }}" class="btn row-buttons waves-effect waves-light cancel">
-                            Cancel
-                            <i class="fa-solid fa-xmark"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- modal-user  -->
-                <div id="modal-user" class="modal modal-delete">
-                    <div class="modal-content">
-                        <div class="row center-align">
-                            <div class="col s12 m12">
-                                <h4 class="modal-title">
-                                    Are you sure you want to delete this user?
-                                </h4>
+                        <div class="row">
+                            <div class="col s12 m6 offset-m3">
+                                <h3 class="review-header center-align">Delete user</h3>
                             </div>
                         </div>
+                        <!-- user  -->
                         <div class="row center-align">
-                            <div class="col s12 m12">
-                                <h5>
-                                    You are deleting <em>{{ user.username }}</em>.
-                                </h5>
+                            <div class="col s12 m10 offset-m1">
+                                <h5>User to be deleted:</h5>
+                                <h6>Username: {{ user.username }}</h6>
+                                <h6>First name: {{ user.fname }}</h6>
+                                <h6>Lastname: {{ user.lname }}</h6>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
+                        <!-- Submit  -->
                         <div class="row center-align">
-                            <div class="col s6 m6">
-                                <a href="{{ url_for('delete_user', user_id=user._id) }}"
-                                    class="waves-effect submit btn">
-                                    I'm sure!
-                                    <i class="fa-solid fa-plus"></i>
+                            <div class="col s12 m12">
+                                <a href="#modal-user" class="btn row-buttons waves-effect waves-light modal-trigger"
+                                    alt="click to trigger modal">
+                                    Delete user
+                                    <i class="fa-solid fa-pen-fancy"></i>
                                 </a>
-                            </div>
-                            <div class="col s6 m6">
-                                <a href="#" class="modal-close waves-effect cancel btn">
-                                    Wait, no!
+                                <a href="{{ url_for('get_users') }}" class="btn row-buttons waves-effect waves-light cancel">
+                                    Cancel
                                     <i class="fa-solid fa-xmark"></i>
                                 </a>
                             </div>
                         </div>
+                        <!-- modal-user  -->
+                        <div id="modal-user" class="modal modal-delete">
+                            <div class="modal-content">
+                                <div class="row center-align">
+                                    <div class="col s12 m12">
+                                        <h4 class="modal-title">
+                                            Are you sure you want to delete this user?
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="row center-align">
+                                    <div class="col s12 m12">
+                                        <h5>
+                                            You are deleting <em>{{ user.username }}</em>.
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="row center-align">
+                                    <div class="col s6 m6">
+                                        <a href="{{ url_for('delete_user', user_id=user._id) }}"
+                                            class="waves-effect submit btn">
+                                            I'm sure!
+                                            <i class="fa-solid fa-plus"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col s6 m6">
+                                        <a href="#" class="modal-close waves-effect cancel btn">
+                                            Wait, no!
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-</div>
 {% endblock %}

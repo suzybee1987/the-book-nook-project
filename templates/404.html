@@ -1,21 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="welcome-hero">
-    <div class="row homepage">
-        <div class="col s12 m8 offset-m2">
-            <div class="card-panel center-align card-margin-top">
-                <div class="row">
-                    <h3 class="title">Uh oh... </h3>
-                </div>
-                <h4>Looks like you're lost.</h4>
-                <div class="row">
-                    <a href="{{ url_for('get_reviews') }}" class="waves-effect brown darken-3 btn-large comein" aria-label="Click to back to reviews page">
-                        Click here to get back to safety
-                        <i class="fa-solid fa-book-open-reader"></i>
-                    </a>
+    <div class="welcome-hero">
+        <div class="row homepage">
+            <div class="col s12 m8 offset-m2">
+                <div class="card-panel center-align card-margin-top">
+                    <div class="row">
+                        <h3 class="title">Uh oh... </h3>
+                    </div>
+                    <h4>Looks like you're lost.</h4>
+                    <div class="row">
+                        <a href="{{ url_for('get_reviews') }}" class="waves-effect brown darken-3 btn-large comein"
+                            aria-label="Click to back to reviews page">
+                            Click here to get back to safety
+                            <i class="fa-solid fa-book-open-reader"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}

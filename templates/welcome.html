@@ -1,38 +1,40 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="welcome-hero">
-    <div class="row homepage">
-        <div class="col s12 m8 offset-m2">
-            <div class="card-panel center-align">
-                <div class="row">
-                    <h4 class="title">Welcome to The Book Nook</h4>
-                </div>
-                <div class="row">
-                    <h5 class="paragraph">A book review forum for readers to review books they have read and find new
-                        ones.</h5>
-                </div>
-                <div class="row hide-on-small-only show-on-medium-and-up">
-                    <h6 class="typewriter">
-                        Log in to discover your next favorite book...</h6>
-                </div>
-                <div class="row">
-                    <a href="{{ url_for('get_reviews') }}" class="waves-effect btn-large btn comein">Come on in <i class="fa-solid fa-book-open-reader"></i></a>
+    <div class="welcome-hero">
+        <div class="row homepage">
+            <div class="col s12 m8 offset-m2">
+                <div class="card-panel center-align">
+                    <div class="row">
+                        <h4 class="title">Welcome to The Book Nook</h4>
+                    </div>
+                    <div class="row">
+                        <h5 class="paragraph">A book review forum for readers to review books they have read and find new
+                            ones.</h5>
+                    </div>
+                    <div class="row hide-on-small-only show-on-medium-and-up">
+                        <h6 class="typewriter">
+                            Log in to discover your next favorite book...</h6>
+                    </div>
+                    <div class="row">
+                        <a href="{{ url_for('get_reviews') }}" class="waves-effect btn-large btn comein">Come on in <i
+                                class="fa-solid fa-book-open-reader"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row carousel-row hide-on-small-only">
-        <div class="carousel carousel-slider">
-            {% for quote in quotes %}
-            <a class="carousel-item" href="{{ quote.href }}">
-                <div class="card-panel welcome-quote-panel">
-                    <div class="quotes-panel">
-                        <h5>"{{ quote.quote_text }}"</h5><p> by {{ quote.quote_author }}</p>
-                    </div>
-                </div>
-            </a>
-            {% endfor %}
+        <div class="row carousel-row hide-on-small-only">
+            <div class="carousel carousel-slider">
+                {% for quote in quotes %}
+                    <a class="carousel-item" href="{{ quote.href }}">
+                        <div class="card-panel welcome-quote-panel">
+                            <div class="quotes-panel">
+                                <h5>"{{ quote.quote_text }}"</h5>
+                                <p> by {{ quote.quote_author }}</p>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}
