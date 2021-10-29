@@ -49,14 +49,6 @@ Link to [live site](https://the-book-nook-project.herokuapp.com/)
 
 
 ### **User Stories**
-- As a first time user
-    - I would like to be able to register with no problems and minimal information required
-    - I would like it to be obvious that I am on a book review site 
-
-- As a returning user
-  - I would like to be able to see reviews I have previously written and favourited
-  - I would like to be able to log in to see book reviews I have written and favourited on one page
-
 - All users
     - I would like to find books to read based on their reviews
     - I want the site to be easy to navigate on mobile primarily so I can use it on the go.
@@ -65,11 +57,20 @@ Link to [live site](https://the-book-nook-project.herokuapp.com/)
     - I would like there to be a link to a site where I can buy the book after reading the review 
     - I would like to be able to save book reviews to favourites to read later
     - I would like to see the book cover images to get an idea of the book and genre
-    - I would like to see images of books and nice fonts in-keeping with the theme
+    - I would like to see images of books and fonts in-keeping with the theme
     - I would like there to be navigation buttons to prevent having to use the back browser button and lots of scrolling on long lists
     - I would like a profile page showing the reviews I have written and favourited
-    - I would like to be able to search by author and book name for books I may have read or be interested in and be able to comment on those I have read
+    - I would like to be able to search by author, genre and book name for books I may have read or be interested in and be able to comment on those I have read
     - I would like to be able to add a new review for a new book and be able to edit and delete if required.
+
+- As a first time user
+    - I would like to be able to register with no problems and minimal information required
+    - I would like it to be obvious that I am on a book review site 
+    - I would like to be able to view book reviews
+
+- As a returning user
+  - I would like to be able to see reviews I have previously written and favourited
+  - I would like to be able to log in to see book reviews I have written and favourited on one page
 
 
 ### **Site Owner Goals** 
@@ -85,7 +86,7 @@ Link to [live site](https://the-book-nook-project.herokuapp.com/)
 
 ### **Fonts**
 
-- The fonts have been chosem to complement one another and also give the aesthetic of a book store with a mixture of serif for the book names, sans serif for descriptions and cursive for quotes and comments.
+- The fonts have been chosen to complement one another and also give the aesthetic of a book store with a mixture of serif for the book names, sans serif for descriptions and cursive for quotes and comments.
   -  [Libre Baskerville](static/images/readme/libre-baskerville.PNG) was used for the headings on each of the pages to create consistency.
   - [Special Elite](static/images/readme/special-elite.PNG) was used the the book titles and author names as it mimics the traditional typewriter font and puts the user in mind of vintage books.
   - [Merienda](static/images/readme/merienda.PNG) is a cursive font with a look of real handwriting which was used for the comments and reviews to give the impression they were handwritten.
@@ -94,7 +95,7 @@ Link to [live site](https://the-book-nook-project.herokuapp.com/)
 
 ### **Colours**
 
-- [This Coolors palette](static/images/readme/ms3-coolors.png) was used to put together a colour scheme in keeping with the colour of the wood on book shelves to make the user feel like they are closer to a book store than online site. The lighter 'Desert Sand' colour was used for the cards and opacity added so the background underneath can still be seen without having to use a harsher white colour. 
+- ![](static/images/readme/ms3-coolors.png) This Coolors palette was used to put together a colour scheme in keeping with the colour of the wood on book shelves to make the user feel like they are closer to a book store than online site. The lighter 'Desert Sand' colour was used for the cards and opacity added so the background underneath can still be seen without having to use a harsher white colour. 
 
 
 ### **Imagery**
@@ -201,8 +202,6 @@ The wireframes were created using [Adobe XD](https://www.adobe.com/uk/products/x
     - Markup validation service for HTML5
 - [Jigsaw Validator](https://jigsaw.w3.org/css-validator/)
     - CSS3 Validation Service
-- [Neon Project](https://thenounproject.com/)
-  - For the images of the characters and spinning turtle home button
 - [Google fonts](https://fonts.google.com/)
   - Used to compare and choose fonts. 
 - [Coolors](https://coolors.co/)
@@ -275,7 +274,7 @@ The admin user has extra functionality included:
     - The home button is on the left side of the header and sections of the page listed on the right where a user would expect them to be.
     - Navigation links are highlighted or animated when the user hovers over them to give feedback that they have hovered over the right spot.
     - The colour scheme is designed to be easy to read with the contrast and the ratio tested on Google Dev Tools.
-    - Jinja if statements used to ensure only certain navbar menus are visible to certain users. Only users with `admin = "on"` are able to see `Manage Genres`, `Manage Users` links and only users who are logged in are able to see `Add Review`, `Profile` and `Log Out`. Users not logged in will see `Register`, `Log In` and all users will see `All Reviews`. This is to ensure the best user experience and avoid confusion or breaches of security. 
+    - Jinja if statements used to ensure only certain navbar menus are visible to certain users. Only admin is able to see `Manage Genres`, `Manage Users` links and only users who are logged in are able to see `Add Review`, `Profile` and `Log Out`. Users not logged in will see `Register`, `Log In` and all users will see `All Reviews`. This is to ensure the best user experience and avoid confusion or breaches of security. 
 
   
 - **Hero sections**
@@ -284,13 +283,13 @@ The admin user has extra functionality included:
 
   
 - **Footer** 
-    - Contains links to privacy policy, terms and conditions and social media
+    - Contains links to social media
     - Copyright symbol with datetime feature to update the date every year
 
 
 #### **Welcome Page** (*welcome.html*) 
-    - Card displaying an introduction to the site including name, brief description and typewriter feature on medium and above screen sizes prompting the user to log in. Button to click to enter the site, leading to *reviews.html*. User is not required to log in to view reviews. 
-    - Carousel of quotes from authors about books for users to view and enjoy.
+    - Card displaying an introduction to the site including name, brief     description and typewriter feature on medium and above screen sizes prompting the user to log in. Button to click to enter the site, leading to *reviews.html*. User is not required to log in to view reviews. 
+    - Carousel of quotes from authors about books for users to view and enjoy on medium screens and above.
 
 
 #### **Log In Page** (*login.html*)
@@ -319,10 +318,10 @@ The admin user has extra functionality included:
  - **Search Bar**
     - The search bar allows the user to search by book name, author, genre and reviewed by so they can find more books based on their interests. Search and reset buttons present for easy use. 
     
-- **Book Reviews** [see here](static/images/readme/book-review.png)
+- **Book Reviews**
     - List present of all books reviewed so far by other users including book front cover image, book name, author, title of review, rating, link to full review and button to save to favourites. This button allows the user to save for their own use later. By clicking on the image of the front cover or `See Full Review` link the user is directed to the full review page where they can add their thoughts. If no image available for the book review a default alternative will be posted. This is completed using Jinja for loop of reviews and extracting information from MongoDB.
 
-#### **Book Review Page** (*book_review.html*)
+#### **Book Review Page** (*book_review.html*) [see here](static/images/readme/book-review.png)
 
   - **Book Review**
     - Image of book cover, book name, author and brief description of the book is displayed on page loading. This is completed using Jinja for loop of reviews and extracting information from MongoDB. Favourite button also present here to allow user to save to their profile.
@@ -486,14 +485,13 @@ The project was developed using [GitPod](https://gitpod.io/) and pushed to [GitH
 
 Table:
 
-| Key | Value |
-| ----------|--------- |
-| PORT | 5000 |
-| IP | 0.0.0.0 |
-| DEBUG | False |
-| MONGO_URI | USER_MONGODB_URI |
+| Key          | Value |
+| ------------ |--------- |
+| PORT         | 5000 |
+| IP           | 0.0.0.0 |
+| MONGO_URI    | USER_MONGODB_URI |
 | MONGO_DBNAME | USER_MONGODB_NAME |
-| Secret_Key | USER_SECRET_KEY |
+| Secret_Key   | USER_SECRET_KEY |
 
 
 ### How to contribute to the site
@@ -524,18 +522,15 @@ To clone this project from GitHub follow the instructions taken from [GitHub Doc
 ### **Code**
 
 - CodeInstitute Full Stack Developer Course
-- [SitePoint](https://www.sitepoint.com/simple-javascript-quiz/#whatsnext) for help with the quiz layout including pagination
 - Wes Bos [JavaScript 30](https://javascript30.com/) for extra ideas on using JavaScript
 
 - Stack Overflow for some bug fixing:
   - [Helpers](https://stackoverflow.com/questions/52113587/materializes-responsive-utilites-not-working) to explain how Materialize show/hide functions work
   - [JavaScript Function Guidance](https://stackoverflow.com/questions/36581504/materialize-carousel-slider-autoplay) to help with the carousel on welcome page
-  
 - [Datetime Tutorial](https://stackabuse.com/how-to-format-dates-in-python/) to help to add time the reviews and thoughts were submitted.
-- [HR CSS](https://codepen.io/Grienauer/pen/PdPPKZ) to separate the book review sections using <hr> elements and CSS.
+- [HR CSS](https://codepen.io/Grienauer/pen/PdPPKZ) to separate the book review sections using `<hr>` elements and CSS.
 - [Simon Vardy's Reading Room project](https://github.com/simonjvardy/the-reading-room) brought some inspiration for how the site could look and some of the features that could be implemented, eg the comments section.
 - [Emanuel Silva MS3 favourites list](https://github.com/manni8436/MS3-Project) Emanuel helped me to set up the favourites list code in app.py.
-
 - Code Institute lessons
   -[Background layout](https://css-tricks.com/perfect-full-page-background-image/) this was taught in one of the Code Institute lessons from css-tricks.com and I use it constantly for my background images. 
 
@@ -556,9 +551,6 @@ Mainly:
 - All Reviews page [background](https://www.pexels.com/photo/books-1926988/) supplied by Ricardo Esquivel on Pexels
 - If no image is posted in the review [this](https://www.pexels.com/photo/photo-of-hands-holding-a-book-3563625/) one is shown instead. Photo by lilartsy from Pexels
 
-### **Inspiration**
- 
-
 
 ### **Acknowledgements**
 
@@ -566,6 +558,6 @@ Mainly:
 - Friends and family for testing the site and giving feedback on different devices, especially my father in law, Alasdair for diligently testing and finding things to be fixed.
 - @Eventyret_mentor, Amy O'Shea, Iryna, Claire Lemmonaire on Slack who supported me through the journey.
 - My husband for all his support, patience and great ideas.
-- and lastly my cheerleaders Emanuel Silva and Jonathan Swift for helping me to stay motivated, sharing great ideas and bad jokes to keep us going. 
+- And, lastly my cheerleaders Emanuel Silva and Jonathan Swift for helping me to stay motivated, sharing great ideas and bad jokes to keep us going. 
 
 [Back to contents](#contents)
