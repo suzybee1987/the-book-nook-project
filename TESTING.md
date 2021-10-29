@@ -17,6 +17,7 @@
   -[**Admin Pages**](#admin-pages)
     - [**Manage Users**](#manage-users)
     - [**Manage Genres**](#manage-genres)
+  - [**User Stories Testing**](#user-stories-testing)
   - [**Lighthouse Report**](#lighthouse)
   - [**Validators**](#validators)
     - [**HTML Validator**](#html-validator)
@@ -204,6 +205,27 @@ As well as the ability to edit and delete reviews the admin has access to manage
 
 [Back to contents](#contents)
 
+## **User Stories Testing**
+
+| User Story | Expectation  | Testing | Result | Pass/Fail |
+| ---------- | ------------ | --------| ------ | --------- |
+| All Users | "I would like to find books to read based on their reviews" | Navigate to book review, scroll to book shop and amazon link, click link to find book | Books can be found based on review | [Pass](static/images/readme/book-review.png) |
+|          | "I want the site to be easy to navigate on mobile primarily so I can use it on the go" | Open site on mobile, navigate throughout the site | Site fully responsive on mobile | [Pass](static/images/testing/mobile.png) |
+| | "I want the site to be responsive on all devices" | Navigate to site on laptop, tablet and mobile, move around the site to test for responsiveness | Site responsive on all devices | [Pass](static/images/testing/tablet.png) |
+| | "I would like to see a timestamp from when the review was posted so I can determine how recent it is and if it follows on from a movie release or sequel/prequel" | Click book review, scroll to review view time stamp | Time stamp is visible on reviews | [Pass](static/images/testing/timestamp.jpg) |
+| | "I would like there to be a link to a site where I can buy the book after reading the review" | Click to view book review, scroll down to book shop and amazon links, click to buy | Test successful |[Pass](static/images/testing/buy-book.jpg) |
+| | "I would like to be able to save book reviews to favourites to read later" | Log in, click to view book review, click favourites icon, check on profile page | Test successful | [Pass](static/images/testing/favourite.png) |
+| |  "I would like to see the book cover images to get an idea of the book and genre" | Navigate to all reviews page, view book review images | Images of books are displayed on reviews | [Pass](static/images/readme/all-reviews.png) |
+| | "I would like to see images of books and fonts in-keeping with the theme" | Navigate to site, see relevant fonts and books on each page | Books and book fonts displayed on site | [Pass](static/images/testing/welcome.jpg) |
+| | "I would like there to be navigation buttons to prevent having to use the back browser button and lots of scrolling on long lists" | Navigate to book review pages to check for buttons and back to top button | Buttons visible on all pages to return to previous page and back to top button available on scrolling | [Pass](static/images/testing/back-button.jpg) and [Pass](static/images/testing/back-to-top.png) |
+| | "I would like a profile page showing the reviews I have written and favourited" | Go to Profile Page, scroll to My Reviews and My Favourites | Reviews and Favourites available to see | [Pass](static/images/readme/profile-page.png) |
+| | "I would like to be able to search by author, genre and book name for books I may have read or be interested in and be able to comment on those I have read" | Go to All Reviews page, input search credentials, view results | Search results successul | [Pass](static/images/testing/search-function.jpg) |
+| | " I would like to be able to add a new review for a new book and be able to edit and delete if required." | Write review, view review, edit and delete review | Edit and delete successful | [Pass](static/images/testing/edit-delete.png) |
+| As a first time user | "I would like to be able to register with no problems and minimal information required" | Click Register, fill in email, name, username, password, click register | Registration successful | [Pass](static/images/testing/register.jpg) |
+| | " I would like it to be obvious that I am on a book review site" | View site, check for book themes | Book wallpapers and fonts found | [Pass](static/images/testing/welcome.jpg) |
+| | " I would like to be able to view book reviews" | Find book on all reviews page, click book image, read review of book | Book review successfully displayed | [Pass](static/images/readme/book-review.png) |
+| As a returning user | " I would like to be able to see reviews I have previously written and favourited" | Navigate to profile page, see reviews written and favourited | My Reviews and My Favourites displayed | [Pass](static/images/readme/profile-page.png) |
+| | "I would like to be able to log in to see book reviews I have written and favourited on one page" | Navigate to profile page, see reviews written and favourited on one page | My Reviews and My Favourites displayed | [Pass](static/images/readme/profile-page.png) |
 
 ## **Lighthouse Testing**
 Google Chrome Lighthouse report was generated and no major issues were found. Mainly the issues were due to the use of MaterializeCSS and JQuery as some of the classes are unused in this site. See [report](static/images/testing/log-in-feedback.png)
@@ -264,12 +286,15 @@ Python was checked to PEP8 compliance and passed on http://pep8online.com/
   - [Commit 14434dd](https://github.com/suzybee1987/the-book-nook-project/commit/14434dd2e9c152c92a0ddc1a176c53ea88462b0a)
     - Bug when logging in with incorrect username or password did not display the flash message due to an indentation error. Fixed by rectifying the indentation error.
 
-
-[Back to contents](#contents)
-  
 - **Bugs not solved**
   - When a user selects to add a book to favourites this can be added multiple times evidenced [here](static/images/testing/favourites-bug.PNG). This is a bug I thought could be solved by converting to a Python set but unsuccessfully.
   - Search bar on mobile issue, user must click under the input form for this to work. Issue with MaterializeCSS that couldn't be rectified. See [here](static/images/testing/search-input-bug.png)
+
+# **Teminal Errors**
+A few errors were found in the problems tab of GitPod relating to the app.py file. See [here](static/images/testing/terminal-errors.jpg) There were no PEP8 issues however these warnings were present.
+1. `env imported but unused` is relating to the if statement at the top of the page. I consulted my mentor about this error and he suggested changing the app.config code relating to os.environ.get statements to os.env.get however this did not resolve the problem. As this is an if statement and the code works without importing env this was left as an exception.
+2. `Catching too general exception Exception` - relates to the `try except` code and is not a major issue. It is a warning that the exception is very general and is designed to provide an alternative if the `try` fails.
+3. `Unused argument e` and `argument name "e"` is in relation to the error handling through flask and the code was lifted from their documentation. 
 
 
   [Back to contents](#contents)
