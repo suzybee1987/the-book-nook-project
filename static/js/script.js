@@ -35,7 +35,6 @@ $('.quotes-panel').hover(function () {
     autoplay = true;
 });
 
-
 // code from CI lesson to validate the genre dropdown in form 
 
 validateMaterializeSelect();
@@ -77,5 +76,5 @@ function validateMaterializeSelect() {
             });
         }
     });
-};
+}
 

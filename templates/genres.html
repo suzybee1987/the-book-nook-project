@@ -1,75 +1,75 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="genre-users">
-        <!-- Floating button to click to go to top of review.html
-            https: //www.w3schools.com/howto/howto_js_scroll_to_top.asp -->
-    <button class="waves-effect waves-light btn" onclick="topFunction()" id="myBtn" title="Back to top"
-        aria-label="Button takes back to top of page"><i class="fa-solid fa-angle-up"></i></button>
-    <div class="row">
-        <div class="col s12 m8 offset-m2">
-            <div class="card-panel z-depth-4 card-margin-top">
-                <div class="row">
-                    <div class="col s12 m6 offset-m3">
-                        <h3 class="review-header center-align">Manage Genres</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 center-align">
-                        <a href="{{ url_for('add_genre') }}" class="btn waves-effect waves-light row-buttons">
-                            Add New Genre <i class="fa-solid fa-plus"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-                    {% for genre in genres %}
-                    <div class="col s12 m4">
-                        <div class="card manage-genre text-shadow center-align">
-                            <div class="card-content">
-                                <span class="card-title-genre brown-text text-darken-2">{{ genre.genre_name }}</span>
-                            </div>
-                            <div class="card-body">
-                                <a href="{{ url_for('edit_genre', genre_id=genre._id) }}"
-                                    class="btn waves-effect waves-light row-buttons">Edit
-                                    <i class="fa-solid fa-pen-fancy"></i>
-                                </a>
-                                <a href="{{ url_for('see_genre', genre_id=genre._id) }}"
-                                    class="btn waves-effect waves-light modal-trigger cancel row-buttons">Delete
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </a>
-                            </div>
+    <div class="genre-users">
+        <!-- Floating button to click to go to top of html
+                https: //www.w3schools.com/howto/howto_js_scroll_to_top.asp -->
+        <button class="waves-effect waves-light btn" onclick="topFunction()" id="myBtn" title="Back to top"
+            aria-label="Button takes back to top of page"><i class="fa-solid fa-angle-up"></i></button>
+        <div class="row">
+            <div class="col s12 m8 offset-m2">
+                <div class="card-panel z-depth-4 card-margin-top">
+                    <div class="row">
+                        <div class="col s12 m6 offset-m3">
+                            <h3 class="review-header center-align">Manage Genres</h3>
                         </div>
                     </div>
-                    {% endfor %}
+                    <div class="row">
+                        <div class="col s12 center-align">
+                            <a href="{{ url_for('add_genre') }}" class="btn waves-effect waves-light row-buttons">
+                                Add New Genre <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for genre in genres %}
+                            <div class="col s12 m4">
+                                <div class="card manage-genre text-shadow center-align">
+                                    <div class="card-content">
+                                        <span class="card-title-genre brown-text text-darken-2">{{ genre.genre_name }}</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <a href="{{ url_for('edit_genre', genre_id=genre._id) }}"
+                                            class="btn waves-effect waves-light row-buttons">Edit
+                                            <i class="fa-solid fa-pen-fancy"></i>
+                                        </a>
+                                        <a href="{{ url_for('see_genre', genre_id=genre._id) }}"
+                                            class="btn waves-effect waves-light modal-trigger cancel row-buttons">Delete
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    // Floating button to click to go to top of review.html 
-    // https: //www.w3schools.com/howto/howto_js_scroll_to_top.asp 
-    //Get the button:
-    mybutton = document.getElementById("myBtn");
+    <script>
+        // Floating button to click to go to top of page
+        // https: //www.w3schools.com/howto/howto_js_scroll_to_top.asp 
+        //Get the button:
+        mybutton = document.getElementById("myBtn");
 
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function () {
-        scrollFunction()
-    };
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
 
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            mybutton.style.display = "block";
-        } else {
-            mybutton.style.display = "none";
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
         }
-    }
 
-    // When the user clicks on the button, scroll to the top of the document
-    function topFunction() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
-</script>
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
 
 {% endblock %}

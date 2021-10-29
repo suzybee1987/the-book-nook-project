@@ -1,111 +1,109 @@
 {% extends "base.html" %}
 {% block content %}
-
-<div class="hero-add-review">
-    <div class="row">
-        <div class="card-panel col s12 m6 offset-m3 card-margin-top">
-            <div class="row">
-                <div class="col s4">
-                    <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light row-buttons"
-                        aria-label="back to reviews"><i class="fa-solid fa-chevron-left"></i>
-                        Back to reviews
-                    </a>
-                </div>
-            </div>
-            <div class="col s10 offset-s1 m6 offset-m3">
-                <h3 class="center-align review-header">Add Review</h3>
-            </div>
-            <form method="POST" action="{{ url_for('add_review') }}">
+    <div class="hero-add-review">
+        <div class="row">
+            <div class="card-panel col s12 m6 offset-m3 card-margin-top">
                 <div class="row">
-                    <div class="col s12 m10 offset-m1 input-field"><i class="fa-solid fa-dragon prefix"></i>
-                        <select id="genre_name" name="genre_name" class="validate" required>
-                            <option value="" disabled selected>Choose Genre</option>
-                            {% for genre in genres %}
-                            <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
-                            {% endfor %}
-                        </select>
-                        <label for="genre_name"></label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 m10 offset-m1 input-field">
-                        <i class="fa-solid fa-book prefix"></i>
-                        <input id="book_name" name="book_name" type="text" class="validate" required>
-                        <label for="book_name">Book Name</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 m10 offset-m1 input-field">
-                        <i class="fa-solid fa-user-pen prefix"></i>
-                        <input id="author_name" name="author_name" type="text" class="validate" required>
-                        <label for="author_name">Author</label>
-                    </div>
-                </div>
-                <!-- Review text area  -->
-                <div class="row">
-                    <div class="col s12 m10 offset-m1 input-field">
-                        <i class="fa-solid fa-user-pen prefix"></i>
-                        <input id="review_title" name="review_title" type="text" class="validate" minlength="1"
-                            maxlength="50" required>
-                        <label for="review_title">Review Title</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 m10 offset-m1 input-field">
-                        <i class="fa-solid fa-keyboard prefix"></i>
-                        <textarea id="review" name="review" class="materialize-textarea" required></textarea>
-                        <label for="review">Review</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 m10 offset-m1 input-field">
-                        <i class="fa-solid fa-keyboard prefix"></i>
-                        <textarea id="description" name="description" class="materialize-textarea" maxlength="300"
-                            required></textarea>
-                        <label for="description">Description</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 m10 offset-m1 input-field">
-                        <i class="fa-solid fa-book prefix"></i>
-                        <input id="image" name="image" type="url" class="validate">
-                        <label for="image">URL of book cover image</label>
-                        <div class="hide-on-small-only show-on-medium-and-up">
-                            Right-click the image you'd like to upload, click 'Copy Link Address' then paste in
-                            here
-                        </div>
-                        <div class="show-on-small hide-on-med-and-up">
-                            Hold down on the image you'd like to upload, open in new tab then open
-                            that tab and copy the browser address
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 m10 offset-m1 input-field">
-                        <i class="fa-solid fa-star prefix"></i>
-                        <select id="rating" name="rating" class="validate" required>
-                            <option value="" disabled selected>Rating</option>
-                            {% for rating in ratings %}
-                            <option value="{{ rating.rating_no }}">{{ rating.rating_no }}</option>
-                            {% endfor %}
-                        </select>
-                        <label for="rating"></label>
-                    </div>
-                </div>
-                <!-- Submit  -->
-                <div class="row center-align row-buttons">
-                    <div class="col s12">
-                        <button class="btn waves-effect waves-light row-buttons" type="submit"
-                            aria-label="submit review">Submit
-                            Review <i class="fa-solid fa-plus"></i>
-                        </button>
-                        <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light cancel row-buttons"
-                            aria-label="cancel and go back to reviews page">Cancel <i class="fa-solid fa-xmark"></i>
+                    <div class="col s4">
+                        <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light row-buttons"
+                            aria-label="back to reviews"><i class="fa-solid fa-chevron-left"></i>
+                            Back to reviews
                         </a>
                     </div>
                 </div>
-            </form>
+                <div class="col s10 offset-s1 m6 offset-m3">
+                    <h3 class="center-align review-header">Add Review</h3>
+                </div>
+                <form method="POST" action="{{ url_for('add_review') }}">
+                    <div class="row">
+                        <div class="col s12 m10 offset-m1 input-field"><i class="fa-solid fa-dragon prefix"></i>
+                            <select id="genre_name" name="genre_name" class="validate" required>
+                                <option value="" disabled selected>Choose Genre</option>
+                                    {% for genre in genres %}
+                                        <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
+                                    {% endfor %}
+                            </select>
+                            <label for="genre_name"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m10 offset-m1 input-field">
+                            <i class="fa-solid fa-book prefix"></i>
+                            <input id="book_name" name="book_name" type="text" class="validate" required>
+                            <label for="book_name">Book Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m10 offset-m1 input-field">
+                            <i class="fa-solid fa-user-pen prefix"></i>
+                            <input id="author_name" name="author_name" type="text" class="validate" required>
+                            <label for="author_name">Author</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m10 offset-m1 input-field">
+                            <i class="fa-solid fa-user-pen prefix"></i>
+                            <input id="review_title" name="review_title" type="text" class="validate" minlength="1"
+                                maxlength="50" required>
+                            <label for="review_title">Review Title</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m10 offset-m1 input-field">
+                            <i class="fa-solid fa-keyboard prefix"></i>
+                            <textarea id="review" name="review" class="materialize-textarea" required></textarea>
+                            <label for="review">Review</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m10 offset-m1 input-field">
+                            <i class="fa-solid fa-keyboard prefix"></i>
+                            <textarea id="description" name="description" class="materialize-textarea" maxlength="300"
+                                required></textarea>
+                            <label for="description">Description</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m10 offset-m1 input-field">
+                            <i class="fa-solid fa-book prefix"></i>
+                            <input id="image" name="image" type="url" class="validate">
+                            <label for="image">URL of book cover image</label>
+                            <div class="hide-on-small-only show-on-medium-and-up">
+                                Right-click the image you'd like to upload, click 'Copy Link Address' then paste in
+                                here
+                            </div>
+                            <div class="show-on-small hide-on-med-and-up">
+                                Hold down on the image you'd like to upload, open in new tab then open
+                                that tab and copy the browser address
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m10 offset-m1 input-field">
+                            <i class="fa-solid fa-star prefix"></i>
+                            <select id="rating" name="rating" class="validate" required>
+                                <option value="" disabled selected>Rating</option>
+                                    {% for rating in ratings %}
+                                        <option value="{{ rating.rating_no }}">{{ rating.rating_no }}</option>
+                                    {% endfor %}
+                            </select>
+                            <label for="rating"></label>
+                        </div>
+                    </div>
+                    <!-- Submit  -->
+                    <div class="row center-align row-buttons">
+                        <div class="col s12">
+                            <button class="btn waves-effect waves-light row-buttons" type="submit"
+                                aria-label="submit review">Submit
+                                Review <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <a href="{{ url_for('get_reviews') }}" class="btn waves-effect waves-light cancel row-buttons"
+                                aria-label="cancel and go back to reviews page">Cancel <i class="fa-solid fa-xmark"></i>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}

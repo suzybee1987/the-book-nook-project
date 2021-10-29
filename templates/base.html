@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="A Book Review website for all lovers of the written word.">
+    <meta name="description" content="A Book Review website for all lovers of the written word.">
 
     <!-- favicon  -->
     <link rel="apple-touch-icon" sizes="180x180" href="../static/images/favicon/apple-touch-icon.png">
@@ -14,18 +13,17 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon/favicon-16x16.png">
     <link rel="manifest" crossorigin="use-credentials" href="../static/images/favicon/site.webmanifest">
     <!-- end of favicon  -->
-    
+
     <!-- stylesheets - font awesome, materialize, google fonts and personal style.css  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" }>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <!-- end of stylesheets  -->
     {% block styles %}
     {% endblock %}
 
     <title>The Book Nook</title>
-
 </head>
 
 <body>
@@ -78,11 +76,13 @@
         <!-- mobile navbar  -->
         <ul class="sidenav" id="mobile-demo">
             <li>
-                <a href="{{ url_for('get_reviews', username=session['user']) }}" aria-label="Link to review page">All Reviews</a>
+                <a href="{{ url_for('get_reviews', username=session['user']) }}" aria-label="Link to review page">All
+                    Reviews</a>
             </li>
             {% if session.user %}
             <li>
-                <a href="{{ url_for('profile', username=session['user']) }}" aria-label="link to profile page">Profile</a>
+                <a href="{{ url_for('profile', username=session['user']) }}"
+                    aria-label="link to profile page">Profile</a>
             </li>
             {% if session.user|lower == "admin"|lower %}
             <li>
@@ -112,13 +112,13 @@
     <main>
         <!-- Flash messages -->
         {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        {% for message in messages %}
-        <div class="row flashes">
-            <h5 class="brown-text text-darken-3 center-align white-text">{{ message }}</h5>
-        </div>
-        {% endfor %}
-        {% endif %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="row flashes">
+                    <h5 class="brown-text text-darken-3 center-align white-text">{{ message }}</h5>
+                </div>
+                {% endfor %}
+            {% endif %}
         {% endwith %}
     </main>
 
@@ -132,12 +132,15 @@
             <!-- social media links  -->
             <div class="row center-align">
                 <div class="col s12 m12">
-                    <a class="grey-text text-lighten-4 btn-floating social" alt="facebook" rel="noopener" href="https://www.facebook.com/"
-                        target="_blank"><i class="fa-brands fa-facebook-f white blue-text"></i></a>
-                    <a class="grey-text text-lighten-4 btn-floating social" alt="instagram" rel="noopener" href="https://www.instagram.com/"
-                        target="_blank"><i class="fa-brands fa-instagram white pink-text"></i></a>
-                    <a class="grey-text text-lighten-4 btn-floating social"  alt="github" rel="noopener" href="https://github.com/suzybee1987"
-                        target="_blank"><i class="fa-brands fa-github white black-text"></i></a>
+                    <a class="grey-text text-lighten-4 btn-floating social" rel="noopener"
+                        href="https://www.facebook.com/" target="_blank"><i
+                            class="fa-brands fa-facebook-f white blue-text"></i></a>
+                    <a class="grey-text text-lighten-4 btn-floating social" rel="noopener"
+                        href="https://www.instagram.com/" target="_blank"><i
+                            class="fa-brands fa-instagram white pink-text"></i></a>
+                    <a class="grey-text text-lighten-4 btn-floating social" rel="noopener"
+                        href="https://github.com/suzybee1987" target="_blank"><i
+                            class="fa-brands fa-github white black-text"></i></a>
                 </div>
                 <!-- end of social media links  -->
 
@@ -153,6 +156,7 @@
                     <!-- end of copyright and date  -->
                 </div>
             </div>
+        </div>
     </footer>
 
     {% block scripts %}

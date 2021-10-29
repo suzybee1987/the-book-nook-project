@@ -14,10 +14,15 @@
   - [**Book Review Page**](#book-review-page)
   - [**Add Review Page**](#add-review-page)
   - [**Edit/Delete Review Page**](#editdelete-review-page)
-
   -[**Admin Pages**](#admin-pages)
     - [**Manage Users**](#manage-users)
     - [**Manage Genres**](#manage-genres)
+  - [**Lighthouse Report**](#lighthouse)
+  - [**Validators**](#validators)
+    - [**HTML Validator**](#html-validator)
+    - [**CSS Jigsaw**](#css-jigsaw)
+    - [**JSHint**](#jshint)
+    - [**PEP8**](#pep8])
 - [**Bugs**](#bugs)
 
 # **Testing**
@@ -199,6 +204,40 @@ As well as the ability to edit and delete reviews the admin has access to manage
 
 [Back to contents](#contents)
 
+
+## **Lighthouse Testing**
+Google Chrome Lighthouse report was generated and no major issues were found. Mainly the issues were due to the use of MaterializeCSS and JQuery as some of the classes are unused in this site. See [report](static/images/testing/log-in-feedback.png)
+
+## **Validators**
+
+### **HTML Validator**
+HTML was validated on https://validator.w3.org/ with no major issues. 
+- [Welcome Page](static/images/testing/validators/html-welcome.jpg)
+- [Register Page](static/images/testing/validators/html-register.jpg)
+- [Profile Page](static/images/testing/validators/html-profile.jpg)
+- [Log In Page](static/images/testing/validators/html-login.jpg)
+- [Edit Review](static/images/testing/validators/html-edit-review.jpg)
+- [Book Review](static/images/testing/validators/html-book-review.jpg)
+- [All Reviews](static/images/testing/validators/html-all-reviews.jpg)
+  - One issue on this page due to the use of ID twice however this is only displayed once on the page as one ID is used for small screens and in the other instance on medium screens and up. 
+- [Add Review](static/images/testing/validators/html-add-review.jpg)
+- [Manage Genres](static/images/testing/validators/html-genres.png)
+- [Manage Users](static/images/testing/validators/html-users.png)
+
+### **CSS Jigsaw** 
+CSS3 Validated using https://jigsaw.w3.org/css-validator/ with no issues.
+- [All CSS](static/images/testing/validators/css-validator.png)
+
+### **JSHint**
+JavaScript was validated using https://jshint.com/ with no issues.
+- [All JavaScript](static/images/testing/validators/jshint.png)
+
+### **PEP8**
+Python was checked to PEP8 compliance and passed on http://pep8online.com/
+- [PEP8](static/images/testing/validators/pep8.png)
+
+
+[Back to contents](#contents)
 
 # **Bugs**
 

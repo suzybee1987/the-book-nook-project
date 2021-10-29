@@ -1,9 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Libre+Baskerville&family=Merienda:wght@400;700&family=Special+Elite&display=swap');
-/* font-family: 'Libre Baskerville', serif; 
-font-family: 'Lato', sans-serif;
-font-family: 'Merienda', cursive;
-font-family: 'Special Elite', cursive; */
-
 
 body,
 html {
@@ -12,8 +7,6 @@ html {
 }
 
 /* Navbar  */
-@media screen {}
-
 @media only screen and (max-width: 600px) {
     .welcome-open {
         padding: 15px;
@@ -67,7 +60,6 @@ main {
 
 /* Code from CSS tricks to produce typewriter effect on home page heading  */
 /* https: //css-tricks.com/snippets/css/typewriter-effect/  */
-
 .typewriter {
     font-family: 'Special Elite', cursive;
     padding-top: 15px;
@@ -119,11 +111,6 @@ main {
     color: #3e2723;
 }
 
-/*  this isn't working? */
-.card-panel.welcome-quote-panel {
-    padding: 10px important !;
-}
-
 .carousel.carousel-slider {
     top: 100px;
     left: 0;
@@ -140,7 +127,7 @@ main {
 }
 
 .card-thought {
-    /* https: //getcssscan.com/css-box-shadow-examples 
+/* https: //getcssscan.com/css-box-shadow-examples 
 box shadow #69 */
     border: solid 2px #473732;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
@@ -183,7 +170,6 @@ box shadow #69 */
         font-size: 50%;
     }
 }
-
 
 /* buttons  */
 
@@ -237,10 +223,6 @@ h2,
         serif;
 }
 
-.textshadow {
-    text-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.6);
-}
-
 /* end of general styling  */
 
 /* login page  */
@@ -254,13 +236,9 @@ h2,
     min-height: 90vh;
 }
 
-/* .link-here {
-    color: #F78764;
-}
-
 .link-here:hover {
     border-bottom: 2px solid #F78764;
-} */
+} 
 
 /* end of login page  */
 
@@ -275,7 +253,6 @@ h2,
     background-size: cover;
     min-height: 80vh;
 }
-
 
 .profile-link {
     color: #473732;
@@ -312,12 +289,13 @@ h2,
 }
 
 .flashes h4 {
-    list-style: 2;
+    line-height: 2;
 }
 
 .card-review {
     height: 650px;
 }
+
 /* Floating button to click to go to top of review.html 
  https: //www.w3schools.com/howto/howto_js_scroll_to_top.asp */
 #myBtn {
@@ -342,8 +320,8 @@ h2,
 
 .review-title {
     font-family: 'Libre Baskerville';
-    font-size: 1.em;
-    text-decoration: underline;
+    font-size: 1em;
+    text-decoration:underline;
     padding-bottom: 12px;
 }
 
@@ -472,7 +450,6 @@ h2,
 
 /* Code to style the HR  */
 /* https: //codepen.io/Grienauer/pen/PdPPKZ  */
-
 .separator {
     margin-top: 50px;
     margin-bottom: 50px;
@@ -517,7 +494,6 @@ h2,
 /* end of edit review  */
 
 /* Users and Genres  */
-
 
 .genre-users {
     background: url("../images/pexels-janko.jpg") no-repeat center center fixed;
