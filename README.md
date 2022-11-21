@@ -11,7 +11,7 @@
 
 **The Book Nook** is an interactive book review site aimed at book lovers looking to find reviews on books they are interested in reading and allows them to leave reviews for ones they have read. The site is designed to be responsive and easy to navigate on a range of devices to make it accessible for book lovers. 
 
-Link to [live site](https://the-book-nook-project.herokuapp.com/)
+Link to [live site][(https://the-book-nook1.onrender.com/welcome)]
 
 ## **Contents**
 
@@ -192,7 +192,7 @@ The wireframes were created using [Adobe XD](https://www.adobe.com/uk/products/x
   - Used to store, host and deploy the project files and source code after being pushed from Git. I also used it for the Project Kanban board to keep track and split tasks into smaller tasks to make them easier to fulfill.
 - [Gitpod](https://www.gitpod.io/)
   - An online IDE linked to the GitHub repository used to write my code.
-- [Heroku](https://www.heroku.com/home)
+- [Render](https://render.com/)
     - A Cloud Application Platform used to deploy the site
 - [JSHint](https://jshint.com/)
     - Used to detect errors in the JavaScript files
@@ -492,6 +492,8 @@ Table:
 | MONGO_URI    | USER_MONGODB_URI |
 | MONGO_DBNAME | USER_MONGODB_NAME |
 | Secret_Key   | USER_SECRET_KEY |
+
+Deployment was moved to Render following the withdrawal of the free plan on Heroku. 
 
 
 ### How to contribute to the site
